@@ -1,0 +1,33 @@
+// Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+@import "setup/typography.scss";
+
+// Basics
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+@import "basics/base.scss";
+@import "basics/links.scss";
+@import "basics/forms";
+
+
+// Views
+@import "views/StationIndex.scss";
+@import "views/LoginSighnup.scss";
+@import "views/SearchPage.scss";
+@import "views/StationDeatils.scss";
+@import "views/user-page.scss";
+
+
+
+// Components
+@import "cmps/AppHeader.scss";
+@import "cmps/AppFooter.scss";
+@import "cmps/LeftSideBar.scss";
+@import "cmps/MobileManu.scss";
+@import "cmps/RightSideBar.scss";
+@import 'cmps/PlayerBtns.scss';
+@import "cmps/EditHero.scss";
+@import "cmps/user-msg.scss";
+// @import "cmps/UserMsg";
