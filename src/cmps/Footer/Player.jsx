@@ -7,6 +7,7 @@ import { MOBILE, PC, TABLET, useDeviceCheck } from '../CustomHooks/UseDeviceChec
 import { useSelector } from 'react-redux'
 import { MobilePlayer } from './MobilePlayer'
 import { TabletPlayer } from './TabletPlayer'
+import { useLocation } from 'react-router-dom'
 
 export function Player() {
 
@@ -14,6 +15,11 @@ export function Player() {
     const device = useSelector(storeState => storeState.appMoudle.device)
 
     useDeviceCheck()
+  
+
+
+
+    const isMobile = (device === MOBILE) ? true : false
 
     return (
         <DynmicPlayerCmp device={device} volume={volume} setVolume={setVolume} ></DynmicPlayerCmp>

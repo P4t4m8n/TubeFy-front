@@ -1,9 +1,11 @@
 import axios from "axios"
 import { utilService } from "./util.service"
+import { fetchParsedTitle } from "./textLearning.service"
+import { songService } from "./song.service"
 
 
-const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
-//const API_KEY_YT = 'AIzaSyAq166O0Zx4knj4zTocORMEpmej0XPnLIc'
+// const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
+const API_KEY_YT = 'AIzaSyAq166O0Zx4knj4zTocORMEpmej0XPnLIc'
 //const API_KEY_YT = 'AIzaSyBu-GdAUp7awvELMR3iigsESqtzB7qLekI'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
@@ -11,21 +13,90 @@ const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=$
 const URL_WIKI = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&`
 
 const maxResults = 5
-
+// aaa()
 export const apiService = {
     getContent,
 
 }
 
-async function getContent(search) {
+async function aaa() {
+    const topArtistsAndBands = [
+        "The Beatles",
+        "Michael Jackson",
+        "Elvis Presley",
+        "Madonna",
+        "The Rolling Stones",
+        "Bob Dylan",
+        "Elton John",
+        "Led Zeppelin",
+        "Pink Floyd",
+        "David Bowie",
+        "Queen",
+        "The Who",
+        "U2",
+        "Bruce Springsteen",
+        "Stevie Wonder",
+        "Prince",
+        "Nirvana",
+        "Johnny Cash",
+        "Aretha Franklin",
+        "Frank Sinatra",
+        "Beyoncé",
+        "Bob Marley",
+        "Fleetwood Mac",
+        "AC/DC",
+        "The Beach Boys",
+        "Marvin Gaye",
+        "Adele",
+        "Whitney Houston",
+        "Celine Dion",
+        "Jay-Z",
+        "Eminem",
+        "Taylor Swift",
+        "Metallica",
+        "Guns N' Roses",
+        "Rihanna",
+        "Lady Gaga",
+        "Kanye West",
+        "Billy Joel",
+        "Eagles",
+        "Barbra Streisand",
+        "Aerosmith",
+        "Radiohead",
+        "Red Hot Chili Peppers",
+        "The Doors",
+        "Santana",
+        "Mariah Carey",
+        "Green Day",
+        "Ray Charles",
+        "Justin Bieber",
+        "Coldplay"
+    ]
 
-    const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
+    for (var i = 0; i < topArtistsAndBands.length; i++) {
+
+        const songs = await getContent(topArtistsAndBands[i])
+        songs.forEach(async song => await songService.save(song))
+       
+    }
+
+}
+
+async function getContent(search) {
+    console.log("search:", search)
+
+    // const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
+    const destTube=`part=snippet&type=playlist&q=${search}`
+
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
+        console.log("responseArtist:", responseArtist)
 
         const promisesSongs = responseArtist.data.items.map(async ytItem => {
             try {
                 const searchInfo = parseSongString(ytItem.snippet.title)
+                // const test = await fetchParsedTitle(ytItem.snippet.title)
+                // console.log("test:", test)
                 const duration = await _getDuration(ytItem.id.videoId)
                 return {
 
@@ -44,12 +115,40 @@ async function getContent(search) {
             catch (err) { throw err }
         })
         const results = await Promise.all(promisesSongs)
+        console.log("results:", results)
         return results
 
     }
     catch (err) { throw err }
 
 }
+
+function extractArtistAndSong(title) {
+    // Remove any content within square or round brackets
+    title = title.replace(/[\[\(].*?[\]\)]/g, '');
+
+    // Trim and remove excess spaces
+    title = title.trim().replace(/\s+/g, ' ');
+
+    // Split the string by the '-' character
+    let parts = title.split('-').map(part => part.trim());
+
+    if (parts.length >= 2) {
+        // Assume the first part is the artist and the second part is the song name
+        return { artist: parts[0], name: parts[1] };
+    }
+
+    // If the format is not as expected, return an empty or default object
+    return { artist: '', name: '' };
+}
+
+// Example usage
+const result1 = extractArtistAndSong("Eminem - Mockingbird [Official Music Video]");
+console.log(result1); // { artist: 'Eminem', name: 'Mockingbird' }
+
+const result2 = extractArtistAndSong("Eminem - Rap God (Explicit)");
+console.log(result2); // { artist: 'Eminem', name: 'Rap God' }
+
 
 function parseSongString(songString) {
     songString = songString.replace(/\[.*?\]|\(.*?\)/g, '')

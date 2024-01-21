@@ -65,7 +65,7 @@ export function YouTubeAudioPlayer({ volume }) {
       stationIdx.current = utilService.getRandomIntInclusive(0, station.songs.length)
     }
 
-    else if (isRepeat.current) {  }
+    else if (isRepeat.current) { }
 
     else {
       stationIdx.current += dir
@@ -82,7 +82,7 @@ export function YouTubeAudioPlayer({ volume }) {
     ev.target.setVolume(volume)
 
   }
-  if(!song) return <div>...Loading</div>
+  if (!song) return <div>...Loading</div>
 
   const { trackId } = song
 

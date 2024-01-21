@@ -8,7 +8,6 @@ export function SignIn({ open, setOpen }) {
 
   const [isSignup, setIsSignUp] = useState(false)
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-  console.log("credentials:", credentials)
 
 
   function isLogin(ev) {

@@ -7,9 +7,7 @@ import { store } from "../store"
 export async function loadStations(filterSortBy = {}) {
     try {
         const stations = await stationService.query(filterSortBy)
-        console.log("stations:", stations)
         store.dispatch({ type: SET_STATIONS, stations })
-        console.log('Load complete')
     }
     catch (err) {
         console.log('Station Action -> Cannot load stations', err)

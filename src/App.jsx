@@ -10,6 +10,7 @@ import { StationEdit } from './pages/StationEdit.jsx'
 
 import '../src/styles/main.scss'
 import { UserMsg } from './cmps/support/UserMsg.jsx'
+import { MobilePlayerPage } from './cmps/Footer/MobilePlayerPage.jsx'
 
 export function App() {
 
@@ -28,11 +29,14 @@ export function App() {
             <Route path="/station/edit" element={<StationEdit />}></Route>
             <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
           </Routes>
+          {/* <Routes>
+            <Route path='"/mobile/player' element={<MobilePlayerPage />}></Route>
+          </Routes> */}
         </div>
         <Player />
         <UserMsg></UserMsg>
       </Router>
-   
+
     </div>
   )
 }
