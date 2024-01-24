@@ -9,6 +9,11 @@ export function SignIn({ open, setOpen }) {
   const [isSignup, setIsSignUp] = useState(false)
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
 
+  const demoUsers = [
+    { username: 'DemoUserOne', password: 'a' },
+    { username: 'DemoUserTwo', password: 'b' },
+    { username: 'DemoUserThree', password: 'c' }
+  ]
 
   function isLogin(ev) {
     ev.preventDefault()
@@ -25,9 +30,9 @@ export function SignIn({ open, setOpen }) {
 
   }
 
-  async function onLogin() {
+  async function onLogin(ev) {
     try {
-      login(credentials)
+      login(demoUsers[ev.target.value])
       showSuccessMsg(`Welcome ${credentials.username}`)
 
     }
@@ -38,7 +43,8 @@ export function SignIn({ open, setOpen }) {
   async function onSignup(credentials) {
     try {
       signup(credentials)
-      showSuccessMsg(`Welcome ${credentials.username}`)    }
+      showSuccessMsg(`Welcome ${credentials.username}`)
+    }
     catch (err) { console.log(err) }
   }
 
@@ -57,11 +63,20 @@ export function SignIn({ open, setOpen }) {
 
 
   const { username, email, password } = credentials
+
   if (!open) return
+
   return (
     <div id='modalBackdrop' className="modal-backdrop">
       <div className="modal-content">
-        <form onSubmit={isLogin}>
+        <select onChange={onLogin}>
+        <option  value={0}></option>
+          {
+            demoUsers.map((user, idx) =>
+              <option key={idx} value={idx}>{user.username}</option>)
+          }
+        </select>
+        {/* <form onSubmit={isLogin}>
           <h2>{isSignup ? 'SignUp' : 'Login'}</h2>
           <input
             type="text"
@@ -91,7 +106,7 @@ export function SignIn({ open, setOpen }) {
               "Don't have an account? Sign Up"
             }
           </Link>
-        </form>
+        </form> */}
       </div>
     </div>
   )

@@ -157,7 +157,7 @@ export function SideBarContent() {
                                     }
                                     <header>{station.name}</header>
                                     <p>
-                                        <Pin></Pin>
+                                       
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                         <button onClick={(ev) => onRemoveStation(ev, station._id)}><Delete></Delete></button>
