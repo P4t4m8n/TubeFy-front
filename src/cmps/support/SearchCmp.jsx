@@ -1,8 +1,10 @@
 import { useCallback, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { utilService } from "../../services/util.service"
+import { Search } from "@mui/icons-material"
 
-export function Search() {
+
+export function SearchCmp() {
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -24,11 +26,11 @@ export function Search() {
     <section className="search-box">
       <form  >
         <p style={{ marginRight: "10px" }}></p>
-        <img src="\src\assets\img\search.svg"></img>
+        <Search></Search>
         <input
           value={searchTerm}
           onChange={handleSearchChange}
-          type="search"
+          type="text"
           id="searchTerm"
           name="searchTerm"
           placeholder="What do you want to listen to?" />

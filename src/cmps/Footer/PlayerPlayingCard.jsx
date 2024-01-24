@@ -19,8 +19,8 @@ export function PlayerPlayingCard() {
         <div className={"playing-card"}>
             <img src={`${song.imgUrl}`}></img>
             <div className="playing-card-info">
-                <header>{song.name}</header>
-                <p>{song.artist}</p>
+                <h3>{song.name}</h3>
+                <h4>{song.artist}</h4>
             </div>
             <LikeCard item={song}></LikeCard>
             {(device === MOBILE) && <PlayCard item={song}></PlayCard>}

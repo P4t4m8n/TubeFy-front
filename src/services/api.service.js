@@ -5,15 +5,14 @@ import { songService } from "./song.service"
 
 
 // const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
-const API_KEY_YT = 'AIzaSyAq166O0Zx4knj4zTocORMEpmej0XPnLIc'
-//const API_KEY_YT = 'AIzaSyBu-GdAUp7awvELMR3iigsESqtzB7qLekI'
+// const API_KEY_YT = 'AIzaSyAq166O0Zx4knj4zTocORMEpmej0XPnLIc'
+const API_KEY_YT = 'AIzaSyBu-GdAUp7awvELMR3iigsESqtzB7qLekI'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
 const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=${API_KEY_YT}&`
 const URL_WIKI = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&`
 
-const maxResults = 5
-// aaa()
+const maxResults = 10
 export const apiService = {
     getContent,
 
@@ -95,8 +94,7 @@ async function getContent(search) {
         const promisesSongs = responseArtist.data.items.map(async ytItem => {
             try {
                 const searchInfo = parseSongString(ytItem.snippet.title)
-                // const test = await fetchParsedTitle(ytItem.snippet.title)
-                // console.log("test:", test)
+             
                 const duration = await _getDuration(ytItem.id.videoId)
                 return {
 
@@ -115,7 +113,6 @@ async function getContent(search) {
             catch (err) { throw err }
         })
         const results = await Promise.all(promisesSongs)
-        console.log("results:", results)
         return results
 
     }
@@ -151,11 +148,8 @@ function parseSongString(songString) {
         name = songString.trim()
     }
 
-    artist = artist.replace(/[^a-zA-Z0-9]/g, '')
-    name = name.replace(/[^a-zA-Z0-9]/g, '')
-
-    artist = artist.length > 12 ? artist.substring(0, 12) + '...' : artist
-    name = name.length > 12 ? name.substring(0, 12) + '...' : name
+    artist = artist.replace(/[^a-zA-Z0-9]/g, ' ')
+    name = name.replace(/[^a-zA-Z0-9]/g, ' ')
 
     if (!artist) artist = 'Unknown'
     if (!name) name = 'Unknown'

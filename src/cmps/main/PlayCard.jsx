@@ -15,8 +15,6 @@ export function PlayCard({ item }) {
 
 
     function onPlayStation(ev) {
-        console.log("ev:", ev)
-        // ev.stopPropagation()
         ev.preventDefault()
 
         if (item.type === 'playlist') {

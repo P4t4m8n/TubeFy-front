@@ -69,13 +69,13 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
             <p >
                 {song.artist}</p>
             <p>{song.album}</p>
-            <div>
+          
                 <div className="details-list-control">
                     <LikeCard item={song}></LikeCard>
                     <p>{song.duration}</p>
 
                 </div>
-            </div>
+          
             {activeContextMenuId === song.trackId && (
                 <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>

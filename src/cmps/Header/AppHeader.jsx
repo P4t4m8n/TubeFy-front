@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Search } from '../support/Search.jsx'
 import { useState } from 'react'
 import { logout } from '../../store/actions/user.actions.js'
 import { UserIcon } from '../../services/icons.service.jsx'
 
 import { SignIn } from '../User/SignIn.jsx'
+import { SearchCmp } from '../support/SearchCmp.jsx'
 
 
 
@@ -39,7 +39,7 @@ export function AppHeader() {
 
     return (
         <div className="app-header">
-            {isSearchShown && <Search />}
+            {isSearchShown && <SearchCmp/>}
             <section className='user-acess'>
                 {user ? (
                     < section className='user-nav' >

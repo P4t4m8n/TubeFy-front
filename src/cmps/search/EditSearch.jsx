@@ -50,7 +50,7 @@ export function EditSearch({ user, onSaveSong, }) {
                     <input
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        type="search"
+                        type="text"
                         id="searchTerm"
                         name="searchTerm"
                         placeholder="Looking for songs?" />
