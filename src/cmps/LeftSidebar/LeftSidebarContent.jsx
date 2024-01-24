@@ -11,6 +11,8 @@ import { SortByModal } from "./SortModal"
 import React from 'react';
 import { useDragAndDrop } from "../CustomHooks/useDND"
 import { SOCKET_EMIT_SEND_PLAYLIST, socketService } from "../../services/socket.service"
+import { Loading } from "../support/Loading"
+import { JoinNowCmp } from "../support/JoinNowCmp"
 
 
 
@@ -90,7 +92,8 @@ export function SideBarContent() {
 
     }
 
-    if (!user || !userStations) return <div>...Loading</div>
+    if (!user) return <JoinNowCmp></JoinNowCmp>
+    if (!userStations) return <Loading></Loading>
 
     return (
 
@@ -157,7 +160,7 @@ export function SideBarContent() {
                                     }
                                     <header>{station.name}</header>
                                     <p>
-                                       
+
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                         <button onClick={(ev) => onRemoveStation(ev, station._id)}><Delete></Delete></button>

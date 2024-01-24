@@ -1,0 +1,110 @@
+.no-user-join {
+    font-family: Monstserrat;
+    width: 81%;
+
+    h3 {
+        max-width: 50%;
+        margin: 0 auto;
+        pointer-events: none;
+
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        animation-name: move-around;
+        animation-duration: 12s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    span {
+        display: inline-block;
+        animation-duration: 12s;
+        animation-timing-function: ease-in-out;
+    }
+
+    span:nth-child(7n + 0) {
+        animation-name: fly1, back1;
+    }
+
+    span:nth-child(7n + 1) {
+        animation-name: fly2;
+    }
+
+    span:nth-child(7n + 2) {
+        animation-name: fly3;
+    }
+
+    span:nth-child(7n + 3) {
+        animation-name: fly4;
+    }
+
+    span:nth-child(7n + 4) {
+        animation-name: fly5;
+    }
+
+    span:nth-child(7n + 5) {
+        animation-name: fly6;
+    }
+
+    span:nth-child(7n + 6) {
+        animation-name: fly7;
+    }
+
+    @keyframes move-around {
+        25% {
+            transform: rotateY(40deg) rotateZ(20deg);
+        }
+
+        75% {
+            transform: rotateY(-60deg) rotateZ(40deg);
+        }
+    }
+
+    @keyframes fly1 {
+        50% {
+            transform: translate(-500%, 1200%) rotateZ(30deg);
+        }
+    }
+
+    @keyframes fly2 {
+        50% {
+            transform: translate(300%, 200%) rotateZ(390deg);
+        }
+    }
+
+    @keyframes fly3 {
+        50% {
+            transform: translate(700%, -700%) rotateZ(490deg);
+        }
+    }
+
+    @keyframes fly4 {
+        50% {
+            transform: translate(-800%, -800%) rotateZ(-490deg);
+        }
+    }
+
+    @keyframes fly5 {
+        50% {
+            transform: translate(800%, -800%) rotateZ(-390deg);
+        }
+    }
+
+    @keyframes fly6 {
+        50% {
+            transform: translate(900%, -700%) rotateZ(-290deg);
+        }
+    }
+
+    @keyframes fly7 {
+        50% {
+            transform: translate(-600%, 600%) rotateZ(-190deg);
+        }
+    }
+
+    @keyframes back1 {
+
+        50% {
+            transform: translate(500%, -1200%) rotateZ(-30deg);
+        }
+    }
+}

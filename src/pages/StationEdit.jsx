@@ -1,21 +1,18 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { stationService } from "../services/station.service"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { loadStation, saveStation } from "../store/actions/station.actions"
-import { saveSong, setPlaying } from "../store/actions/song.action"
+import { saveSong } from "../store/actions/song.action"
 import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { onDragEnd } from "../services/dnd"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { uploadService } from "../services/upload.service"
-import { utilService } from "../services/util.service"
-import { Search } from "@mui/icons-material"
-import { apiService } from "../services/api.service"
 import { EditSearch } from "../cmps/search/EditSearch"
+import { Loading } from "../cmps/support/Loading"
+
 
 
 
@@ -25,7 +22,6 @@ export function StationEdit() {
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [searchList, setSearchList] = useState(null)
-    const dragObj = useSelector(storeState => storeState.appMoudle.dragObj)
 
 
 
@@ -137,8 +133,7 @@ export function StationEdit() {
         setStationToEdit(prevStation => ({ ...prevStation, [field]: value }))
     }
 
-    if (!stationToEdit) return <div>...Loading</div>
-
+    if (!stationToEdit) return <Loading></Loading>
 
     const { songs } = stationToEdit
 
@@ -146,8 +141,7 @@ export function StationEdit() {
 
         <section className="station-page" >
             <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} onUplodImg={onUplodImg} ></PlaylistHero>
-
-            {songs &&
+            {(songs && (songs.length > 0)) &&
                 <div>
                     <div className="play-and-context flex">
                         <PlayCard item={stationToEdit}></PlayCard>
@@ -156,9 +150,6 @@ export function StationEdit() {
                 </div>
             }
             <EditSearch onSaveSong={onSaveSong} user={user}></EditSearch>
-
-
-
         </section >
     )
 }
