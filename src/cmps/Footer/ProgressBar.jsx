@@ -10,7 +10,7 @@ export function ProgressBar({ song, station, player, stationIdx }) {
 
     useEffect(() => {
 
-        if (!song) loadSong(station.songs[stationIdx.current])
+        // if (!song) loadSong(station.songs[stationIdx.current])
         setProgress('0.00')
         const updateProgress = () => {
 

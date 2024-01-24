@@ -1,3 +1,4 @@
+import { socketService } from "../../services/socket.service"
 import { stationService } from "../../services/station.service"
 import { userService } from "../../services/user.service"
 import { EDIT_USER, SET_USER } from "../redcuers/user.reducer"
@@ -8,7 +9,8 @@ export async function logout() {
 
     try {
         await userService.logout()
-        return store.dispatch({ type: SET_USER, user })
+        store.dispatch({ type: SET_USER, user })
+        socketService.logout()
     }
     catch (err) {
         console.log('user action -> Cannot logout', err)
@@ -20,8 +22,10 @@ export async function login(credentials) {
 
     try {
         const user = await userService.login(credentials)
+        store.dispatch({ type: SET_USER, user })
+        socketService.login(user._id)
 
-        return store.dispatch({ type: SET_USER, user })
+        return user
 
     }
     catch (err) {
@@ -37,10 +41,11 @@ export async function signup(credentials) {
         let fav = stationService.getEmptyStation('Liked Songs', '', 'http://res.cloudinary.com/dpnevk8db/image/upload/v1705451341/ebpe6nnlgajtmfyldt4a.png')
         fav = await stationService.save(fav)
         credentials.stations = [fav]
-
         const user = await userService.signup(credentials)
-        
         store.dispatch({ type: SET_USER, user })
+        socketService.login(user._id)
+        return user
+
 
     }
 

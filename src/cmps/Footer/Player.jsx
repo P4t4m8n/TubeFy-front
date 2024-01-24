@@ -13,12 +13,10 @@ export function Player() {
 
     const [volume, setVolume] = useState(50)
     const device = useSelector(storeState => storeState.appMoudle.device)
-
     useDeviceCheck()
+    const location = useLocation()
+    if (location.pathname.includes('mobile')) return
   
-
-
-
     const isMobile = (device === MOBILE) ? true : false
 
     return (

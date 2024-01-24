@@ -140,6 +140,7 @@
         }
 
     }
+
     .show {
         opacity: 1 !important;
     }
@@ -344,9 +345,9 @@
         .app-header {
             grid-area: header;
 
-            left: end;
-            top: 0;
-            width: 100vw;
+            .user-acess {
+                margin-right: 8px;
+            }
 
 
         }

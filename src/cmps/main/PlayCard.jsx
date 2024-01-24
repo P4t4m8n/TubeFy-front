@@ -15,13 +15,15 @@ export function PlayCard({ item }) {
 
 
     function onPlayStation(ev) {
+        console.log("ev:", ev)
+        // ev.stopPropagation()
         ev.preventDefault()
 
         if (item.type === 'playlist') {
             if ((item._id !== cardType) || (song.trackId !== item.trackId)) {
                 setCurrStation(item)
                 loadSong(item.songs[0])
-                setPlaying(!isPlaying)
+                // setPlaying(!isPlaying)
 
             }
         }
@@ -29,7 +31,7 @@ export function PlayCard({ item }) {
         else if (item.type === 'song') {
             if (item.trackId !== cardType) {
                 loadSong(item)
-                setPlaying(!isPlaying)
+                // setPlaying(!isPlaying)
 
             }
         }
@@ -47,14 +49,14 @@ export function PlayCard({ item }) {
 
         }
         setPlaying(!isPlaying)
-        onPlayStation()
+        // onPlayStation()
     }
 
     let showPlay = ''
     if (isPlaying && (item._id === cardType || item.trackId === cardType)) showPlay = 'show'
 
     return (
-        <button onClick={(ev) => onPlayStation(ev)} className={"play-button " + showPlay}>
+        <button onClick={onPlayStation} className={"play-button " + showPlay}>
             {isPlaying && (item._id === cardType || item.trackId === cardType) ? <Pause /> : <Play />}
         </button>
     )

@@ -136,10 +136,11 @@
 
 .main-container.MOBILE {
     display: grid;
+    padding: 0;
     grid-template-rows: 80% 10% 10%;
     grid-template-columns: 100vw;
     grid-template-areas:
         " main"
-        " player"
+        " mobile-player"
         " left-sidebar";
 }

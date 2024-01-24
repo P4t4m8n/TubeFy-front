@@ -85,8 +85,8 @@ async function aaa() {
 async function getContent(search) {
     console.log("search:", search)
 
-    // const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
-    const destTube=`part=snippet&type=playlist&q=${search}`
+    const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
+    // const destTube=`part=snippet&type=playlist&q=${search}`
 
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
@@ -124,31 +124,18 @@ async function getContent(search) {
 }
 
 function extractArtistAndSong(title) {
-    // Remove any content within square or round brackets
-    title = title.replace(/[\[\(].*?[\]\)]/g, '');
+    title = title.replace(/[\[\(].*?[\]\)]/g, '')
 
-    // Trim and remove excess spaces
-    title = title.trim().replace(/\s+/g, ' ');
+    title = title.trim().replace(/\s+/g, ' ')
 
-    // Split the string by the '-' character
-    let parts = title.split('-').map(part => part.trim());
+    let parts = title.split('-').map(part => part.trim())
 
     if (parts.length >= 2) {
-        // Assume the first part is the artist and the second part is the song name
         return { artist: parts[0], name: parts[1] };
     }
 
-    // If the format is not as expected, return an empty or default object
-    return { artist: '', name: '' };
+    return { artist: '', name: '' }
 }
-
-// Example usage
-const result1 = extractArtistAndSong("Eminem - Mockingbird [Official Music Video]");
-console.log(result1); // { artist: 'Eminem', name: 'Mockingbird' }
-
-const result2 = extractArtistAndSong("Eminem - Rap God (Explicit)");
-console.log(result2); // { artist: 'Eminem', name: 'Rap God' }
-
 
 function parseSongString(songString) {
     songString = songString.replace(/\[.*?\]|\(.*?\)/g, '')
@@ -177,13 +164,6 @@ function parseSongString(songString) {
 
 
 }
-// function parseSongString(songString) {
-//     const parts = songString.split(' - ')
-//     if (parts.length === 2) return { artist: parts[0] || '', name: parts[1] || '' }
-//     else if (parts.length === 1) return { artist: 'Unknown' || '', name: parts[0] || '' }
-//     else return { artist: 'Unknown', title: 'Unknown' }
-
-// }
 
 
 async function _getDuration(videoId) {

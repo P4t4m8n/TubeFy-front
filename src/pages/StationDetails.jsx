@@ -42,7 +42,7 @@ export function StationDetails() {
                     <h3>{name}</h3>
                     <h4>{description}</h4>
                     <div >
-                        <img src="\src\assets\img\spotify.svg"></img>
+                        <img src="https://res.cloudinary.com/dpnevk8db/image/upload/v1705844322/zvo0mhdh6lyqgvpavfob.png"></img>
                         <p>{createdBy.username || 'Spotify'}</p>
                         <p>{amount} songs</p>
                         <p>about {duration}</p>

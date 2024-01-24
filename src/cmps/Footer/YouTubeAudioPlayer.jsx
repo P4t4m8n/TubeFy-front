@@ -9,6 +9,7 @@ import { PlayCard } from '../main/PlayCard'
 import { Next, Prev, Shuffle, Repeat, Play, Pause } from '../../services/icons.service'
 import { ProgressBar } from './ProgressBar'
 import { PC } from '../CustomHooks/UseDeviceCheck'
+import { useLocation } from 'react-router-dom'
 
 export function YouTubeAudioPlayer({ volume }) {
 
@@ -31,11 +32,11 @@ export function YouTubeAudioPlayer({ volume }) {
     },
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (!song) loadSong(station.songs[0])
+    if (!song) loadSong(station.songs[0])
 
-  // }, [song])
+  }, [song])
 
   function onEnd(ev) {
     if (!isRepeat.current && !isShuffle.current) {
@@ -85,10 +86,11 @@ export function YouTubeAudioPlayer({ volume }) {
   if (!song) return <div>...Loading</div>
 
   const { trackId } = song
-
+  const location = useLocation()
+  
   return (
     <section className='audio'>
-      {(device === PC) &&
+      {(device === PC || location.pathname.includes('mobile')) &&
         <>
           <div className='audio-control'>
             <button onClick={onShuffle}><Shuffle></Shuffle></button>

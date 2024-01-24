@@ -1,37 +1,33 @@
 .main-container.MOBILE {
-
     .mobile-manu {
         grid-area: left-sidebar;
 
         ul {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            padding-inline-start: 0;
-        }
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 100%;
+            justify-items: center;
 
-        li {
-            list-style: none;
-        }
 
-        a,
-        p {
-            display: flex;
-            flex-direction: column;
+
+            li {
+                a {
+                    display: flex;
+                    flex-direction: column;
+                }
+                margin-top: 8px;
+            }
         }
 
 
         svg {
-            width: 7vw;
-            height: 7vw;
-            margin: 1vw;
+            justify-self: center;
+            align-self: center;
+            width: 2rem;
+            height: 2rem;
             filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(2005%) contrast(100%);
         }
 
-        span {
-            margin: 1vw;
-            font-size: 3vw;
-            text-align: start;
-        }
+
     }
 }

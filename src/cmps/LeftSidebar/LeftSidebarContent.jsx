@@ -10,6 +10,7 @@ import { SortByModal } from "./SortModal"
 
 import React from 'react';
 import { useDragAndDrop } from "../CustomHooks/useDND"
+import { SOCKET_EMIT_SEND_PLAYLIST, socketService } from "../../services/socket.service"
 
 
 
@@ -17,13 +18,13 @@ import { useDragAndDrop } from "../CustomHooks/useDND"
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    // const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
 
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
+
 
 
     const { handleDragOver, handleDrop } = useDragAndDrop()
@@ -82,8 +83,14 @@ export function SideBarContent() {
 
     }
 
-    if (!user || !userStations) return <div>...Loading</div>
+    const onSendPlaylist = (ev, stationId) => {
+        ev.preventDefault()
+        const data = { data: { playlist: stationId }, userId: '65ad0585e3309e575029dc3f' }
+        socketService.emit(SOCKET_EMIT_SEND_PLAYLIST, data)
 
+    }
+
+    if (!user || !userStations) return <div>...Loading</div>
 
     return (
 
@@ -139,8 +146,8 @@ export function SideBarContent() {
                 <ul>
                     {
                         userStations.map((station, idx) => (
-                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id} onDragOver={handleDragOver}  onDrop={(ev) => handleDrop(ev,station)}>
-                                <li  className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
+                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id} onDragOver={handleDragOver} onDrop={(ev) => handleDrop(ev, station)}>
+                                <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
@@ -154,6 +161,7 @@ export function SideBarContent() {
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                         <button onClick={(ev) => onRemoveStation(ev, station._id)}><Delete></Delete></button>
+                                        <button onClick={(ev) => onSendPlaylist(ev, station._id)}>xxx</button>
                                     </p>
 
                                 </li>

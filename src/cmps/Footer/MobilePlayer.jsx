@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 
 export function MobilePlayer({ isMobile, volume }) {
-    6
+    
     return (
         <section className="mobile-player">
             <Link to={'/mobile/player'}>

@@ -18,7 +18,7 @@ export function AppHeader() {
 
     const navigate = useNavigate()
     const location = useLocation()
-
+    if (location.pathname.includes('mobile')) return
     const isSearchShown = location.pathname.includes('search')
 
 

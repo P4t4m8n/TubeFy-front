@@ -12,7 +12,6 @@ export function StationIndex() {
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
     const device = useSelector(storeState => storeState.appMoudle.device)
 
-
     const stationListTitle = useRef([])
 
     useEffect(() => {

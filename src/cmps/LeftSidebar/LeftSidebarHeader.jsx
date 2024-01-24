@@ -1,15 +1,11 @@
 import { Link, useLocation } from "react-router-dom"
-import { setSearchOpen } from "../../store/actions/app.actions"
 import { HomeSvg, HomeSvgClicked, SearchSvg, SearchSvgClicked } from "../../services/icons.service"
-import { useEffect } from "react"
 
 
 export function SideBarHeader() {
 
-
     const location = useLocation()
     const isSearchOpen = location.pathname.includes('search')
-
 
     return (
         <div className="left-sidebar-header">

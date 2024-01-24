@@ -33,7 +33,7 @@ function remove(stationId) {
 }
 
 function getStationListTitle() {
-    return ['Daily Mix', 'Jump back on','Mix', 'New music','Top Charts']
+    return ['Daily Mix', 'Jump back on', 'New music']
 }
 
 function getEmptyStation(name = '', idx = '', imgUrl = '', createdBy = { _id: '', username: '', }) {

@@ -28,7 +28,7 @@ export function MobileManu(){
                 </li>
 
                 <li>
-                <Link to={"/"}   >
+                <Link to={"/mobile/libary"}   >
                     <Libary></Libary>
                     <span>Library</span>
                     </Link>

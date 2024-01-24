@@ -242,3 +242,23 @@
         }
     }
 }
+
+.MOBILE {
+    .app-header {
+        // padding-inline: 4px;
+        gap: 2px;
+
+        img {
+            display: none;
+        }
+
+        .search-box {
+            width: 13.5rem;
+            margin-left: 8px;
+        }
+
+        .user-acess {
+            width: 10rem;
+        }
+    }
+}
