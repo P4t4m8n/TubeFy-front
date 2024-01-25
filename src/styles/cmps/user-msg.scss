@@ -1,25 +1,45 @@
 .user-msg {
-    background-color: lightgray;
-    padding: .5em 1em;
+    padding-inline: 1em;
     position: fixed;
-    bottom: 0;
-    right: 1em;
-    color: white;
-    font-weight: bold;
-    border-radius: 2px;
+    bottom: 12%;
+    right: 50%;
+    translate: 50%;
+    display: grid;
+    grid-template-columns: 36px auto auto;
+    column-gap: 4px;
+    font-family: Monstserrat;
+    text-align: center;
+    max-width: 450px;
+    align-items: center;
+    font-weight: 400;
+    border-radius: 10px;
     z-index: 1000;
-}
+    background-color: white;
 
-.user-msg.success {
-    background-color: greenyellow;
-}
+    img {
+        border-radius: 4px;
+        object-fit: scale-down;
+    }
 
-.user-msg.error {
-    background-color: red;
-}
+    h5 {
+        font-family: Monstserrat;
+        font-weight: bold;
 
+        &::after {
+            content: ' -';
+        }
+    }
 
-.user-msg button{
-    float: right;
-    margin: 1em;
+    &.success {
+        color: black;
+    }
+
+    &.error {
+        color: red;
+    }
+
+    button {
+        background-color: inherit;
+        color: black;
+    }
 }

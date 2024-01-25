@@ -6,6 +6,7 @@ import { UserIcon } from '../../services/icons.service.jsx'
 
 import { SignIn } from '../User/SignIn.jsx'
 import { SearchCmp } from '../support/SearchCmp.jsx'
+import { showSuccessMsg } from '../../services/event-bus.service.js'
 
 
 
@@ -30,7 +31,7 @@ export function AppHeader() {
             await logout()
             setOpen(false)
             navigate('/')
-            showSuccessMsg(`Logout`)
+            showSuccessMsg(`GoodBye`)
         }
         catch (err) {
             console.log(err)

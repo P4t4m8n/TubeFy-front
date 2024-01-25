@@ -5,7 +5,7 @@ import { Heart } from '../../services/icons.service'
 import { FullHeart } from '../../services/icons.service'
 import { saveStation } from "../../store/actions/station.actions"
 import { saveSong } from "../../store/actions/song.action"
-import { showSuccessMsg } from "../../services/event-bus.service"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 
 
@@ -21,7 +21,6 @@ export function LikeCard({ item }) {
 
         let LikeCheck
         if (user) {
-
             if (item.type === PLAYLIST) LikeCheck = user.stations.some(station => station._id === item._id)
             if (item.type === SONG) {
                 LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
@@ -35,11 +34,9 @@ export function LikeCard({ item }) {
     }, [item, user])
 
     async function onLike() {
-
         let tempItem = item
-
         if (!user) {
-            console.log('No user found')
+            showErrorMsg('No user')
             return
         }
         if (!item._id)
@@ -47,7 +44,7 @@ export function LikeCard({ item }) {
                 tempItem = await saveSong(tempItem)
             }
             catch (err) {
-                console.error('Error updating user:', err)
+                console.error(err)
             }
 
         let userToUpdate
@@ -62,7 +59,7 @@ export function LikeCard({ item }) {
             if (tempItem.type === SONG) saveStation(userToUpdate.stations[0])
             await updateUser(userToUpdate)
         } catch (err) {
-            console.error('Error updating user:', err)
+            console.error(err)
         }
     }
 
@@ -71,12 +68,12 @@ export function LikeCard({ item }) {
         if (isLiked) {
             updatedStations = updatedStations.filter(station => station._id !== likedItem._id)
             setIsLikedCallback(false)
-            showSuccessMsg(`Playlist Unliked`)
+            showSuccessMsg({ txt: 'Removed from Your Libary' })
 
         } else {
             updatedStations = [...updatedStations, likedItem]
             setIsLikedCallback(true)
-            showSuccessMsg(`Playlist Liked`)
+            showSuccessMsg({ txt: 'Added to Your Libary' })
 
         }
         return { ...user, stations: updatedStations }
@@ -89,19 +86,27 @@ export function LikeCard({ item }) {
         if (isLiked) {
             favSongs = favSongs.filter(fav => fav._id !== likedItem._id)
             setIsLikedCallback(false)
-            showSuccessMsg(`Song Unliked`)
+            showSuccessMsg({
+                imgUrl: updatedStations[0].imgUrl,
+                txt: 'Removed from Liked Songs',
+                itemName: likedItem.name
+            })
 
         } else {
             favSongs.push(likedItem)
             setIsLikedCallback(true)
-            showSuccessMsg(`Song Liked`)
+            showSuccessMsg({
+                imgUrl: updatedStations[0].imgUrl,
+                txt: 'Added to Liked Songs',
+                itemName: likedItem.name
+            })
 
         }
 
         updatedStations[0].songs = favSongs
         return { ...user, stations: updatedStations }
     }
-    // console.log('render like')
+
     return (
         <button className={"like animate__animated " + (isLiked ? 'fill empty animate__heartBeat' : 'fill animate__shakeX')} onClick={onLike}>
             {isLiked ? <FullHeart /> : <Heart />}

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { login, signup } from '../../store/actions/user.actions'
 import { userService } from '../../services/user.service'
 import { Link } from 'react-router-dom'
+import { showSuccessMsg } from '../../services/event-bus.service'
 
 export function SignIn({ open, setOpen }) {
 
@@ -33,7 +34,7 @@ export function SignIn({ open, setOpen }) {
   async function onLogin(ev) {
     try {
       login(demoUsers[ev.target.value])
-      showSuccessMsg(`Welcome ${credentials.username}`)
+      showSuccessMsg(`Welcome ${demoUsers[ev.target.value].username}`)
 
     }
     catch (err) { console.log(err) }

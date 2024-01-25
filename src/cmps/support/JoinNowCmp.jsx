@@ -3,9 +3,6 @@ import { utilService } from "../../services/util.service"
 
 export function JoinNowCmp() {
 
-    const [animationKey, setAnimationKey] = useState(0)
-    const [isAnimationRunning, setIsAnimationRunning] = useState(false)
-
     const elNoUser = useRef(null)
     const strArr = [
         "C", "o", "n", "n", "e", "c", "t", "\u00A0", "a", "n", "d", "\u00A0", "s", "t", "a", "r", "t", "\u00A0",

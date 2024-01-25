@@ -92,7 +92,7 @@ export function SideBarContent() {
 
     }
 
-    if (!user) return <JoinNowCmp></JoinNowCmp>
+    if (!user) return<p>no user</p>
     if (!userStations) return <Loading></Loading>
 
     return (
