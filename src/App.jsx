@@ -16,27 +16,28 @@ export function App() {
 
 
   return (
+    <>
+      <div className={"main-container "}>
+        <Router>
+          <LeftSidebar />
+          <div className="main-content">
+            <AppHeader />
+            <Routes>
+              <Route path="/" element={<StationIndex />} />
+              <Route path="/:stationId" element={<StationDetails />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/search/:searchTerm" element={<SearchPage />} />
+              <Route path="/station/edit" element={<StationEdit />}></Route>
+              <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
+              <Route path="/mobile/libary" element={<SideBarContent />}></Route>
+              <Route path="/mobile/player" element={<MobilePlayerPage />}></Route>
+            </Routes>
+          </div>
+          <Player />
+        </Router>
 
-    <div className={"main-container "}>
-      <Router>
-        <LeftSidebar />
-        <div className="main-content">
-          <AppHeader />
-          <Routes>
-            <Route path="/" element={<StationIndex />} />
-            <Route path="/:stationId" element={<StationDetails />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/search/:searchTerm" element={<SearchPage />} />
-            <Route path="/station/edit" element={<StationEdit />}></Route>
-            <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
-            <Route path="/mobile/libary" element={<SideBarContent />}></Route>
-            <Route path="/mobile/player" element={<MobilePlayerPage />}></Route>
-          </Routes>
-        </div>
-        <Player />
-        <UserMsg></UserMsg>
-      </Router>
-
-    </div>
+      </div>
+      <UserMsg></UserMsg>
+    </>
   )
 }

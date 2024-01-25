@@ -1,66 +1,50 @@
-// import { setContextMenu } from "../../store/actions/app.actions"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { setContextMenu } from "../../store/actions/app.actions"
 
 
-// export function useContextMenu({ item }) {
+export function UseContextMenu({ item }) {
 
-//     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
-//     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
+    const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
+    const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
 
-//     const contextMenuRef = useRef(null)
 
-//     function handleContextMenu(ev) {
-//         ev.preventDefault()
+    const itemId = (item.type === 'playlist') ? item._id : item.trackId
 
-//         const menuWidth = 160
-//         const menuHeight = 160
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside)
+        return () => {
+            window.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
 
-//         let xPosition = ev.clientX
-//         let yPosition = ev.clientY
+    function handleContextMenu(ev) {
 
-//         if (xPosition + menuWidth > window.innerWidth) {
-//             xPosition = ev.clientX - menuWidth
-//         }
+        ev.preventDefault()
 
-//         if (yPosition + menuHeight > window.innerHeight) {
-//             yPosition = ev.clientY - menuHeight
-//         }
+        const menuWidth = 50
+        const menuHeight = 50
 
-//         setContextMenu(song.trackId)
-//         setContextMenuPosition({ x: xPosition, y: yPosition })
-//     }
+        let xPosition = ev.clientX
+        let yPosition = ev.clientY
 
-//     function handleClickOutside(ev) {
-//         if (contextMenuRef.current && !contextMenuRef.current.contains(ev.target)) {
-//             setContextMenu(null)
-//         }
-//     }
+        if (xPosition + menuWidth > window.innerWidth) {
+            xPosition = ev.clientX - menuWidth
+        }
 
-//     useEffect(() => {
-//         window.addEventListener('click', handleClickOutside)
-//         return () => {
-//             window.removeEventListener('click', handleClickOutside)
-//         }
-//     }, [])
+        if (yPosition + menuHeight > window.innerHeight) {
+            yPosition = ev.clientY - menuHeight
+        }
 
-//     return (
-//         {activeContextMenuId === song.trackId && (
-//             <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
-//                 <li>
-//                     <select onChange={(ev) => {
-//                         setContextMenu(null)
-//                         onChangePlaylist(ev, song, id, isSearch)
-//                     }} className="playlist-select">
-//                         <option value="none">Pick Playlist</option>
-//                         {user.stations.map((station, idx) => (
-//                             station._id === id ?
-//                                 <option key={idx} value="same">Current Playlist</option> :
-//                                 <option key={idx} value={idx}>{station.name}</option>
+        setContextMenu(itemId)
+        setContextMenuPosition({ x: xPosition, y: yPosition })
+    }
 
-//                         ))}
-//                     </select>
-//                 </li>
-//                 {isEdit && <li onClick={(ev) => onRemoveSong(ev, song._id)}>Remove Song</li>}
-//             </ul>
-//         )}
-//     )
-// }
+    function handleClickOutside(ev) {
+        setContextMenu(null)
+
+    }
+
+    return [activeContextMenuId, contextMenuPosition, handleContextMenu]
+
+}

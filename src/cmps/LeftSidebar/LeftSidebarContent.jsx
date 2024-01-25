@@ -1,18 +1,17 @@
+import React from 'react'
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-import { removeStation, saveStation, setCurrStation, setUserStations } from "../../store/actions/station.actions"
+import { useNavigate } from "react-router-dom"
+import { removeStation, saveStation } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
-import { Create, Delete, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
+import { Libary, Plus, SearchSvg, Sort } from "../../services/icons.service"
 import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
-
-import React from 'react';
 import { useDragAndDrop } from "../CustomHooks/useDND"
 import { SOCKET_EMIT_SEND_PLAYLIST, socketService } from "../../services/socket.service"
 import { Loading } from "../support/Loading"
-import { JoinNowCmp } from "../support/JoinNowCmp"
+import { SidebarContentPreview } from "./SidebarContentPreview"
 
 
 
@@ -26,6 +25,7 @@ export function SideBarContent() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
+
 
 
 
@@ -63,7 +63,7 @@ export function SideBarContent() {
         try {
             const editUser = { ...user, stations: newStations }
             await updateUser(editUser)
-            await removeStation(stationId)
+            // await removeStation(stationId)
             navigate('/')
         }
         catch (err) { console.log(editUser.stations) }
@@ -85,35 +85,29 @@ export function SideBarContent() {
 
     }
 
-    const onSendPlaylist = (ev, stationId) => {
+    const onSendPlaylist = (ev, stationId, userId) => {
         ev.preventDefault()
-        const data = { data: { playlist: stationId }, userId: '65ad0585e3309e575029dc3f' }
+        const data = { data: { playlist: stationId },  userId }
         socketService.emit(SOCKET_EMIT_SEND_PLAYLIST, data)
 
     }
 
-    if (!user) return<p>no user</p>
+    if (!user) return <p>no user</p>
     if (!userStations) return <Loading></Loading>
 
     return (
 
         <div className="side-bar-content" >
-
             <section className="creation-and-toggle flex">
-
                 <p className="your-library flex" >
                     <Libary></Libary>
                     <span>Your Library</span>
                 </p>
-
                 <div className="right-buttons flex animate__animated animate__rubberBand">
-
                     <button onClick={createStation} className="plus-icon-left animate__animated animate__rubberBand">
                         <Plus></Plus>
                     </button>
-
                 </div>
-
             </section>
 
             <section className="side-bar-filtersort">
@@ -144,34 +138,21 @@ export function SideBarContent() {
                 </div>
             </section >
 
-            <section className="side-bar-content">
-
-                <ul>
-                    {
-                        userStations.map((station, idx) => (
-                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id} onDragOver={handleDragOver} onDrop={(ev) => handleDrop(ev, station)}>
-                                <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
-
-                                    {station.imgUrl ?
-                                        <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
-                                        <div className="svg-box">
-                                            <Note></Note>
-                                        </div>
-                                    }
-                                    <header>{station.name}</header>
-                                    <p>
-
-                                        <span className="station-type">{station.type}</span>
-                                        <span>{station.songs.length} songs</span>
-                                        <button onClick={(ev) => onRemoveStation(ev, station._id)}><Delete></Delete></button>
-                                        <button onClick={(ev) => onSendPlaylist(ev, station._id)}>xxx</button>
-                                    </p>
-
-                                </li>
-                            </Link>
-                        ))}
-                </ul>
-            </section>
+            <ul >
+                {
+                    userStations.map((station, idx) => (
+                        <SidebarContentPreview
+                            userStations={userStations}
+                            stationInFoucs={stationInFoucs}
+                            station={station}
+                            setStationInFoucs={setStationInFoucs}
+                            handleDrop={handleDrop}
+                            onRemoveStation={onRemoveStation}
+                            handleDragOver={handleDragOver}
+                            onSendPlaylist={onSendPlaylist}>
+                        </SidebarContentPreview>
+                    ))}
+            </ul>
         </div >
     )
 }

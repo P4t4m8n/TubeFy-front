@@ -10,11 +10,13 @@ import { useDragAndDrop } from "../CustomHooks/useDND"
 export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
 
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
-    const [isHover, setIsHover] = useState(false)
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
+    const [isHover, setIsHover] = useState(false)
+    const contextMenuRef = useRef(null)
+    const draggableRef = useRef(null)
 
     const { handleDragStart } = useDragAndDrop()
-    const contextMenuRef = useRef(null)
+
 
     function onSetIsHover(ev, hover) {
         ev.preventDefault()
@@ -59,7 +61,7 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
 
     return (
 
-        <li key={idx} className="station-details-list" item={{ ...song }} draggable onDragStart={(ev) => handleDragStart(ev,song,station)}
+        <li ref={draggableRef} key={idx} className="station-details-list" item={{ ...song }} draggable onDragStart={(ev) => handleDragStart(ev, song, station,draggableRef)}
             onMouseEnter={((ev) => onSetIsHover(ev, true))}
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
             onContextMenu={handleContextMenu}
@@ -69,13 +71,13 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
             <p >
                 {song.artist}</p>
             <p>{song.album}</p>
-          
-                <div className="details-list-control">
-                    <LikeCard item={song}></LikeCard>
-                    <p>{song.duration}</p>
 
-                </div>
-          
+            <div className="details-list-control">
+                <LikeCard item={song}></LikeCard>
+                <p>{song.duration}</p>
+
+            </div>
+
             {activeContextMenuId === song.trackId && (
                 <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>
@@ -88,7 +90,7 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
                                 station._id === id ?
                                     <option key={idx} value="same">Current Playlist</option> :
                                     <option key={idx} value={idx}>{station.name}</option>
-                                
+
                             ))}
                         </select>
                     </li>

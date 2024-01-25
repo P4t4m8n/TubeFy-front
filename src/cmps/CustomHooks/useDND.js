@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { setDragObj } from '../../store/actions/app.actions'
 import { saveStation } from '../../store/actions/station.actions'
 import { updateUser } from '../../store/actions/user.actions'
-import {  showSuccessMsg } from "../../services/event-bus.service"
+import { showSuccessMsg } from "../../services/event-bus.service"
 
 export function useDragAndDrop() {
 
@@ -10,8 +10,7 @@ export function useDragAndDrop() {
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
 
 
-    const handleDragStart = (ev, item, station) => {
-
+    const handleDragStart = (ev, item, station, draggableRef) => {
         const data = { item, from: station }
         setDragObj(data)
     }
