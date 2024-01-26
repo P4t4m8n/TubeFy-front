@@ -87,7 +87,7 @@ export function SideBarContent() {
 
     const onSendPlaylist = (ev, stationId, userId) => {
         ev.preventDefault()
-        const data = { data: { playlist: stationId },  userId }
+        const data = { data: {  stationId, itemName: user.username }, userId }
         socketService.emit(SOCKET_EMIT_SEND_PLAYLIST, data)
 
     }

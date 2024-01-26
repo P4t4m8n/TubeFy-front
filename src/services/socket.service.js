@@ -1,3 +1,4 @@
+
 import io from 'socket.io-client'
 import { userService } from './user.service'
 
@@ -10,28 +11,19 @@ export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 
 export const SOCKET_EMIT_SEND_PLAYLIST = 'user-send-playlist'
 export const SOCKET_EVENT_SEND_PLAYLIST_TO_YOU = 'user-get-playlist'
-
-// User detail
-export const SOCKET_EMIT_USER_WATCH = 'user-watch'
-export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
-
-// Reviews
-export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
-export const SOCKET_EVENT_REVIEW_REMOVED = 'review-removed'
-export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
+export const SOCKET_EMIT_USER_LIKE_PLAYLIST = 'user-like-playlist'
+export const SOCKET_EVENT_PLAYLIST_UPDATED = 'like-playlist-updated'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
-const baseUrl =  '//localhost:3030/'
+const baseUrl =  (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 export const socketService = createSocketService()
 
-// for debugging from console
 window.socketService = socketService
 
 socketService.setup()
-
 
 function createSocketService() {
   var socket = null;

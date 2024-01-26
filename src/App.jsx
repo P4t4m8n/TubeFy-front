@@ -34,10 +34,10 @@ export function App() {
             </Routes>
           </div>
           <Player />
+      <UserMsg></UserMsg>
         </Router>
 
       </div>
-      <UserMsg></UserMsg>
     </>
   )
 }

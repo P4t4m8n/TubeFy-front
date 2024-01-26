@@ -2,6 +2,7 @@ import { SHOW_MSG, eventBus, showSuccessMsg } from "../../services/event-bus.ser
 import { useState, useEffect, useRef } from 'react'
 import { socketService } from "../../services/socket.service.js"
 import { SOCKET_EVENT_SEND_PLAYLIST_TO_YOU } from "../../services/socket.service.js"
+import { Link } from "react-router-dom"
 
 export function UserMsg() {
 
@@ -16,10 +17,11 @@ export function UserMsg() {
         clearTimeout(timeoutIdRef.current)
         timeoutIdRef.current = null
       }
-      timeoutIdRef.current = setTimeout(closeMsg, 3000)
+      timeoutIdRef.current = setTimeout(closeMsg, 3000000)
     })
 
     socketService.on(SOCKET_EVENT_SEND_PLAYLIST_TO_YOU, (msg) => {
+      msg.txt = 'Share a playlist with you!'
       showSuccessMsg(msg)
     })
 
@@ -34,12 +36,21 @@ export function UserMsg() {
   }
 
   if (!msg) return <span></span>
-  console.log("msg:", msg)
 
+  console.log("msg:", msg.msgObj)
   return (
     <section className={`user-msg ${msg.type}`}>
-      {msg.msgObj.imgUrl && <img src={msg.msgObj.imgUrl}></img>}
-      {msg.msgObj.itemName && <h5>{msg.msgObj.itemName}</h5>}  <span> {msg.msgObj.txt}</span>
+      <img src={msg.msgObj.imgUrl ? msg.msgObj.imgUrl
+        :
+        "https://res.cloudinary.com/dpnevk8db/image/upload/v1705844322/zvo0mhdh6lyqgvpavfob.png"}>
+
+      </img>
+      {msg.msgObj.itemName && <h5>{msg.msgObj.itemName}</h5>}
+
+      {msg.msgObj.stationId ? <Link to={'/' + msg.msgObj.stationId}>{msg.msgObj.txt}</Link>
+        :
+        <span> {msg.msgObj.txt}</span>
+      }
     </section>
   )
 }

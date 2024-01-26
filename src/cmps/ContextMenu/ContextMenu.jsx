@@ -21,7 +21,7 @@ export function ContextMenu(props) {
     )
 }
 
-function DynmicContextMenu(props) {
+function DynmicContextMenu({props}) {
     switch (props.item.type) {
         case 'playlist':
             return <ContextMenuPlaylist {...props} />
