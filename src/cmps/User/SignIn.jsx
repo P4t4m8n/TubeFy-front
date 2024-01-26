@@ -34,7 +34,7 @@ export function SignIn({ open, setOpen }) {
   async function onLogin(ev) {
     try {
       login(demoUsers[ev.target.value])
-      showSuccessMsg(`Welcome ${demoUsers[ev.target.value].username}`)
+      showSuccessMsg({ txt: 'Welcome ' + demoUsers[ev.target.value].username })
 
     }
     catch (err) { console.log(err) }
@@ -44,7 +44,7 @@ export function SignIn({ open, setOpen }) {
   async function onSignup(credentials) {
     try {
       signup(credentials)
-      showSuccessMsg(`Welcome ${credentials.username}`)
+      showSuccessMsg({ txt: 'Welcome ' + credentials.username })
     }
     catch (err) { console.log(err) }
   }
@@ -71,7 +71,7 @@ export function SignIn({ open, setOpen }) {
     <div id='modalBackdrop' className="modal-backdrop">
       <div className="modal-content">
         <select onChange={onLogin}>
-        <option  value={0}></option>
+          <option value={0}></option>
           {
             demoUsers.map((user, idx) =>
               <option key={idx} value={idx}>{user.username}</option>)

@@ -20,8 +20,6 @@ export function StationEdit() {
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [searchList, setSearchList] = useState(null)
 
-
-
     const isEdit = useRef(true)
     const params = useParams()
 
@@ -38,7 +36,6 @@ export function StationEdit() {
         try {
             const station = await loadStation(stationId)
             setStationToEdit(station)
-
         }
         catch (err) { console.log(err) }
     }
@@ -48,7 +45,6 @@ export function StationEdit() {
         const file = ev.target.files[0]
         try {
             const imgUrl = await uploadService.uploadImg(file)
-
 
             setStationToEdit(prevStation => {
                 const updatedStation = { ...prevStation, imgUrl: imgUrl }
@@ -63,14 +59,12 @@ export function StationEdit() {
     }
 
     async function onSaveStation(updatedStation = stationToEdit) {
-
         try {
             const savedSation = await saveStation(updatedStation)
             const userStations = user.stations
             const idx = userStations.findIndex(stations => stations._id === savedSation._id)
             userStations.splice(idx, 1, savedSation)
             updateUser({ ...user, stations: userStations })
-
         }
         catch (err) {
             console.log(err)
@@ -84,7 +78,6 @@ export function StationEdit() {
         songs.push(song)
         setStationToEdit(prevStation => ({ ...prevStation, songs: songs }))
         onSaveStation()
-
     }
 
     async function onSaveSong(song) {
@@ -100,10 +93,7 @@ export function StationEdit() {
     }
 
     function onRemoveSong(ev, songId) {
-        console.log("songId:", songId)
         ev.preventDefault()
-        ev.stopPropagation()
-
         stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
         setStationToEdit(() => ({ ...stationToEdit }))
         onSaveStation()
@@ -114,7 +104,6 @@ export function StationEdit() {
         if (ev.target.value === 'same') return
         if (isSearch) onAddSong(ev, song)
         onRemoveSong(ev, song._id)
-
         const newPlay = user.stations[ev.target.value]
         newPlay.songs.push(song)
         saveStation(newPlay)
@@ -122,9 +111,7 @@ export function StationEdit() {
 
     function handleChange({ target }) {
         let value = target.value
-        console.log("value:", value)
         let field = target.name
-        console.log("field:", field)
         if (field === 'search') {
             return
         }
@@ -138,13 +125,22 @@ export function StationEdit() {
     return (
 
         <section className="station-page" >
-            <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} onUplodImg={onUplodImg} ></PlaylistHero>
+            <PlaylistHero
+                stationToEdit={stationToEdit}
+                handleChange={handleChange}
+                onSaveStation={onSaveStation}
+                onUplodImg={onUplodImg}
+            ></PlaylistHero>
             {(songs && (songs.length > 0)) &&
                 <div>
                     <div className="play-and-context flex">
                         <PlayCard item={stationToEdit}></PlayCard>
                     </div>
-                    <Playlist station={stationToEdit} onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
+                    <Playlist station={stationToEdit}
+                        onChangePlaylist={onChangePlaylist}
+                        user={user} songs={songs}
+                        onRemoveSong={onRemoveSong}
+                        isEdit={isEdit.current} />
                 </div>
             }
             <EditSearch onSaveSong={onSaveSong} user={user}></EditSearch>

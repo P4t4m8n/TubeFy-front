@@ -11,8 +11,6 @@ import { Loading } from "../cmps/support/Loading"
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
-    const device = useSelector(storeState => storeState.appMoudle.device)
-
     const stationListTitle = useRef([])
 
     useEffect(() => {
@@ -21,10 +19,9 @@ export function StationIndex() {
     }, [])
 
     useBackgroundFromImage('')
-    useDeviceCheck()
+    const device = useDeviceCheck()
 
-
-    if (!stations || !stations.length) return (<Loading></Loading>)
+    if (!stations || !stations.length) return <Loading></Loading>
 
     const heroStations = stations.slice(0, 6)
     return (

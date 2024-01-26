@@ -22,7 +22,7 @@ export function useContextMenu({ item }) {
 
         ev.preventDefault()
 
-        const menuWidth = 50
+        const menuWidth = 250
         const menuHeight = 50
 
         let xPosition = ev.clientX
@@ -41,6 +41,8 @@ export function useContextMenu({ item }) {
     }
 
     function handleClickOutside(ev) {
+        console.log("ev:", ev.srcElement.classList[0])
+        if (ev.srcElement.classList[0] === 'playlist-select') return
         setContextMenu(null)
 
     }

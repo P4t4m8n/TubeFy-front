@@ -37,10 +37,10 @@ export function useDragAndDrop() {
                 let newFrom = dragObj.from
                 newFrom.songs = newFromSongs
                 newFrom = await saveStation(newFrom)
-                socketService.emit(SOCKET_EMIT_PLAYLIST_UPDATED, {newFrom})
+                socketService.emit(SOCKET_EMIT_PLAYLIST_UPDATED, { newFrom })
                 const idx = userStations.findIndex(station => station._id === newFrom._id)
                 userStations.splice(idx, 1, newFrom)
-                showSuccessMsg(`Song Saved`)
+                showSuccessMsg({ itemName: dragObj.item.name, txt: ` was removed from ${dragObj.from.name}` })
             }
 
             let dropSongs = stationDrop.songs
@@ -52,7 +52,7 @@ export function useDragAndDrop() {
             userStations.splice(idx, 1, savedSation)
             updateUser({ ...user, stations: userStations })
             setDragObj({})
-            showSuccessMsg(`Song Moved`)
+            showSuccessMsg({ itemName: dragObj.item.name, txt: ` was moved too ${stationDrop.name}` })
 
         } catch (err) {
             showSuccessMsg(`Unable to move`)

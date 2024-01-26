@@ -1,6 +1,6 @@
 import { utilService } from '../services/util.service'
 import { apiService } from '../services/api.service'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import {  useEffect, useRef, useState } from 'react'
 import { PlayCard } from '../cmps/main/PlayCard'
 import { useParams } from "react-router"
 import { LikeCard } from '../cmps/main/LikeCard'
@@ -10,11 +10,9 @@ import { Link } from 'react-router-dom'
 import { Loading } from "../cmps/support/Loading"
 
 
-
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
-    console.log("searchList:", searchList)
     const elGenres = useRef(null)
 
     const genres = [
@@ -38,8 +36,10 @@ export function SearchPage() {
         }
         catch (err) { console.log(err) }
     }
+
     let heroList
     let list
+
     if (searchList) {
         heroList = searchList.slice(0, 2)
         list = searchList.slice(1)
@@ -51,7 +51,7 @@ export function SearchPage() {
     return (
         <section>
             {!params.searchTerm &&
-                <Fragment>
+                <>
                     <h1 className='browse-all'>Browse all</h1>
                     <ul ref={elGenres} className="ganeres-list">
                         {genres.map((ganere, idx) =>
@@ -63,7 +63,7 @@ export function SearchPage() {
                             </Link>
                         )}
                     </ul>
-                </Fragment>
+                </>
             }
             {searchList &&
                 <div className='search-hero grid'>

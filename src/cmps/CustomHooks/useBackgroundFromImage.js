@@ -12,7 +12,6 @@ export function useBackgroundFromImage(imageUrl, isMobile = false) {
             const img = new Image()
             img.crossOrigin = 'Anonymous'
             img.src = imageUrl
-            console.log("imageUrl:", imageUrl)
             img.onload = async () => {
                 const colorThief = new ColorThief()
                 const palette = colorThief.getPalette(img, 2)

@@ -13,15 +13,16 @@
     align-items: center;
     justify-items: center;
 
-    li{
+    li {
         list-style: none;
         display: grid;
         grid-template-columns: 3rem auto;
         align-items: center;
         justify-items: center;
         border-radius: 8px;
-        
+
     }
+
     .context-line {
         cursor: pointer;
         height: 64px;
@@ -42,6 +43,11 @@
             font-family: Monstserrat;
             font-weight: bold;
             font-size: .7rem;
+        }
+
+        .station-select {
+            position: absolute;
+            bottom: -100%;
         }
 
         .share-select {

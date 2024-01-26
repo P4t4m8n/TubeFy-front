@@ -1,9 +1,7 @@
 import { Clock } from "../../services/icons.service";
 import { SongPreview } from "./SongPreview";
 
-
-
-export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, id, user, onChangePlaylist, isSearch, station }) {
+export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, user, onChangePlaylist, isSearch, station }) {
 
     return (
 
@@ -22,7 +20,7 @@ export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, id, user, on
                 {songs.map((song, idx) => (
                     <SongPreview station={station} key={idx} idx={idx} song={song} isEdit={isEdit}
                         onRemoveSong={onRemoveSong} isSearch={isSearch} onChangePlaylist={onChangePlaylist}
-                        user={user} id={id} onSaveSong={onSaveSong}>
+                        user={user} onSaveSong={onSaveSong}>
                     </SongPreview>
                 ))}
 

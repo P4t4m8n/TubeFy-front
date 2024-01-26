@@ -45,10 +45,12 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
                     id={id}
                     isSearch={isSearch}
                     onChangePlaylist={onChangePlaylist}
-                    item={song} userStations={user.stations}
+                    item={song}
+                    userStations={user.stations}
                     contextMenuPosition={contextMenuPosition}
                     onRemoveSong={onRemoveSong}
                     isEdit={isEdit}
+                    station={station}
                 />
             }
         </li>

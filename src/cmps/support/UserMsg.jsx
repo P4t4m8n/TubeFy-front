@@ -28,10 +28,8 @@ export function UserMsg() {
     })
 
     socketService.on(SOCKET_EVENT_PLAYLIST_UPDATED, (station) => {
-      console.log("station:", station)
       const user = userService.getLoggedinUser()
       const newStations = user.stations.map(userStation => (station._id === userStation._id) ? station : userStation)
-      console.log("newStations:", newStations)
       updateUser({ ...user, stations: newStations })
 
     })
@@ -51,7 +49,6 @@ export function UserMsg() {
 
   if (!msg) return <span></span>
 
-  console.log("msg:", msg.msgObj)
   return (
     <section className={`user-msg ${msg.type}`}>
       <img src={msg.msgObj.imgUrl ? msg.msgObj.imgUrl

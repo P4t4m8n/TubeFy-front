@@ -3,25 +3,19 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { logout } from '../../store/actions/user.actions.js'
 import { UserIcon } from '../../services/icons.service.jsx'
-
 import { SignIn } from '../User/SignIn.jsx'
-import { SearchCmp } from '../support/SearchCmp.jsx'
 import { showSuccessMsg } from '../../services/event-bus.service.js'
-
-
+import { SearchCmp } from '../search/SearchCmp.jsx'
 
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-
     const [open, setOpen] = useState(false)
-
 
     const navigate = useNavigate()
     const location = useLocation()
     if (location.pathname.includes('mobile')) return
     const isSearchShown = location.pathname.includes('search')
-
 
     async function onLogout(ev) {
         ev.preventDefault()
@@ -31,7 +25,7 @@ export function AppHeader() {
             await logout()
             setOpen(false)
             navigate('/')
-            showSuccessMsg(`GoodBye`)
+            showSuccessMsg({txt:'Goodbye'})
         }
         catch (err) {
             console.log(err)

@@ -9,8 +9,6 @@ import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 import { Loading } from "../cmps/support/Loading"
 import { useSelector } from "react-redux"
 
-
-
 export function StationDetails() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
@@ -19,21 +17,30 @@ export function StationDetails() {
 
     useEffect(() => {
         onLoadstation()
-    }, [params.stationsId,user])
+    }, [params.stationsId, user])
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null)
-    useDeviceCheck()
 
     async function onLoadstation() {
         const station = await loadStation(params.stationId)
         setCurrStation(station)
+    }
+    
+    function onChangePlaylist(ev, song, stationId, isSearch) {
+        ev.preventDefault()
+        if (ev.target.value === 'same') return
+        if (isSearch) onAddSong(ev, song)
+        onRemoveSong(ev, song._id)
+
+        const newPlay = user.stations[ev.target.value]
+        newPlay.songs.push(song)
+        saveStation(newPlay)
     }
 
     if (!currStation) return <Loading />
     const { imgUrl, type, createdBy, name, duration, songs, description } = currStation
     const amount = currStation.songs.length
 
-    console.log('Render station-details')
     return (
         <section className="station-details" >
             <header className="station-header" >
@@ -59,7 +66,7 @@ export function StationDetails() {
                 </div>
 
             </section>
-            <Playlist songs={songs}></Playlist>
+            <Playlist station={currStation} onChangePlaylist={onChangePlaylist} user={user} songs={songs}></Playlist>
         </section >
     )
 

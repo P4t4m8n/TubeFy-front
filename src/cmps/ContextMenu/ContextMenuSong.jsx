@@ -1,18 +1,18 @@
 
 
-export function ContextMenuSong({ item, onChangePlaylist, id, isSearch,userStations,onRemoveSong,isEdit }) {
+export function ContextMenuSong({ station, item, onChangePlaylist, isSearch, userStations, onRemoveSong, isEdit }) {
 
     return (
         <>
             <li>
                 <select onChange={(ev) => {
-                    onChangePlaylist(ev, item, id, isSearch)
+                    onChangePlaylist(ev, item, station._id, isSearch)
                 }} className="playlist-select">
                     <option value="none">Pick Playlist</option>
-                    {userStations.map((station, idx) => (
-                        station._id === id ?
+                    {userStations.map((userStation, idx) => (
+                        station._id === userStation._id ?
                             <option key={idx} value="same">Current Playlist</option> :
-                            <option key={idx} value={idx}>{station.name}</option>
+                            <option key={idx} value={idx}>{userStation.name}</option>
 
                     ))}
                 </select>
