@@ -3,6 +3,7 @@ import { setDragObj } from '../../store/actions/app.actions'
 import { saveStation } from '../../store/actions/station.actions'
 import { updateUser } from '../../store/actions/user.actions'
 import { showSuccessMsg } from "../../services/event-bus.service"
+import { SOCKET_EMIT_PLAYLIST_UPDATED, socketService } from '../../services/socket.service'
 
 export function useDragAndDrop() {
 
@@ -36,6 +37,7 @@ export function useDragAndDrop() {
                 let newFrom = dragObj.from
                 newFrom.songs = newFromSongs
                 newFrom = await saveStation(newFrom)
+                socketService.emit(SOCKET_EMIT_PLAYLIST_UPDATED, {newFrom})
                 const idx = userStations.findIndex(station => station._id === newFrom._id)
                 userStations.splice(idx, 1, newFrom)
                 showSuccessMsg(`Song Saved`)
@@ -45,6 +47,7 @@ export function useDragAndDrop() {
             dropSongs.push(dragObj.item)
             stationDrop.songs = dropSongs
             const savedSation = await saveStation(stationDrop)
+            socketService.emit(SOCKET_EMIT_PLAYLIST_UPDATED, savedSation)
             const idx = userStations.findIndex(stations => stations._id === savedSation._id)
             userStations.splice(idx, 1, savedSation)
             updateUser({ ...user, stations: userStations })

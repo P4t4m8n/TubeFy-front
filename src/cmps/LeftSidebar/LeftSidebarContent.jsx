@@ -9,12 +9,9 @@ import { Libary, Plus, SearchSvg, Sort } from "../../services/icons.service"
 import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
 import { useDragAndDrop } from "../CustomHooks/useDND"
-import { SOCKET_EMIT_SEND_PLAYLIST, socketService } from "../../services/socket.service"
+import { SOCKET_EMIT_SEND_PLAYLIST, SOCKET_EMIT_USER_DISLIKE_PLAYLIST, socketService } from "../../services/socket.service"
 import { Loading } from "../support/Loading"
 import { SidebarContentPreview } from "./SidebarContentPreview"
-
-
-
 
 export function SideBarContent() {
 
@@ -25,9 +22,6 @@ export function SideBarContent() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
-
-
-
 
     const { handleDragOver, handleDrop } = useDragAndDrop()
 
@@ -63,6 +57,7 @@ export function SideBarContent() {
         try {
             const editUser = { ...user, stations: newStations }
             await updateUser(editUser)
+            socketService.emit(SOCKET_EMIT_USER_DISLIKE_PLAYLIST, stationId)
             // await removeStation(stationId)
             navigate('/')
         }
@@ -87,7 +82,7 @@ export function SideBarContent() {
 
     const onSendPlaylist = (ev, stationId, userId) => {
         ev.preventDefault()
-        const data = { data: {  stationId, itemName: user.username }, userId }
+        const data = { data: { stationId, itemName: user.username }, userId }
         socketService.emit(SOCKET_EMIT_SEND_PLAYLIST, data)
 
     }
@@ -149,6 +144,7 @@ export function SideBarContent() {
                             handleDrop={handleDrop}
                             onRemoveStation={onRemoveStation}
                             handleDragOver={handleDragOver}
+                            key={idx}
                             onSendPlaylist={onSendPlaylist}>
                         </SidebarContentPreview>
                     ))}

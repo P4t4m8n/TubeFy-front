@@ -7,7 +7,7 @@ export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
 
 
     const friendsList = [
-        { username: 'DemoUserTwo', _id: '65b0e9629d067b8be3e177aa' },
+        { username: 'DemoUserTwo', _id: '65b39afa910e647be4086e97' },
         { username: 'DemoUserThree', _id: '65b0e96d9d067b8be3e177ac' }
     ]
 

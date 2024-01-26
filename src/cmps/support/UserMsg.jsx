@@ -1,8 +1,10 @@
 import { SHOW_MSG, eventBus, showSuccessMsg } from "../../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
-import { socketService } from "../../services/socket.service.js"
+import { SOCKET_EVENT_PLAYLIST_UPDATED, socketService } from "../../services/socket.service.js"
 import { SOCKET_EVENT_SEND_PLAYLIST_TO_YOU } from "../../services/socket.service.js"
 import { Link } from "react-router-dom"
+import { userService } from "../../services/user.service.js"
+import { updateUser } from "../../store/actions/user.actions.js"
 
 export function UserMsg() {
 
@@ -25,11 +27,23 @@ export function UserMsg() {
       showSuccessMsg(msg)
     })
 
+    socketService.on(SOCKET_EVENT_PLAYLIST_UPDATED, (station) => {
+      console.log("station:", station)
+      const user = userService.getLoggedinUser()
+      const newStations = user.stations.map(userStation => (station._id === userStation._id) ? station : userStation)
+      console.log("newStations:", newStations)
+      updateUser({ ...user, stations: newStations })
+
+    })
+
     return () => {
       unsubscribe()
       socketService.off(SOCKET_EVENT_SEND_PLAYLIST_TO_YOU)
+      socketService.off(SOCKET_EVENT_PLAYLIST_UPDATED)
     }
   }, [msg])
+
+
 
   function closeMsg() {
     setMsg(null)

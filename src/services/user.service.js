@@ -34,7 +34,6 @@ async function signup(credentials) {
 
     try {
         const newUser = await httpService.post(AUTH_URL + 'signup', credentials)
-        console.log("newUser:", newUser)
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(newUser))
         return newUser
     }
@@ -67,12 +66,14 @@ function getById(userId) {
     return httpService.get(USER_URL + userId)
 }
 
-function getEmptyCredentials(email = '', imgUrl = "", username = '', password = '', stations = [], favorites = []) {
+function getEmptyCredentials(email = '', imgUrl = "", username = '', password = '', stations = [], favorites = [], friends = []) {
     return {
         email,
         username,
         password,
         stations,
         imgUrl,
+        favorites,
+        friends
     }
 }

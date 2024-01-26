@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { Delete, Note } from "../../services/icons.service";
+import {  Note } from "../../services/icons.service";
 import { ContextMenu } from "../ContextMenu/ContextMenu";
-import { UseContextMenu } from "../CustomHooks/useContextMenu";
+import {  useContextMenu } from "../CustomHooks/useContextMenu";
 
 export function SidebarContentPreview(props) {
 
     const { setStationInFoucs, handleDrop, handleDragOver, onRemoveStation, station, stationInFoucs, userStations, onSendPlaylist } = props
 
     const [activeContextMenuId, contextMenuPosition, handleContextMenu]
-        = UseContextMenu({ item: station })
+        = useContextMenu({ item: station })
 
     return (
         <Link

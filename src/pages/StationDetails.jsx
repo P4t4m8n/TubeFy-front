@@ -7,17 +7,19 @@ import { PlayCard } from "../cmps/main/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 import { Loading } from "../cmps/support/Loading"
+import { useSelector } from "react-redux"
 
 
 
 export function StationDetails() {
 
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
     const [currStation, setCurrStation] = useState(null)
     const params = useParams()
 
     useEffect(() => {
         onLoadstation()
-    }, [params.stationsId])
+    }, [params.stationsId,user])
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null)
     useDeviceCheck()

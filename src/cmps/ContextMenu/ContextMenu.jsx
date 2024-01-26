@@ -1,7 +1,5 @@
 import { ContextMenuPlaylist } from "./ContextMenuPlaylist"
-import { ConttextMenuSong } from "./ContextMenuSong"
-
-
+import { ContextMenuSong } from "./ContextMenuSong"
 
 export function ContextMenu(props) {
     const { contextMenuPosition } = props
@@ -26,7 +24,7 @@ function DynmicContextMenu({props}) {
         case 'playlist':
             return <ContextMenuPlaylist {...props} />
         case 'song':
-            return <ConttextMenuSong {...props} />
+            return <ContextMenuSong {...props} />
 
         default:
             break

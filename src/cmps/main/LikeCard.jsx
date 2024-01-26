@@ -6,6 +6,7 @@ import { FullHeart } from '../../services/icons.service'
 import { saveStation } from "../../store/actions/station.actions"
 import { saveSong } from "../../store/actions/song.action"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import { SOCKET_EMIT_USER_DISLIKE_PLAYLIST, SOCKET_EMIT_USER_LIKE_PLAYLIST, socketService } from "../../services/socket.service"
 
 
 
@@ -65,18 +66,23 @@ export function LikeCard({ item }) {
 
     function handlePlaylistLike(user, likedItem, isLiked, setIsLikedCallback) {
         let updatedStations = user.stations
+        let favStations = user.favorites
         if (isLiked) {
             updatedStations = updatedStations.filter(station => station._id !== likedItem._id)
+            favStations = user.favorites.filter(station => station !== likedItem._id)
+            socketService.emit(SOCKET_EMIT_USER_DISLIKE_PLAYLIST, likedItem._id)
             setIsLikedCallback(false)
             showSuccessMsg({ txt: 'Removed from Your Libary' })
 
         } else {
             updatedStations = [...updatedStations, likedItem]
+            favStations.push(likedItem._id)
+            socketService.emit(SOCKET_EMIT_USER_LIKE_PLAYLIST, likedItem._id)
             setIsLikedCallback(true)
             showSuccessMsg({ txt: 'Added to Your Libary' })
 
         }
-        return { ...user, stations: updatedStations }
+        return { ...user, stations: updatedStations, favorites: favStations }
     }
 
     function handleSongLike(user, likedItem, isLiked, setIsLikedCallback) {

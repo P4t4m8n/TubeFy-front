@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
 
 
-export function UseContextMenu({ item }) {
+export function useContextMenu({ item }) {
 
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)

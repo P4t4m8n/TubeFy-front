@@ -100,6 +100,7 @@ export function StationEdit() {
     }
 
     function onRemoveSong(ev, songId) {
+        console.log("songId:", songId)
         ev.preventDefault()
         ev.stopPropagation()
 

@@ -5,13 +5,14 @@ import { userService } from './user.service'
 // Chat
 export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
 export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
-export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 
 //Playlist
 
 export const SOCKET_EMIT_SEND_PLAYLIST = 'user-send-playlist'
 export const SOCKET_EVENT_SEND_PLAYLIST_TO_YOU = 'user-get-playlist'
 export const SOCKET_EMIT_USER_LIKE_PLAYLIST = 'user-like-playlist'
+export const SOCKET_EMIT_USER_DISLIKE_PLAYLIST = 'user-dislike-playlist'
+export const SOCKET_EMIT_PLAYLIST_UPDATED = 'playlist-updated'
 export const SOCKET_EVENT_PLAYLIST_UPDATED = 'like-playlist-updated'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
@@ -42,6 +43,7 @@ function createSocketService() {
       else socket.off(eventName, cb)
     },
     emit(eventName, data) {
+      console.log("data:", data)
       socket.emit(eventName, data)
     },
     login(userId) {
