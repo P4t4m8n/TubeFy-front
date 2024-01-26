@@ -19,10 +19,6 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
     const duration = stationService.convertTimeFormat(stationToEdit.duration)
     const amount = stationToEdit.songs.length || 0
 
-
-
-    // console.log('render hero')
-
     return (
         <header className="station-hero">
             <form className="flex">

@@ -6,6 +6,7 @@ import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
+import { Loading } from "../cmps/support/Loading"
 
 
 
@@ -26,10 +27,8 @@ export function StationDetails() {
         setCurrStation(station)
     }
 
-    if (!currStation) return <div>...Loading</div>
-
+    if (!currStation) return <Loading />
     const { imgUrl, type, createdBy, name, duration, songs, description } = currStation
-
     const amount = currStation.songs.length
 
     console.log('Render station-details')
@@ -38,7 +37,7 @@ export function StationDetails() {
             <header className="station-header" >
                 <img src={imgUrl}></img>
                 <div className="station-header-info">
-                    <h2>{type === 'station' ? 'Playlist' : 'Song'}</h2>
+                    <h2>{type === 'playlist' ? 'Playlist' : 'Song'}</h2>
                     <h3>{name}</h3>
                     <h4>{description}</h4>
                     <div >
