@@ -55,7 +55,7 @@ export function useDragAndDrop() {
             showSuccessMsg({ itemName: dragObj.item.name, txt: ` was moved too ${stationDrop.name}` })
 
         } catch (err) {
-            showSuccessMsg(`Unable to move`)
+            showSuccessMsg({ txt: 'Unable to move' })
             console.log(err)
         }
     }

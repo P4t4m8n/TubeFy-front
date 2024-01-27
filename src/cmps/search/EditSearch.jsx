@@ -5,7 +5,7 @@ import { Search } from "@mui/icons-material"
 import { Playlist } from "../main/Playlist"
 
 
-export function EditSearch({ user, onSaveSong, }) {
+export function EditSearch({ user, onSaveSong, onChangePlaylist }) {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState(null)
@@ -60,7 +60,7 @@ export function EditSearch({ user, onSaveSong, }) {
             {
                 (searchResults && searchResults.length > 0) &&
                 < div >
-                    <Playlist onChangePlaylist={addSong} user={user} songs={searchResults} isSearch={true} />
+                    <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={searchResults} isSearch={true} />
                 </div>
             }
         </>

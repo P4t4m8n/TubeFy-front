@@ -2,12 +2,10 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
 
-
 export function useContextMenu({ item }) {
 
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
-
 
     const itemId = (item.type === 'playlist') ? item._id : item.trackId
 
@@ -41,7 +39,6 @@ export function useContextMenu({ item }) {
     }
 
     function handleClickOutside(ev) {
-        console.log("ev:", ev.srcElement.classList[0])
         if (ev.srcElement.classList[0] === 'playlist-select') return
         setContextMenu(null)
 

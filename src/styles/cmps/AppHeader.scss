@@ -1,5 +1,5 @@
 .app-header>* {
-
+    font-family: Monstserrat;
     box-sizing: border-box;
 }
 
@@ -194,6 +194,31 @@
                 width: 300px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
+                .mode-btns {
+                    left: 14%;
+
+                    &:first-child {
+                        margin-bottom: 8px;
+                    }
+                }
+
+                select {
+                    background-color: inherit;
+                    border-radius: 16px;
+                    margin-left: 65px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    cursor: pointer;
+                    color: wheat;
+                    font-family: Monstserrat;
+                    font-size: 1rem;
+                    text-align: center;
+
+                    
+
+                }
+
                 form {
                     display: flex;
                     flex-direction: column;
@@ -245,7 +270,6 @@
 
 .MOBILE {
     .app-header {
-        // padding-inline: 4px;
         gap: 2px;
 
         img {

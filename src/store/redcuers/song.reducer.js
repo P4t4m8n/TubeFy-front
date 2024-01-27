@@ -20,7 +20,6 @@ export function songReducer(state = initialState, action = {}) {
 
         case SET_PLAYING:
             const playing = state.isPlaying
-            console.log("playing:", playing)
             return { ...state, isPlaying: !playing }
 
         case SET_VOLUME:

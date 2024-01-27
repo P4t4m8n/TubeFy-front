@@ -24,7 +24,7 @@ export function LikeCard({ item }) {
         if (user) {
             if (item.type === PLAYLIST) LikeCheck = user.stations.some(station => station._id === item._id)
             if (item.type === SONG) {
-                LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
+                LikeCheck = user.stations[0].songs.some(song => song.trackId === item.trackId)
             }
         }
 
@@ -37,7 +37,7 @@ export function LikeCard({ item }) {
     async function onLike() {
         let tempItem = item
         if (!user) {
-            showErrorMsg('No user')
+            showErrorMsg({ txt: 'No user' })
             return
         }
         if (!item._id)

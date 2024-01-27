@@ -12,10 +12,10 @@ import Stack from '@mui/joy/Stack'
 import { Note, Pencil } from '../../services/icons.service'
 import { stationService } from '../../services/station.service'
 
-export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUplodImg }) {
+export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUploadImg }) {
     const [open, setOpen] = useState(false)
 
-    const { type, name, createdBy, imgUrl,description } = stationToEdit
+    const { type, name, createdBy, imgUrl, description } = stationToEdit
     const duration = stationService.convertTimeFormat(stationToEdit.duration)
     const amount = stationToEdit.songs.length || 0
 
@@ -24,7 +24,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
             <form className="flex">
 
                 <label htmlFor="file-input">
-                    <input type="file" id="file-input" name="image" onChange={onUplodImg} hidden />
+                    <input type="file" id="file-input" name="image" onChange={onUploadImg} hidden />
                     <Note></Note>
                     <img onLoad={(ev) => ev.target.style.visibility = 'visible'} onError={(ev) => ev.target.style.visibility = 'hidden'} src={imgUrl}></img>
                     <div>
@@ -61,7 +61,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
                                             </FormControl>
                                             <FormControl>
                                                 <FormLabel>Description</FormLabel>
-                                                <Input   name='description' value={description} onChange={(event) => handleChange(event)} />
+                                                <Input name='description' value={description} onChange={(event) => handleChange(event)} />
                                             </FormControl>
                                             <Button type="submit">Save</Button>
                                         </Stack>

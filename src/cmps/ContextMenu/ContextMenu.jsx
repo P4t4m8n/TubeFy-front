@@ -2,6 +2,7 @@ import { ContextMenuPlaylist } from "./ContextMenuPlaylist"
 import { ContextMenuSong } from "./ContextMenuSong"
 
 export function ContextMenu(props) {
+    
     const { contextMenuPosition } = props
     return (
         <ul className="context-menu"

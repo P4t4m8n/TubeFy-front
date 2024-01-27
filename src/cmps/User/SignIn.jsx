@@ -9,6 +9,7 @@ export function SignIn({ open, setOpen }) {
 
   const [isSignup, setIsSignUp] = useState(false)
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
+  const [userMode, setUserMode] = useState(null)
 
   const demoUsers = [
     { username: 'DemoUserOne', password: 'a' },
@@ -70,44 +71,58 @@ export function SignIn({ open, setOpen }) {
   return (
     <div id='modalBackdrop' className="modal-backdrop">
       <div className="modal-content">
-        <select onChange={onLogin}>
-          <option value={0}></option>
-          {
-            demoUsers.map((user, idx) =>
-              <option key={idx} value={idx}>{user.username}</option>)
-          }
-        </select>
-        {/* <form onSubmit={isLogin}>
-          <h2>{isSignup ? 'SignUp' : 'Login'}</h2>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            name='username'
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name='password'
-            value={password}
-            onChange={handleChange}
-          />
-          {isSignup && <input
-            type="email"
-            placeholder="Email"
-            name='email'
-            value={email}
-            onChange={handleChange}
-          />}
-          <button type="submit">{(isSignup) ? ' Signup' : 'Sign in'}</button>
-          <Link href="#" onClick={() => setIsSignUp(!isSignup)} >
-            {isSignup ?
-              'Already a member? Login' :
-              "Don't have an account? Sign Up"
+
+        {!userMode &&
+          <>
+            <button className='mode-btns' onClick={() => setUserMode('real')}>Real user</button>
+            <button className='mode-btns' onClick={() => setUserMode('demo')}>Demo User</button>
+          </>
+        }
+
+        {userMode === 'demo' &&
+          <select onChange={onLogin}>
+            <option value={0}>-Select user-</option>
+            {
+              demoUsers.map((user, idx) =>
+                <option key={idx} value={idx}>{user.username}</option>)
             }
-          </Link>
-        </form> */}
+          </select>
+        }
+
+        {userMode === 'real' &&
+          <form onSubmit={isLogin}>
+            <h2>{isSignup ? 'SignUp' : 'Login'}</h2>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              name='username'
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name='password'
+              value={password}
+              onChange={handleChange}
+            />
+            {isSignup && <input
+              type="email"
+              placeholder="Email"
+              name='email'
+              value={email}
+              onChange={handleChange}
+            />}
+            <button type="submit">{(isSignup) ? ' Signup' : 'Sign in'}</button>
+            <Link href="#" onClick={() => setIsSignUp(!isSignup)} >
+              {isSignup ?
+                'Already a member? Login' :
+                "Don't have an account? Sign Up"
+              }
+            </Link>
+          </form>
+        }
+
       </div>
     </div>
   )
