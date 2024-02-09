@@ -7,17 +7,15 @@ import { StationDetails } from './pages/StationDetails.jsx'
 import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
-import '../src/styles/main.scss'
 import { UserMsg } from './cmps/support/UserMsg.jsx'
-import { MobilePlayerPage } from './cmps/Footer/MobilePlayerPage.jsx'
-import { SideBarContent } from './cmps/LeftSidebar/LeftSidebarContent.jsx'
+import '../src/styles/main.scss'
 
 export function App() {
 
 
   return (
     <>
-      <div className={"main-container "}>
+      <div className="main-container">
         <Router>
           <LeftSidebar />
           <div className="main-content">
@@ -29,8 +27,6 @@ export function App() {
               <Route path="/search/:searchTerm" element={<SearchPage />} />
               <Route path="/station/edit" element={<StationEdit />}></Route>
               <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
-              <Route path="/mobile/libary" element={<SideBarContent />}></Route>
-              <Route path="/mobile/player" element={<MobilePlayerPage />}></Route>
             </Routes>
           </div>
           <Player />

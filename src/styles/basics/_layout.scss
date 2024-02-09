@@ -2,12 +2,11 @@
     padding: $panel-gap $panel-gap 0;
 
     display: grid;
-    grid-template-columns: minmax(280px, auto) minmax(400px, 1fr);
+    grid-template-columns: minmax(215px, 16rem) minmax(400px, 1fr);
     grid-template-rows: 1fr auto;
     grid-template-areas:
         "left-sidebar main"
         "player player";
-    //gap: $panel-gap;
     height: 100vh;
     overflow: hidden;
     gap: $panel-gap;

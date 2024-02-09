@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
 
+
+
     .left-sidebar-header {
 
         background-color: $clr7;
@@ -45,7 +47,7 @@
         border-radius: $panel-gap;
         background-color: $clr7;
         flex-grow: 1;
-       
+
 
         svg {
             filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(2005%) contrast(100%);
@@ -54,7 +56,7 @@
 
         ul {
             margin: 0;
-        
+
         }
 
         a {
@@ -386,6 +388,34 @@
                 }
 
             }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .left-sidebar {
+
+        header,
+        span,
+        .station-name,
+        .station-info-span,
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+@media (max-width: 560px) {
+    .left-sidebar {
+
+        header,
+        span,
+        .station-name,
+        .station-info-span,
+        p {
+            display: none;
         }
     }
 }

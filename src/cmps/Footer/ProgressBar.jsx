@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from "react"
-import { loadSong } from "../../store/actions/song.action"
 import { utilService } from "../../services/util.service"
 
-export function ProgressBar({ song, station, player, stationIdx }) {
+export function ProgressBar({ song, player }) {
 
     const [progress, setProgress] = useState(null)
     const intervalRef = useRef(null)
 
-
     useEffect(() => {
 
-        // if (!song) loadSong(station.songs[stationIdx.current])
         setProgress('0.00')
         const updateProgress = () => {
 

@@ -23,7 +23,6 @@ export function PlayerRightside({ volume, setVolume }) {
         }
     }
 
-
     function toggleFullScreen(ev) {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen()
@@ -35,7 +34,6 @@ export function PlayerRightside({ volume, setVolume }) {
         }
     }
 
-    // console.log('Render:right side footer')
     return (
         <section className="rightside-footer">
             <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>

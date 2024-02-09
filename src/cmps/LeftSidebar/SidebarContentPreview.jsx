@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import {  Note } from "../../services/icons.service";
+import { Note } from "../../services/icons.service";
 import { ContextMenu } from "../ContextMenu/ContextMenu";
-import {  useContextMenu } from "../CustomHooks/useContextMenu";
+import { useContextMenu } from "../CustomHooks/useContextMenu";
 
 export function SidebarContentPreview(props) {
 
@@ -27,8 +27,8 @@ export function SidebarContentPreview(props) {
                         <Note></Note>
                     </div>
                 }
-                <header>{station.name}</header>
-                <div>
+                <header className="station-name">{station.name}</header>
+                <div className="station-info-span">
 
                     <span className="station-type">{station.type}</span>
                     <span>{station.songs.length} songs</span>

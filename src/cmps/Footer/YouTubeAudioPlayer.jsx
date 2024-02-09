@@ -8,7 +8,7 @@ import { setPlayer } from '../../store/actions/player.action'
 import { PlayCard } from '../main/PlayCard'
 import { Next, Prev, Shuffle, Repeat, Play, Pause } from '../../services/icons.service'
 import { ProgressBar } from './ProgressBar'
-import { PC } from '../CustomHooks/UseDeviceCheck'
+import { PC, useDeviceCheck } from '../CustomHooks/UseDeviceCheck'
 import { useLocation } from 'react-router-dom'
 
 export function YouTubeAudioPlayer({ volume }) {
@@ -17,7 +17,6 @@ export function YouTubeAudioPlayer({ volume }) {
   const song = useSelector(storeState => storeState.songMoudle.currSong)
   const station = useSelector(storeState => storeState.stationsMoudle.currStation)
   const player = useSelector(storeState => storeState.playerMoudle.player)
-  const device = useSelector(storeState => storeState.appMoudle.device)
 
   const stationIdx = useRef(0)
   const isRepeat = useRef(false)
@@ -33,9 +32,7 @@ export function YouTubeAudioPlayer({ volume }) {
   }
 
   useEffect(() => {
-
     if (!song) loadSong(station.songs[0])
-
   }, [song])
 
   function onEnd(ev) {
@@ -83,15 +80,13 @@ export function YouTubeAudioPlayer({ volume }) {
     ev.target.setVolume(volume)
 
   }
-  if (!song) return <div>...Loading</div>
+
+  if (!song) return 
 
   const { trackId } = song
-  const location = useLocation()
   
   return (
     <section className='audio'>
-      {(device === PC || location.pathname.includes('mobile')) &&
-        <>
           <div className='audio-control'>
             <button onClick={onShuffle}><Shuffle></Shuffle></button>
             <button onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
@@ -99,10 +94,7 @@ export function YouTubeAudioPlayer({ volume }) {
             <button onClick={(() => onChangeSong(1))}><Next></Next></button>
             <button onClick={onRepeat}><Repeat></Repeat></button>
           </div>
-        </>
-
-      }
-      <ProgressBar song={song} player={player} station={station} stationIdx={stationIdx} isPlaying={isPlaying} />
+      <ProgressBar song={song} player={player}  />
       <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
     </section >
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import ColorThief from 'colorthief'
 
-export function useBackgroundFromImage(imageUrl, isMobile = false) {
+export function useBackgroundFromImage(imageUrl) {
 
     const [gradient, setGradient] = useState('linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)')
 
@@ -30,7 +30,6 @@ export function useBackgroundFromImage(imageUrl, isMobile = false) {
     }, [imageUrl])
 
     useEffect(() => {
-        const className = isMobile ? '.mobile-player' : '.main-content'
-        document.querySelector(className).style.background = gradient
+        document.querySelector('.main-content').style.background = gradient
     }, [gradient])
 }
