@@ -19,7 +19,7 @@ export function UserMsg() {
         clearTimeout(timeoutIdRef.current)
         timeoutIdRef.current = null
       }
-      timeoutIdRef.current = setTimeout(closeMsg, 3000000)
+      timeoutIdRef.current = setTimeout(closeMsg, 3000)
     })
 
     socketService.on(SOCKET_EVENT_SEND_PLAYLIST_TO_YOU, (msg) => {

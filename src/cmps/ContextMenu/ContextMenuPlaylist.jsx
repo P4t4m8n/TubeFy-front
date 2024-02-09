@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Delete, Share, UserIcon } from "../../services/icons.service";
-import { setContextMenu } from "../../store/actions/app.actions";
 
 
 export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
 
 
     const friendsList = [
-        { username: 'DemoUserTwo', _id: '65b39afa910e647be4086e97' },
-        { username: 'DemoUserThree', _id: '65b0e96d9d067b8be3e177ac' }
+        { username: 'DemoUserTwo', _id: '65c61d710580cb91dd88eadb' },
+        { username: 'DemoUserThree', _id: '65c61da00580cb91dd88eadd' }
     ]
 
     const [openFreindsList, setOpenFriendsList] = useState(false)

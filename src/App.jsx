@@ -34,7 +34,7 @@ export function App() {
             </Routes>
           </div>
           <Player />
-      <UserMsg></UserMsg>
+      <UserMsg/>
         </Router>
 
       </div>

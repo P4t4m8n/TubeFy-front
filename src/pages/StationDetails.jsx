@@ -16,7 +16,7 @@ export function StationDetails() {
     const params = useParams()
 
     useEffect(() => {
-        onLoadstation()
+        if (params.stationId) onLoadstation()
     }, [params.stationsId, user])
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null)
@@ -25,7 +25,7 @@ export function StationDetails() {
         const station = await loadStation(params.stationId)
         setCurrStation(station)
     }
-    
+
     function onChangePlaylist(ev, song, stationId, isSearch) {
         ev.preventDefault()
         if (ev.target.value === 'same') return

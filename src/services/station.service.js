@@ -20,7 +20,6 @@ function query(filterSortBy = {}) {
 }
 
 function get(stationId) {
- 
   return httpService.get(BASE_URL + stationId)
 }
 

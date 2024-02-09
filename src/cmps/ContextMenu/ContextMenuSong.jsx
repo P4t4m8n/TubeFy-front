@@ -17,7 +17,7 @@ export function ContextMenuSong({ station, item, onChangePlaylist, isSearch, use
                     ))}
                 </select>
             </li>
-            {(isEdit && !isSearch )&& <li onClick={(ev) => onRemoveSong(ev, song._id)}>Remove Song</li>}
+            {(isEdit && !isSearch )&& <li onClick={(ev) => onRemoveSong(ev, item._id)}>Remove Song</li>}
         </>
 
     )

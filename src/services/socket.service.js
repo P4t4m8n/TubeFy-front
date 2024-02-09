@@ -43,7 +43,6 @@ function createSocketService() {
       else socket.off(eventName, cb)
     },
     emit(eventName, data) {
-      console.log("data:", data)
       socket.emit(eventName, data)
     },
     login(userId) {

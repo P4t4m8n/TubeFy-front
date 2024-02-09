@@ -14,12 +14,8 @@ export const songService = {
     getSongs
 }
 
-
-
 function query(filterSortBy = {}) {
-
     return httpService.get(BASE_URL, filterSortBy)
-
 }
 
 function getSongById(songId) {
@@ -40,7 +36,6 @@ function remove(songId) {
 
 function getEmptysong(name = '', artist = '', duration = '', imgUrl = '', addedBy = 'YoutubeFy') {
     return {
-
         name: name,
         artist: artist,
         type: 'song',
@@ -49,15 +44,12 @@ function getEmptysong(name = '', artist = '', duration = '', imgUrl = '', addedB
         imgUrl: imgUrl,
         addedBy: addedBy,
         addedAt: Date.now(),
-        likedByUsers: []
     }
 }
 
 function getSongs() {
     return utilService.loadFromStorage(STORAGE_SONGS_KEY)
 }
-
-
 
 function getDefaultSong() {
     return {
@@ -76,7 +68,6 @@ function getDefaultSong() {
 }
 
 function getRandomSong() {
-
 
     const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
     return {
