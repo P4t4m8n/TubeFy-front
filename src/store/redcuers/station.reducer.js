@@ -33,7 +33,7 @@ export function stationsReducer(state = intialState, action = {}) {
             return { ...state, stations }
 
         case REMOVE_STATION:
-            stations = state.stations.fill(stations =>
+            stations = state.stations.filter(stations =>
                 stations._id !== action.station._id)
             return { ...state, stations }
 

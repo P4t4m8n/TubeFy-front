@@ -19,8 +19,6 @@ export function SignIn({ open, setOpen }) {
 
   function isLogin(ev) {
     ev.preventDefault()
-
-
     isSignup ? onSignup(credentials) : onLogin(credentials)
   }
 
