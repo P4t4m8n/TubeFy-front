@@ -79,14 +79,14 @@ export function SignIn({ open, setOpen }) {
 
         {userMode === 'demo' &&
           <>
-            <select onChange={onLogin}>
-              <option value={0}>-Select user-</option>
+            <select className='select-user' onChange={onLogin}>
+              <option className='select-user-option' value={0}>-Select user-</option>
               {
                 demoUsers.map((user, idx) =>
-                  <option key={idx} value={idx}>{user.username}</option>)
+                  <option className='select-user-option' key={idx} value={idx}>{user.username}</option>)
               }
             </select>
-            <button onClick={() => setUserMode(null)}></button>
+            <button onClick={() => setUserMode(null)}>Back</button>
           </>
         }
 

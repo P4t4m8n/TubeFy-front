@@ -193,6 +193,11 @@
                 border-radius: 10px;
                 width: 300px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+
+
+
 
                 .mode-btns {
                     left: 14%;
@@ -202,10 +207,13 @@
                     }
                 }
 
+
+                .select-user {}
+
                 select {
                     background-color: inherit;
                     border-radius: 16px;
-                    margin-left: 65px;
+                    width: 150px;
                     -webkit-appearance: none;
                     -moz-appearance: none;
                     appearance: none;
@@ -215,7 +223,8 @@
                     font-size: 1rem;
                     text-align: center;
 
-                    
+
+
 
                 }
 
@@ -268,21 +277,21 @@
     }
 }
 
-.MOBILE {
+@media (max-width:450px) {
     .app-header {
-        gap: 2px;
-
-        img {
-            display: none;
-        }
 
         .search-box {
-            width: 13.5rem;
-            margin-left: 8px;
+            width: 15rem;
         }
 
         .user-acess {
-            width: 10rem;
+            padding-inline: 8px;
+            .user-nav {
+              grid-template-columns: 50% 50%;
+                button {
+                    width: 5rem;
+                }
+            }
         }
     }
 }

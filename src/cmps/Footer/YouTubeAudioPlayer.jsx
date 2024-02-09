@@ -89,9 +89,9 @@ export function YouTubeAudioPlayer({ volume }) {
     <section className='audio'>
           <div className='audio-control'>
             <button className='shuffle' onClick={onShuffle}><Shuffle></Shuffle></button>
-            <button  onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
+            <button className='dir'  onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
             <PlayCard item={song}></PlayCard>
-            <button onClick={(() => onChangeSong(1))}><Next></Next></button>
+            <button className='dir' onClick={(() => onChangeSong(1))}><Next></Next></button>
             <button className='repeat' onClick={onRepeat}><Repeat></Repeat></button>
           </div>
       <ProgressBar song={song} player={player}  />

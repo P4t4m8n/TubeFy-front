@@ -214,8 +214,16 @@
     }
 
     .rightside-footer,
-    .progress-bar {
+    .progress-bar,
+    .shuffle,
+    .repeat {
       display: none;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .dir {
+    display: none;
   }
 }

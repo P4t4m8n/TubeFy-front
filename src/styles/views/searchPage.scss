@@ -210,13 +210,13 @@
 
                     .song-title-artist {
                         height: 50px;
-                   
+
                         align-items: center;
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         padding-top: 6px;
-                        
+
                         p {
                             align-self: center;
                             white-space: nowrap;
@@ -247,10 +247,3 @@
     margin: 16px 0;
 }
 
-.MOBILE {
-    .main-content {
-        section {
-            margin-inline: 8px;
-        }
-    }
-}
