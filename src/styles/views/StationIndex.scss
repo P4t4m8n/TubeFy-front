@@ -43,7 +43,6 @@
 
 }
 
-
 @media (max-width: 1615px) {
     a.station-card:nth-child(5)~* {
         display: none;
@@ -71,6 +70,29 @@
 @media (max-width: 751px) {
     a.station-card:nth-child(1)~* {
         display: none;
+    }
+}
+
+@media (max-width:600px) {
+    .station-list {
+        width: 100vw;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(200px, 200px);
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        gap: 10px;
+
+        .station-card {
+            padding: 10px;
+
+        }
+
+        a.station-card {
+            display: flex;
+        }
     }
 }
 

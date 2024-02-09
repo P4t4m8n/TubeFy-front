@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux"
-import { setIsOpen } from "../../store/actions/app.actions"
-import { Details, FullScreen, Lyric, Queue, Volume } from "../../services/icons.service"
+import { FullScreen, Volume } from "../../services/icons.service"
 
 export function PlayerRightside({ volume, setVolume }) {
 
@@ -36,9 +35,6 @@ export function PlayerRightside({ volume, setVolume }) {
 
     return (
         <section className="rightside-footer">
-            <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>
-            <button><Lyric></Lyric></button>
-            <button><Queue></Queue></button>
             <button onClick={onSetVolume}><Volume></Volume></button>
             <div className="volume">
                 <input

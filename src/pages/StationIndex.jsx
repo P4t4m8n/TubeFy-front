@@ -19,7 +19,6 @@ export function StationIndex() {
     }, [])
 
     useBackgroundFromImage('')
-    const device = useDeviceCheck()
 
     if (!stations || !stations.length) return <Loading></Loading>
 
@@ -27,56 +26,56 @@ export function StationIndex() {
     return (
         <Fragment >
             <div className="home-page">
-                {(device === PC) &&
-                    <>
-                        <h1>Good evening</h1>
-                        <ul className="main-hero" >
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[0].imgUrl}></img>
-                                    <p>{heroStations[0].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[0]}></PlayCard>
-                            </li>
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[1].imgUrl}></img>
-                                    <p>{heroStations[1].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[1]}></PlayCard>
-                            </li>
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[2].imgUrl}></img>
-                                    <p>{heroStations[2].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[2]}></PlayCard>
-                            </li>
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[3].imgUrl}></img>
-                                    <p>{heroStations[3].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[3]}></PlayCard>
-                            </li>
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[4].imgUrl}></img>
-                                    <p>{heroStations[4].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[4]}></PlayCard>
-                            </li>
-                            <li>
-                                <div className="content">
-                                    <img src={heroStations[5].imgUrl}></img>
-                                    <p>{heroStations[5].name}</p>
-                                </div>
-                                <PlayCard item={heroStations[5]}></PlayCard>
-                            </li>
 
-                        </ul>
-                    </>
-                }
+                <>
+                    <h1>Good evening</h1>
+                    <ul className="main-hero" >
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[0].imgUrl}></img>
+                                <p>{heroStations[0].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[0]}></PlayCard>
+                        </li>
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[1].imgUrl}></img>
+                                <p>{heroStations[1].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[1]}></PlayCard>
+                        </li>
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[2].imgUrl}></img>
+                                <p>{heroStations[2].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[2]}></PlayCard>
+                        </li>
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[3].imgUrl}></img>
+                                <p>{heroStations[3].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[3]}></PlayCard>
+                        </li>
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[4].imgUrl}></img>
+                                <p>{heroStations[4].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[4]}></PlayCard>
+                        </li>
+                        <li>
+                            <div className="content">
+                                <img src={heroStations[5].imgUrl}></img>
+                                <p>{heroStations[5].name}</p>
+                            </div>
+                            <PlayCard item={heroStations[5]}></PlayCard>
+                        </li>
+
+                    </ul>
+                </>
+
                 {
                     stationListTitle.current.map((stationListTitle, idx) => {
                         {

@@ -16,7 +16,7 @@ export function useDeviceCheck() {
         else setDevice(PC)
 
 
-    }, [device])
+    }, [])
 
     return device
 }
