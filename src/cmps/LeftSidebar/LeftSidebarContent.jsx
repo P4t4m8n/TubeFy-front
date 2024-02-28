@@ -12,6 +12,7 @@ import { useDragAndDrop } from "../CustomHooks/useDND"
 import { SOCKET_EMIT_SEND_PLAYLIST, SOCKET_EMIT_USER_DISLIKE_PLAYLIST, socketService } from "../../services/socket.service"
 import { Loading } from "../support/Loading"
 import { SidebarContentPreview } from "./SidebarContentPreview"
+import { SignIn } from '../User/SignIn'
 
 export function SideBarContent() {
 
@@ -22,6 +23,8 @@ export function SideBarContent() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
+    const [open, setOpen] = useState(false)
+
 
     const { handleDragOver, handleDrop } = useDragAndDrop()
 
@@ -87,7 +90,12 @@ export function SideBarContent() {
 
     }
 
-    if (!user) return <p>no user</p>
+    if (!user) return (
+        <section className='no-user'>
+            <button onClick={(() => setOpen(true))}>Start listening</button>
+            <SignIn open={open} setOpen={setOpen}></SignIn>
+        </section>
+    )
     if (!userStations) return <Loading></Loading>
 
     return (

@@ -195,9 +195,7 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 display: flex;
                 flex-direction: column;
-
-
-
+                gap: 1em;
 
                 .mode-btns {
                     left: 14%;
@@ -207,13 +205,25 @@
                     }
                 }
 
+                .back-btn {
+                    color: wheat;
+                    width: fit-content;
+                    height: fit-content;
+                    padding: 6px;
+                    align-self: flex-end;
 
-                .select-user {}
+                    &:hover {
+                        animation: none;
+                        background-color:#1DB954;
+                    }
+                }
+
 
                 select {
                     background-color: inherit;
                     border-radius: 16px;
-                    width: 150px;
+                    width: 16em;
+                    align-self: center;
                     -webkit-appearance: none;
                     -moz-appearance: none;
                     appearance: none;
@@ -279,15 +289,19 @@
 
 @media (max-width:450px) {
     .app-header {
-
+padding-top: .3em;
+padding-left: .5em;
         .search-box {
             width: 15rem;
         }
 
         .user-acess {
+            padding-left: 16px;
             padding-inline: 8px;
+
             .user-nav {
-              grid-template-columns: 50% 50%;
+                grid-template-columns: 50% 50%;
+
                 button {
                     width: 5rem;
                 }

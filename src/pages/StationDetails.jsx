@@ -52,8 +52,8 @@ export function StationDetails() {
                     <div >
                         <img src="https://res.cloudinary.com/dpnevk8db/image/upload/v1705844322/zvo0mhdh6lyqgvpavfob.png"></img>
                         <p>{createdBy.username || 'Spotify'}</p>
-                        <p>{amount} songs</p>
-                        <p>about {duration}</p>
+                        <p>{amount} <span>songs</span></p>
+                        <p><span>Duration</span> {duration}</p>
                     </div>
                 </div>
             </header>

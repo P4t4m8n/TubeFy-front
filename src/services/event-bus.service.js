@@ -25,8 +25,8 @@ export function showUserMsg(msg) {
 export function showSuccessMsg(msgObj) {
     showUserMsg({msgObj, type: 'success'})
 }
-export function showErrorMsg(txt) {
-    showUserMsg({txt, type: 'error'})
+export function showErrorMsg(msgObj) {
+    showUserMsg({msgObj, type: 'error'})
 }
 
 window.showUserMsg = showUserMsg

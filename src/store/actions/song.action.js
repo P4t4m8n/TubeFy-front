@@ -5,8 +5,6 @@ import { store } from "../store";
 
 
 export function loadSong(song) {
-console.log("song:", song)
-
     return store.dispatch({ type: SET_SONG, song })
 }
 

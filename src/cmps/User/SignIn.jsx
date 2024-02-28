@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { login, signup } from '../../store/actions/user.actions'
 import { userService } from '../../services/user.service'
 import { Link } from 'react-router-dom'
@@ -27,17 +27,14 @@ export function SignIn({ open, setOpen }) {
     const value = target.value
 
     setCredentials(prev => ({ ...prev, [field]: value }))
-
   }
 
   async function onLogin(ev) {
     try {
       login(demoUsers[ev.target.value])
       showSuccessMsg({ txt: 'Welcome ' + demoUsers[ev.target.value].username })
-
     }
     catch (err) { console.log(err) }
-
   }
 
   async function onSignup(credentials) {
@@ -58,6 +55,7 @@ export function SignIn({ open, setOpen }) {
     window.addEventListener('click', closeOnOutsideClick)
 
     return () => window.removeEventListener('click', closeOnOutsideClick)
+
   }, [open, setOpen])
 
 
@@ -86,7 +84,6 @@ export function SignIn({ open, setOpen }) {
                   <option className='select-user-option' key={idx} value={idx}>{user.username}</option>)
               }
             </select>
-            <button onClick={() => setUserMode(null)}>Back</button>
           </>
         }
 
@@ -123,9 +120,9 @@ export function SignIn({ open, setOpen }) {
                 }
               </Link>
             </form>
-            <button onClick={() => setUserMode(null)}></button>
           </>
         }
+       {userMode && <button className='back-btn' onClick={() => setUserMode(null)}>Back</button>}
 
       </div>
     </div>

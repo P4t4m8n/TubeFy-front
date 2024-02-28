@@ -380,64 +380,35 @@
     }
 }
 
+@media (max-width: 650px) {
+    .station-details {
+        width: 80vw;
+        padding-inline: 1em;
 
-.main-container.MOBILE {
-    .main-content {
-        display: grid;
-        grid-area: main;
-        grid-template-columns: 100vw;
-        grid-template-rows: auto 85%;
-        grid-template-areas:
-            "header"
-            "contet";
-        padding: 0;
+        .station-header {
+            padding: 0;
 
-        .station-details~.app-header {
-            display: none !important;
-
-
-        }
-
-        .station-details {
-            grid-area: contet;
-            width: 100vw;
-            display: grid;
-            grid-template-columns: 100vw;
-            grid-template-rows: auto 10% auto;
-            grid-template-areas:
-                "hero"
-                "control"
-                "content";
-
-            .station-header {
-                grid-area: hero;
-                flex-direction: column;
-
+            img {
+                width: 150px;
+                object-fit: scale-down;
             }
 
-            .station-details-control {
-                grid-area: control;
-                justify-content: center;
+            .station-header-info {
+                width: 50vw;
 
-                .station-details-control-left {
-                    flex-direction: row;
-                    gap: 60px;
-                    margin-bottom: 16px;
+                h4 {
+
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
-
-            }
-
-            div {
-              
-                padding-right: 10px;
-
-
-              
+                div {
+                    span {
+                        display: none;
+                    }
+                }
             }
         }
     }
-
-
-
 }

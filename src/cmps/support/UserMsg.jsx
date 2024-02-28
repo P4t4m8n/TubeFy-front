@@ -19,7 +19,7 @@ export function UserMsg() {
         clearTimeout(timeoutIdRef.current)
         timeoutIdRef.current = null
       }
-      timeoutIdRef.current = setTimeout(closeMsg, 3000)
+      timeoutIdRef.current = setTimeout(closeMsg, 2000)
     })
 
     socketService.on(SOCKET_EVENT_SEND_PLAYLIST_TO_YOU, (msg) => {
@@ -48,6 +48,7 @@ export function UserMsg() {
   }
 
   if (!msg) return <span></span>
+  console.log("msg:", msg)
 
   return (
     <section className={`user-msg ${msg.type}`}>

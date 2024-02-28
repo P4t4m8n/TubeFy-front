@@ -23,7 +23,6 @@ export function usePlay(item) {
             }
         } else if (item.type === 'song') {
             if (item.trackId !== cardType) {
-                dispatch(loadSong(item))
                 loadSong(item)
             }
         }

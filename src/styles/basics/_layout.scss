@@ -125,9 +125,11 @@
     .main-container {
         grid-template-columns: 100%;
         grid-template-rows: 87% 5% 7%;
+        padding: 0;
 
         .main-content {
             grid-area: 1/1/2/-1;
+            padding: 12px;
         }
 
         .app-footer {
