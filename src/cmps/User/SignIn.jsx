@@ -31,7 +31,8 @@ export function SignIn({ open, setOpen }) {
 
   async function onLogin(ev) {
     try {
-      login(demoUsers[ev.target.value])
+      if (userMode === 'demo') login(demoUsers[ev.target.value])
+      else login(credentials)
       showSuccessMsg({ txt: 'Welcome ' + demoUsers[ev.target.value].username })
     }
     catch (err) { console.log(err) }
@@ -122,7 +123,7 @@ export function SignIn({ open, setOpen }) {
             </form>
           </>
         }
-       {userMode && <button className='back-btn' onClick={() => setUserMode(null)}>Back</button>}
+        {userMode && <button className='back-btn' onClick={() => setUserMode(null)}>Back</button>}
 
       </div>
     </div>

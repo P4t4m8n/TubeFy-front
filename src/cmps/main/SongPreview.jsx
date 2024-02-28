@@ -4,6 +4,7 @@ import { LikeCard } from "./LikeCard"
 import { useDragAndDrop } from "../CustomHooks/useDND"
 import { useContextMenu } from "../CustomHooks/useContextMenu"
 import { ContextMenu } from "../ContextMenu/ContextMenu"
+import { VertDots } from "../../services/icons.service"
 
 export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
 
@@ -32,15 +33,18 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
             <div className="artist-and-image grid">  <div className="img-list-con"><img src={song.imgUrl} /> </div>{song.name}</div>
             <p >
                 {song.artist}</p>
-            <p>{song.album}</p>
 
             <div className="details-list-control">
                 <LikeCard item={song}></LikeCard>
                 <p>{song.duration}</p>
+                <button onClick={handleContextMenu}>
+                    <VertDots></VertDots>
+
+                </button>
 
             </div>
 
-            {activeContextMenuId === song.trackId &&
+            {(activeContextMenuId === song.trackId && user) &&
                 <ContextMenu
                     id={id}
                     isSearch={isSearch}

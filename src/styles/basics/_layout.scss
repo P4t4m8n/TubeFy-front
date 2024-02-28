@@ -123,13 +123,20 @@
 
 @media (max-width:600px) {
     .main-container {
+        box-sizing: border-box;
         grid-template-columns: 100%;
         grid-template-rows: 87% 5% 7%;
-        padding: 0;
-
+        width: 100%;
+        width: 100%;
+        border-radius: 4px;
+        padding: 4px 16px 0 4px;
+        
+        
+        
         .main-content {
             grid-area: 1/1/2/-1;
-            padding: 12px;
+            padding: 0;
+
         }
 
         .app-footer {
@@ -138,6 +145,8 @@
 
         .left-sidebar {
             grid-area: 3/1/-1/-1;
+           
+            
         }
     }
 }

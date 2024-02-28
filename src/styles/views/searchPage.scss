@@ -247,3 +247,20 @@
     margin: 16px 0;
 }
 
+@media (max-width:650px) {
+
+    .search-hero {
+        grid-template-columns: minmax(10em, 372px) 1fr;
+        gap: .1em;
+
+        .top-result-section {
+            width: 10em;
+
+            li {
+                width: 10em;
+            }
+        }
+
+     
+    }
+}

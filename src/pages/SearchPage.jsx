@@ -1,6 +1,6 @@
 import { utilService } from '../services/util.service'
 import { apiService } from '../services/api.service'
-import {  useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PlayCard } from '../cmps/main/PlayCard'
 import { useParams } from "react-router"
 import { LikeCard } from '../cmps/main/LikeCard'
@@ -46,10 +46,10 @@ export function SearchPage() {
     }
 
 
-   if ((!searchList && params.searchTerm))  return (<Loading></Loading>)
+    if ((!searchList && params.searchTerm)) return (<Loading></Loading>)
 
     return (
-        <section>
+        <>
             {!params.searchTerm &&
                 <>
                     <h1 className='browse-all'>Browse all</h1>
@@ -101,7 +101,7 @@ export function SearchPage() {
 
                                         <div className='song-title-artist'>
                                             <p>{song.name}</p>
-                                             <p>{song.artist}</p>
+                                            <p>{song.artist}</p>
                                         </div>
                                     </div>
                                     <LikeCard item={song}></LikeCard>
@@ -113,6 +113,7 @@ export function SearchPage() {
 
                 </div>
             }
-        </section >)
+        </>
+    )
 
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import { loadStation } from "../store/actions/station.actions"
+import { loadStation, saveStation } from "../store/actions/station.actions"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
@@ -8,6 +8,7 @@ import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromIma
 import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 import { Loading } from "../cmps/support/Loading"
 import { useSelector } from "react-redux"
+import { showSuccessMsg } from "../services/event-bus.service"
 
 export function StationDetails() {
 
@@ -27,14 +28,19 @@ export function StationDetails() {
     }
 
     function onChangePlaylist(ev, song, stationId, isSearch) {
+        console.log("song:", song)
         ev.preventDefault()
         if (ev.target.value === 'same') return
         if (isSearch) onAddSong(ev, song)
-        onRemoveSong(ev, song._id)
+        // onRemoveSong(ev, song._id)
 
+        console.log("ev.target.value:", ev.target.value)
         const newPlay = user.stations[ev.target.value]
+        console.log("newPlay:", newPlay)
         newPlay.songs.push(song)
         saveStation(newPlay)
+        showSuccessMsg({ txt: `song: ${song.name} now in Playlist${newPlay.name}` })
+
     }
 
     if (!currStation) return <Loading />

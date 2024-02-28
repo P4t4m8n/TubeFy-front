@@ -214,7 +214,7 @@
 
                     &:hover {
                         animation: none;
-                        background-color:#1DB954;
+                        background-color: #1DB954;
                     }
                 }
 
@@ -222,19 +222,22 @@
                 select {
                     background-color: inherit;
                     border-radius: 16px;
-                    width: 16em;
+                    width: fit-content;
                     align-self: center;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
+                    // -webkit-appearance: none;
+                    // -moz-appearance: none;
+                    // appearance: none;
                     cursor: pointer;
                     color: wheat;
-                    font-family: Monstserrat;
                     font-size: 1rem;
-                    text-align: center;
+                    // text-align: center;
 
-
-
+                    >* {
+                        align-self: center;
+                        text-align: center;
+                        width: 10px;
+                        font-size: .7rem;
+                    }
 
                 }
 
@@ -289,18 +292,35 @@
 
 @media (max-width:450px) {
     .app-header {
-padding-top: .3em;
-padding-left: .5em;
+        margin: 4px 4px 4px;
+        padding: 4px 4px 4px;
+        grid-template-columns: auto 10rem;
+        gap: .5em;
+
+
         .search-box {
-            width: 15rem;
+            width: auto;
+
+            form {
+                input {
+
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
         }
 
         .user-acess {
-            padding-left: 16px;
-            padding-inline: 8px;
+
 
             .user-nav {
                 grid-template-columns: 50% 50%;
+                gap: 4px;
+                .avatar{
+                    justify-self: center;
+                }
 
                 button {
                     width: 5rem;

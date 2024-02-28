@@ -33,7 +33,7 @@ export function SideBarContent() {
     useEffect(() => {
         if (user) setUserStations(user.stations)
 
-    }, [user])
+    }, [user.stations,user])
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }

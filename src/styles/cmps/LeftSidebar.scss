@@ -542,6 +542,7 @@
 
 @media (max-width: 630px) {
     .left-sidebar {
+        width: 98vw;
         display: grid;
         align-items: center;
         grid-template-columns: 66% 33%;
@@ -549,7 +550,7 @@
         font-size: 1rem;
         gap: 4px;
 
-
+     
 
         .no-user {
             button {
@@ -562,7 +563,8 @@
                 padding-bottom: .5em;
             }
         }
-        ul{
+
+        ul {
             padding: 0;
         }
 
