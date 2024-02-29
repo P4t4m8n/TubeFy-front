@@ -1,6 +1,5 @@
 import { httpService } from "./http.service"
 
-
 const BASE_URL = 'station/'
 
 export const stationService = {
@@ -74,7 +73,7 @@ function getDefaultStation() {
         "artist": "Miley Cyrus",
         "type": "song",
         "duration": "03:22",
-        "trackId": "G7KNmW9a75Y",
+        "_id": "G7KNmW9a75Y",
         "imgUrl": "https://i.ytimg.com/vi/G7KNmW9a75Y/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -88,7 +87,7 @@ function getDefaultStation() {
         "artist": "SZA",
         "type": "song",
         "duration": "04:36",
-        "trackId": "MSRcC626prw",
+        "_id": "MSRcC626prw",
         "imgUrl": "https://i.ytimg.com/vi/MSRcC626prw/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -102,7 +101,7 @@ function getDefaultStation() {
         "artist": "Harry Styles",
         "type": "song",
         "duration": "02:46",
-        "trackId": "H5v3kku4y6Q",
+        "_id": "H5v3kku4y6Q",
         "imgUrl": "https://i.ytimg.com/vi/H5v3kku4y6Q/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -116,7 +115,7 @@ function getDefaultStation() {
         "artist": "Jungkook",
         "type": "song",
         "duration": "03:47",
-        "trackId": "QU9c0053UAU",
+        "_id": "QU9c0053UAU",
         "imgUrl": "https://i.ytimg.com/vi/QU9c0053UAU/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -130,7 +129,7 @@ function getDefaultStation() {
         "artist": "Eslabon Armado & Peso Pluma",
         "type": "song",
         "duration": "03:08",
-        "trackId": "lZiaYpD9ZrI",
+        "_id": "lZiaYpD9ZrI",
         "imgUrl": "https://i.ytimg.com/vi/lZiaYpD9ZrI/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -144,7 +143,7 @@ function getDefaultStation() {
         "artist": "Taylor Swift",
         "type": "song",
         "duration": "03:00",
-        "trackId": "JLJcHbYSlB8",
+        "_id": "JLJcHbYSlB8",
         "imgUrl": "https://i.ytimg.com/vi/JLJcHbYSlB8/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -158,7 +157,7 @@ function getDefaultStation() {
         "artist": "The Weeknd",
         "type": "song",
         "duration": "03:41",
-        "trackId": "-UcFeTfm1oM",
+        "_id": "-UcFeTfm1oM",
         "imgUrl": "https://i.ytimg.com/vi/-UcFeTfm1oM/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -172,7 +171,7 @@ function getDefaultStation() {
         "artist": "SHAKIRA",
         "type": "song",
         "duration": "04:40",
-        "trackId": "qSSg1EAImm4",
+        "_id": "qSSg1EAImm4",
         "imgUrl": "https://i.ytimg.com/vi/qSSg1EAImm4/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -186,7 +185,7 @@ function getDefaultStation() {
         "artist": "Taylor Swift",
         "type": "song",
         "duration": "05:10",
-        "trackId": "b1kbLwvqugk",
+        "_id": "b1kbLwvqugk",
         "imgUrl": "https://i.ytimg.com/vi/b1kbLwvqugk/mqdefault.jpg",
         "addedBy": "artist",
         "addedAt": {
@@ -202,7 +201,6 @@ function getDefaultStation() {
 }
 
 function getStationDuration(items) {
-  console.log("items:", items)
   let totalMinutes = 0
 
   items.forEach(item => {

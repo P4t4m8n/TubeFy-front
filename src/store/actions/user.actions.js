@@ -26,7 +26,6 @@ export async function login(credentials) {
         socketService.login(user._id)
 
         return user
-
     }
     catch (err) {
         console.log('user action -> Cannot login', err)
@@ -37,15 +36,17 @@ export async function login(credentials) {
 
 export async function signup(credentials) {
     try {
-
         let fav = stationService.getEmptyStation('Liked Songs', '', 'http://res.cloudinary.com/dpnevk8db/image/upload/v1705451341/ebpe6nnlgajtmfyldt4a.png')
         fav = await stationService.save(fav)
         credentials.stations = [fav]
-        const user = await userService.signup(credentials)
-        store.dispatch({ type: SET_USER, user })
-        socketService.login(user._id)
-        return user
 
+        const user = await userService.signup(credentials)
+
+        store.dispatch({ type: SET_USER, user })
+
+        socketService.login(user._id)
+
+        return user
 
     }
 
@@ -60,7 +61,9 @@ export async function updateUser(user) {
 
     try {
         const updatedUser = await userService.update(user)
+
         store.dispatch({ type: EDIT_USER, updatedUser })
+        
         return updatedUser
     }
     catch (err) {

@@ -1,6 +1,7 @@
 
+import { showSuccessMsg } from "../../services/event-bus.service"
 import { stationService } from "../../services/station.service"
-import { ADD_STATION, EDIT_STATION, REMOVE_STATION, SET_CURR_STATION, SET_STATIONS, SET_USER_STATIONS } from "../redcuers/station.reducer"
+import { ADD_STATION, EDIT_STATION, SET_CURR_STATION, SET_STATIONS, SET_USER_STATIONS } from "../redcuers/station.reducer"
 import { store } from "../store"
 
 
@@ -13,7 +14,6 @@ export async function loadStations(filterSortBy = {}) {
         console.log('Station Action -> Cannot load stations', err)
         throw err
     }
-
 }
 
 export function setCurrStation(station) {
@@ -22,8 +22,9 @@ export function setCurrStation(station) {
 
 export async function setUserStations(stations) {
 
-    const fav = [stations[0],stations[1]]
+    const fav = [stations[0], stations[1]]
     let promisesSongs = stations.splice(0, 2)
+
     try {
         promisesSongs = stations.map(async station => {
             return await stationService.get(station._id)
@@ -33,8 +34,10 @@ export async function setUserStations(stations) {
         console.log('Station Action -> Cannot load user stations', err)
         throw err
     }
+
     const updatedStations = await Promise.all(promisesSongs)
     const newStations = [...fav, ...updatedStations]
+
     store.dispatch({ type: SET_USER_STATIONS, newStations })
     return newStations
 }
@@ -53,11 +56,9 @@ export async function loadStation(stationId) {
 
 export async function removeStation(stationId) {
 
-
     try {
         stationService.remove(stationId)
-        console.log('Deleted')
-
+        showSuccessMsg({ txt: stationId + 'was removed' })
     }
     catch (err) {
         console.log('station Action -> Cannot remove station', err)

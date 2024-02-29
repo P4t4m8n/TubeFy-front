@@ -1,15 +1,14 @@
 
 import YouTube from 'react-youtube'
-import { Fragment, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { loadSong, setPlaying } from '../../store/actions/song.action'
+import { loadSong } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
 import { setPlayer } from '../../store/actions/player.action'
 import { PlayCard } from '../main/PlayCard'
 import { Next, Prev, Shuffle, Repeat, Play, Pause } from '../../services/icons.service'
 import { ProgressBar } from './ProgressBar'
-import { PC, useDeviceCheck } from '../CustomHooks/UseDeviceCheck'
-import { useLocation } from 'react-router-dom'
+
 
 export function YouTubeAudioPlayer({ volume }) {
 

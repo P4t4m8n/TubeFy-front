@@ -2,12 +2,7 @@
 import io from 'socket.io-client'
 import { userService } from './user.service'
 
-// Chat
-export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
-export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
-
 //Playlist
-
 export const SOCKET_EMIT_SEND_PLAYLIST = 'user-send-playlist'
 export const SOCKET_EVENT_SEND_PLAYLIST_TO_YOU = 'user-get-playlist'
 export const SOCKET_EMIT_USER_LIKE_PLAYLIST = 'user-like-playlist'

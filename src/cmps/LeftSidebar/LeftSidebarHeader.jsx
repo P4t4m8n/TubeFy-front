@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { HomeSvg, HomeSvgClicked, SearchSvg, SearchSvgClicked } from "../../services/icons.service"
 
-
 export function SideBarHeader() {
 
     const location = useLocation()

@@ -1,4 +1,3 @@
-import { PC } from "../../cmps/CustomHooks/UseDeviceCheck"
 
 export const SET_FILTER = "SET_FILTER"
 export const SET_IS_OPEN = "SET_IS_OPEN"
@@ -13,7 +12,6 @@ const initialSate = {
     isSearchOpen: false,
     grident: [],
     playlistContextMenu: '',
-    device: PC,
     dragObj: { item:{}, from:{}} 
 }
 
@@ -33,9 +31,6 @@ export function appRedcuer(state = initialSate, action = {}) {
 
         case SET_CONTEXT_MENU:
             return { ...state, playlistContextMenu: action.contextMenu }
-
-        case SET_DEVICE:
-            return { ...state, device: action.device }
 
         case SET_DRAG_OBJ:
             return { ...state, dragObj: action.obj }

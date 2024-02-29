@@ -4,7 +4,6 @@ const AUTH_URL = 'auth/'
 const USER_URL = 'user/'
 const STORAGE_KEY = 'loggedInUser'
 
-
 export const userService = {
     login,
     signup,
