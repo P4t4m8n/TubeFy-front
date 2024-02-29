@@ -7,7 +7,7 @@ export function PlayCard({ item }) {
 
     return (
         <button onClick={onPlayStation} className={`play-button ${showPlay ? 'show' : ''}`}>
-            {(isPlaying && (cardType === item._id || cardType === item.trackId)) ? <Pause /> : <Play />}
+            {(isPlaying && cardType === item._id) ? <Pause /> : <Play />}
         </button>
     )
 }

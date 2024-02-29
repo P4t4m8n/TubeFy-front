@@ -4,11 +4,8 @@ import { updateUser } from "../../store/actions/user.actions"
 import { Heart } from '../../services/icons.service'
 import { FullHeart } from '../../services/icons.service'
 import { saveStation } from "../../store/actions/station.actions"
-import { saveSong } from "../../store/actions/song.action"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { SOCKET_EMIT_USER_DISLIKE_PLAYLIST, SOCKET_EMIT_USER_LIKE_PLAYLIST, socketService } from "../../services/socket.service"
-
-
 
 export function LikeCard({ item }) {
 
@@ -19,19 +16,15 @@ export function LikeCard({ item }) {
     const SONG = 'song'
 
     useEffect(() => {
-
         let LikeCheck
         if (user) {
             if (item.type === PLAYLIST) LikeCheck = user.stations.some(station => station._id === item._id)
             if (item.type === SONG) {
-                LikeCheck = user.stations[0].songs.some(song => song.trackId === item.trackId)
+                LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
             }
         }
-
         if (LikeCheck) setIsLiked(true)
         else setIsLiked(false)
-
-
     }, [item, user])
 
     async function onLike() {
@@ -40,13 +33,6 @@ export function LikeCard({ item }) {
             showErrorMsg({ txt: 'No user' })
             return
         }
-        if (!item._id)
-            try {
-                tempItem = await saveSong(tempItem)
-            }
-            catch (err) {
-                console.error(err)
-            }
 
         let userToUpdate
 
@@ -106,9 +92,7 @@ export function LikeCard({ item }) {
                 txt: 'Added to Liked Songs',
                 itemName: likedItem.name
             })
-
         }
-
         updatedStations[0].songs = favSongs
         return { ...user, stations: updatedStations }
     }

@@ -44,7 +44,7 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
 
             </div>
 
-            {(activeContextMenuId === song.trackId && user) &&
+            {(activeContextMenuId === song._id && user) &&
                 <ContextMenu
                     id={id}
                     isSearch={isSearch}
