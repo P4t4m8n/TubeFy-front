@@ -1,6 +1,4 @@
 import axios from "axios"
-import { songService } from "./song.service"
-
 
 // const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
 // const API_KEY_YT = 'AIzaSyAq166O0Zx4knj4zTocORMEpmej0XPnLIc'
@@ -13,9 +11,7 @@ const maxResults = 10
 
 export const apiService = {
     getContent,
-
 }
-
 
 async function getContent(search) {
 
@@ -35,7 +31,7 @@ async function getContent(search) {
                     artist: searchInfo.artist,
                     type: 'song',
                     duration: duration,
-                    trackId: ytItem.id.videoId,
+                    _id: ytItem.id.videoId,
                     imgUrl: ytItem.snippet.thumbnails.medium.url,
                     addedBy: 'artist',
                     addedAt: Date.now(),
@@ -47,10 +43,8 @@ async function getContent(search) {
         })
         const results = await Promise.all(promisesSongs)
         return results
-
     }
     catch (err) { throw err }
-
 }
 
 function parseSongString(songString) {
@@ -74,8 +68,6 @@ function parseSongString(songString) {
     if (!name) name = 'Unknown'
 
     return { artist, name }
-
-
 }
 
 async function _getDuration(videoId) {
@@ -114,66 +106,6 @@ function padWithZero(number) {
     return number.toString().padStart(2, '0')
 }
 
-async function makeSongsData() {
-    const topArtistsAndBands = [
-        "The Beatles",
-        "Michael Jackson",
-        "Elvis Presley",
-        "Madonna",
-        "The Rolling Stones",
-        "Bob Dylan",
-        "Elton John",
-        "Led Zeppelin",
-        "Pink Floyd",
-        "David Bowie",
-        "Queen",
-        "The Who",
-        "U2",
-        "Bruce Springsteen",
-        "Stevie Wonder",
-        "Prince",
-        "Nirvana",
-        "Johnny Cash",
-        "Aretha Franklin",
-        "Frank Sinatra",
-        "Beyoncé",
-        "Bob Marley",
-        "Fleetwood Mac",
-        "AC/DC",
-        "The Beach Boys",
-        "Marvin Gaye",
-        "Adele",
-        "Whitney Houston",
-        "Celine Dion",
-        "Jay-Z",
-        "Eminem",
-        "Taylor Swift",
-        "Metallica",
-        "Guns N' Roses",
-        "Rihanna",
-        "Lady Gaga",
-        "Kanye West",
-        "Billy Joel",
-        "Eagles",
-        "Barbra Streisand",
-        "Aerosmith",
-        "Radiohead",
-        "Red Hot Chili Peppers",
-        "The Doors",
-        "Santana",
-        "Mariah Carey",
-        "Green Day",
-        "Ray Charles",
-        "Justin Bieber",
-        "Coldplay"
-    ]
-
-    for (var i = 0; i < topArtistsAndBands.length; i++) {
-        const songs = await getContent(topArtistsAndBands[i])
-        songs.forEach(async song => await songService.save(song))
-    }
-
-}
 
 
 

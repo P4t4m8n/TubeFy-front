@@ -41,14 +41,11 @@ export function UserMsg() {
     }
   }, [msg])
 
-
-
   function closeMsg() {
     setMsg(null)
   }
 
   if (!msg) return <span></span>
-  console.log("msg:", msg)
 
   return (
     <section className={`user-msg ${msg.type}`}>

@@ -5,7 +5,6 @@ import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
-import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 import { Loading } from "../cmps/support/Loading"
 import { useSelector } from "react-redux"
 import { showSuccessMsg } from "../services/event-bus.service"
@@ -28,15 +27,11 @@ export function StationDetails() {
     }
 
     function onChangePlaylist(ev, song, stationId, isSearch) {
-        console.log("song:", song)
         ev.preventDefault()
         if (ev.target.value === 'same') return
         if (isSearch) onAddSong(ev, song)
-        // onRemoveSong(ev, song._id)
 
-        console.log("ev.target.value:", ev.target.value)
         const newPlay = user.stations[ev.target.value]
-        console.log("newPlay:", newPlay)
         newPlay.songs.push(song)
         saveStation(newPlay)
         showSuccessMsg({ txt: `song: ${song.name} now in Playlist${newPlay.name}` })

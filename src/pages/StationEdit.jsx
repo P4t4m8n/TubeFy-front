@@ -16,7 +16,6 @@ export function StationEdit() {
             setStationToEdit,
             onSaveStation,
             onChangePlaylist,
-            onAddSong,
             onSaveSong,
             onRemoveSong,
             onUploadImg

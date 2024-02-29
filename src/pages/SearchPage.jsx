@@ -9,7 +9,6 @@ import { DEF_IMG } from '../store/actions/app.actions'
 import { Link } from 'react-router-dom'
 import { Loading } from "../cmps/support/Loading"
 
-
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
@@ -37,16 +36,9 @@ export function SearchPage() {
         catch (err) { console.log(err) }
     }
 
-    let heroList
-    let list
-
-    if (searchList) {
-        heroList = searchList.slice(0, 2)
-        list = searchList.slice(1)
-    }
-
-
     if ((!searchList && params.searchTerm)) return (<Loading></Loading>)
+    const heroList = searchList.slice(0, 2)
+    const list = searchList.slice(1)
 
     return (
         <>
@@ -71,7 +63,7 @@ export function SearchPage() {
                     <ul className='top-result-section'>
                         {
                             heroList.map(song =>
-                                <li key={song.trackId}>
+                                <li key={song._id}>
                                     <div className='image-container'>
                                         <img className='top-result-image' src={song.imgUrl || DEF_IMG}></img>
                                         <PlayCard item={song}></PlayCard>
@@ -92,7 +84,7 @@ export function SearchPage() {
                     <div className='results-section'>
                         <ul className='search-result-list clean-list'>
                             {list.map(song =>
-                                <li draggable onDragStart={(ev) => handleDragStart(ev, song)} className='single-song-result grid' key={song.trackId}>
+                                <li draggable onDragStart={(ev) => handleDragStart(ev, song)} className='single-song-result grid' key={song._id}>
                                     <div className='img-play-title-artist-container grid'>
                                         <div className='song-image-play'>
                                             <img src={song.imgUrl}></img>
