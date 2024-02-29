@@ -71,7 +71,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
                         </React.Fragment>
                     </div>
                     <div className='hero-details'>
-                        <p className='user-dot'>{createdBy.username || 'TubiFy'}</p>
+                        <p className='user-dot'>{createdBy.username || 'TubeFy'}</p>
                         <p>{amount} songs,</p>
                         <p>about {duration}</p>
                     </div>

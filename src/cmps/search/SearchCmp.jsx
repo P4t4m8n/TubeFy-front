@@ -1,14 +1,12 @@
 import { useCallback, useState } from "react"
-import { useNavigate, useParams } from "react-router"
+import { useNavigate } from "react-router"
 import { utilService } from "../../services/util.service"
 import { Search } from "@mui/icons-material"
-
 
 export function SearchCmp() {
 
   const [searchTerm, setSearchTerm] = useState('')
 
-  const params = useParams()
   const navigate = useNavigate()
 
   const debouncedNavigate = useCallback(utilService.debounce((value) => {
@@ -25,7 +23,7 @@ export function SearchCmp() {
   return (
     <section className="search-box">
       <form  >
-        <p style={{ marginRight: "10px" }}></p>
+        <p></p>
         <Search></Search>
         <input
           value={searchTerm}

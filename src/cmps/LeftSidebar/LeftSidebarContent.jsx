@@ -25,7 +25,6 @@ export function SideBarContent() {
     const [userStations, setUserStations] = useState(null)
     const [open, setOpen] = useState(false)
 
-
     const { handleDragOver, handleDrop } = useDragAndDrop()
 
     const navigate = useNavigate()
@@ -33,7 +32,7 @@ export function SideBarContent() {
     useEffect(() => {
         if (user) setUserStations(user.stations)
 
-    }, [user.stations,user])
+    }, [user])
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -65,7 +64,6 @@ export function SideBarContent() {
             navigate('/')
         }
         catch (err) { console.log(editUser.stations) }
-
     }
 
     function handleChange({ target }) {
@@ -87,7 +85,6 @@ export function SideBarContent() {
         ev.preventDefault()
         const data = { data: { stationId, itemName: user.username }, userId }
         socketService.emit(SOCKET_EMIT_SEND_PLAYLIST, data)
-
     }
 
     if (!user) return (
