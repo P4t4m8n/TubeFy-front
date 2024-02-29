@@ -2,10 +2,9 @@ import { ContextMenuPlaylist } from "./ContextMenuPlaylist"
 import { ContextMenuSong } from "./ContextMenuSong"
 
 export function ContextMenu(props) {
-    console.log("props:", props)
     
     const { contextMenuPosition } = props
-    console.log("contextMenuPosition:", contextMenuPosition)
+
     return (
         <ul className="context-menu"
             style={{
@@ -16,9 +15,7 @@ export function ContextMenu(props) {
             <DynmicContextMenu
                 props={props}>
             </DynmicContextMenu>
-
         </ul>
-
     )
 }
 
@@ -28,7 +25,6 @@ function DynmicContextMenu({props}) {
             return <ContextMenuPlaylist {...props} />
         case 'song':
             return <ContextMenuSong {...props} />
-
         default:
             break
     }

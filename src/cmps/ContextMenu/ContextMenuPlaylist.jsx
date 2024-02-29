@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Delete, Share, UserIcon } from "../../services/icons.service";
 
-
 export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
-
 
     const friendsList = [
         { username: 'DemoUserTwo', _id: '65c61d710580cb91dd88eadb' },
@@ -26,8 +24,8 @@ export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
             >
                 <Share></Share>
                 <span>Share With Friends</span>
-                {
-                    openFreindsList && friendsList && friendsList.length &&
+                {/* {
+                    openFreindsList && friendsList && friendsList.length && */}
                     <ul className="share-select">
                         {friendsList.map((friend, idx) => (
                             <li onClick={(ev) => onSendPlaylist(ev, item._id, friend._id)} className='friend context-list' key={idx} >
@@ -36,7 +34,7 @@ export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
                             </li>
                         ))}
                     </ul>
-                }
+                {/* } */}
             </li>
         </>
     )
