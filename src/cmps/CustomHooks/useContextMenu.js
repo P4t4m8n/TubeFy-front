@@ -18,12 +18,8 @@ export function useContextMenu({ item }) {
     }, [])
 
     function handleContextMenu(ev, item) {
-        console.log("item:", item)
         ev.preventDefault()
-        // if (activeContextMenuId) return
-        // console.log("item:", item)
-        // console.log("activeContextMenuId:", activeContextMenuId)
-
+    
         const menuWidth = 250
         const menuHeight = 50
 
@@ -45,7 +41,6 @@ export function useContextMenu({ item }) {
     function handleClickOutside(ev) {
         if (!activeContextMenuId) return
         ev.preventDefault()
-        // if (activeContextMenuId !== itemId) return
         if (ev.pointerType == 'touch' && isFirstTouch.current) {
             isFirstTouch.current = false
             return
