@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { saveSong } from '../../store/actions/song.action'
 import { stationService } from '../../services/station.service'
 import { loadStation, saveStation } from '../../store/actions/station.actions'
 import { updateUser } from '../../store/actions/user.actions'
@@ -26,8 +25,9 @@ export function useStationEdit() {
         try {
             const station = await loadStation(params.stationId)
             setStationToEdit(station)
+        } catch (err) {
+            console.log(err)
         }
-        catch (err) { console.log(err) }
     }
 
     const onSaveStation = async (updatedStation = stationToEdit) => {
@@ -35,65 +35,80 @@ export function useStationEdit() {
             const savedSation = await saveStation(updatedStation)
             const userStations = user.stations
             const newStations = userStations.map(station => (station._id === savedSation._id) ? savedSation : station)
+
             updateUser({ ...user, stations: newStations })
+
             showSuccessMsg({ itemName: saveStation.name, txt: ' was saved' })
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
 
     const onAddSong = (ev, song) => {
         ev.preventDefault()
+
         const songs = stationToEdit.songs
         songs.push(song)
+
         setStationToEdit(prevStation => ({ ...prevStation, songs: songs }))
+
         onSaveStation()
     }
 
     const onSaveSong = async (song) => {
         try {
             const songs = stationToEdit.songs
-            const savedSong = await saveSong(song)
-            songs.push(savedSong)
+            songs.push(song)
+
             setStationToEdit(prevStation => ({ ...prevStation, songs: songs }))
-            showSuccessMsg({ itemName: savedSong.name, txt: ' was saved' })
+
+            showSuccessMsg({ itemName: song.name, txt: ' was saved' })
 
             onSaveStation()
-
+        } catch (err) {
+            console.log(err)
         }
-        catch (err) { console.log(err) }
     }
 
     const onRemoveSong = (ev, songId) => {
         ev.preventDefault()
-        stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
-        setStationToEdit(() => ({ ...stationToEdit }))
-        onSaveStation()
-        showSuccessMsg({ txt: 'song was removed' })
 
+        stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
+
+        setStationToEdit(() => ({ ...stationToEdit }))
+
+        onSaveStation()
+
+        showSuccessMsg({ txt: 'song was removed' })
     }
 
     const onChangePlaylist = (ev, song, isSearch) => {
-        console.log("isSearch:", isSearch)
         ev.preventDefault()
+
         if (ev.target.value === 'same') return
-        if (isSearch) onAddSong(ev, song)
+
         if (!isSearch) onRemoveSong(ev, song._id)
+
         const newPlay = user.stations[ev.target.value]
         newPlay.songs.push(song)
+
         saveStation(newPlay)
     }
     const onUploadImg = async (ev) => {
+
         const file = ev.target.files[0]
+
         try {
             const imgUrl = await uploadService.uploadImg(file)
+
             setStationToEdit(prevStation => {
                 const updatedStation = {
                     ...prevStation,
                     imgUrl: imgUrl,
                 }
+
                 onSaveStation(updatedStation)
+
                 return updatedStation
             })
 
@@ -101,8 +116,6 @@ export function useStationEdit() {
             console.log('err:', err)
         }
     }
-
-
 
     return { user, stationToEdit, setStationToEdit, onSaveStation, onChangePlaylist, onAddSong, onSaveSong, onRemoveSong, onUploadImg }
 }

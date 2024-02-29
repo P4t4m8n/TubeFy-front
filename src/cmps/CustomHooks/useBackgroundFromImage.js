@@ -22,7 +22,6 @@ export function useBackgroundFromImage(imageUrl, el = '.main-content') {
                     #121212 50%, 
                     #121212 75%,   
                     #121212 100%)`)
-
             }
         }
         else setGradient('linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)')

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
-import { Flag } from "@mui/icons-material"
 
 export function useContextMenu({ item }) {
 
@@ -9,7 +8,7 @@ export function useContextMenu({ item }) {
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const isFirstTouch = useRef(true)
 
-    const itemId = (item.type === 'playlist') ? item._id : item.trackId
+    const itemId =  item._id 
 
     useEffect(() => {
         window.addEventListener('click', handleClickOutside)
@@ -19,7 +18,6 @@ export function useContextMenu({ item }) {
     }, [])
 
     function handleContextMenu(ev) {
-        console.log("ev:", ev.clientX)
 
         ev.preventDefault()
 
@@ -43,7 +41,7 @@ export function useContextMenu({ item }) {
 
     function handleClickOutside(ev) {
         ev.preventDefault()
-        console.log("ev:", ev)
+
         if (ev.pointerType == 'touch' && isFirstTouch.current) {
             isFirstTouch.current = false
             return
@@ -52,8 +50,6 @@ export function useContextMenu({ item }) {
 
         setContextMenu(null)
         isFirstTouch.current = true
-
-
     }
 
     return [activeContextMenuId, contextMenuPosition, handleContextMenu]

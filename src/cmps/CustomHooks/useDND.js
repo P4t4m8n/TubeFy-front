@@ -23,10 +23,9 @@ export function useDragAndDrop() {
     const handleDrop = (ev, stationDrop) => {
         ev.preventDefault()
 
-        const idx = stationDrop.songs.findIndex(song => song.trackId === dragObj.item.trackId)
+        const idx = stationDrop.songs.findIndex(song => song._id === dragObj.item._id)
         if (idx > -1) return
         handleTransfer(stationDrop)
-
     }
 
     async function handleTransfer(stationDrop) {
@@ -59,7 +58,6 @@ export function useDragAndDrop() {
             console.log(err)
         }
     }
-
 
     return { handleDragStart, handleDragOver, handleDrop }
 }
