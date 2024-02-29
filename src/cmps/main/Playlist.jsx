@@ -11,7 +11,7 @@ export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, user, onChan
                     <p> #</p>
                     <p>Title</p>
                     <p>Artist</p>
-                    <p></p>
+                 
                     <p><Clock></Clock></p>
                 </li>
 

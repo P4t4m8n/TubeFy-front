@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { memo, useRef, useState } from "react"
 import { PlayCard } from "./PlayCard"
 import { LikeCard } from "./LikeCard"
 import { useDragAndDrop } from "../CustomHooks/useDND"
@@ -6,7 +6,7 @@ import { useContextMenu } from "../CustomHooks/useContextMenu"
 import { ContextMenu } from "../ContextMenu/ContextMenu"
 import { VertDots } from "../../services/icons.service"
 
-export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
+export const SongPreview = memo(({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) => {
 
     const [isHover, setIsHover] = useState(false)
     const draggableRef = useRef(null)
@@ -27,17 +27,20 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
         <li ref={draggableRef} key={idx} className="station-details-list" item={{ ...song }} draggable onDragStart={(ev) => handleDragStart(ev, song, station, draggableRef)}
             onMouseEnter={((ev) => onSetIsHover(ev, true))}
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
-            onContextMenu={handleContextMenu}
+            onContextMenu={(ev)=>handleContextMenu(ev,song)}
         >
             <p >{isHover ? <PlayCard item={song}></PlayCard> : idx + 1}</p>
-            <div className="artist-and-image grid">  <div className="img-list-con"><img src={song.imgUrl} /> </div>{song.name}</div>
+            <div className="artist-and-image grid">
+                <div className="img-list-con">
+                    <img src={song.imgUrl} />
+                </div><p>{song.name}</p></div>
             <p >
                 {song.artist}</p>
 
             <div className="details-list-control">
                 <LikeCard item={song}></LikeCard>
                 <p>{song.duration}</p>
-                <button onClick={handleContextMenu}>
+                <button className="mobile-context" onClick={(ev)=>handleContextMenu(ev,song)}>
                     <VertDots></VertDots>
 
                 </button>
@@ -59,4 +62,4 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
             }
         </li>
     )
-}
+})

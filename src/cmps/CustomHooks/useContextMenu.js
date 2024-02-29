@@ -8,7 +8,7 @@ export function useContextMenu({ item }) {
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const isFirstTouch = useRef(true)
 
-    const itemId =  item._id 
+    const itemId = item._id
 
     useEffect(() => {
         window.addEventListener('click', handleClickOutside)
@@ -17,9 +17,12 @@ export function useContextMenu({ item }) {
         }
     }, [])
 
-    function handleContextMenu(ev) {
-
+    function handleContextMenu(ev, item) {
+        console.log("item:", item)
         ev.preventDefault()
+        // if (activeContextMenuId) return
+        // console.log("item:", item)
+        // console.log("activeContextMenuId:", activeContextMenuId)
 
         const menuWidth = 250
         const menuHeight = 50
@@ -35,13 +38,14 @@ export function useContextMenu({ item }) {
             yPosition = ev.clientY - menuHeight
         }
 
-        setContextMenu(itemId)
+        setContextMenu(item._id)
         setContextMenuPosition({ x: xPosition, y: yPosition })
     }
 
     function handleClickOutside(ev) {
+        if (!activeContextMenuId) return
         ev.preventDefault()
-
+        // if (activeContextMenuId !== itemId) return
         if (ev.pointerType == 'touch' && isFirstTouch.current) {
             isFirstTouch.current = false
             return

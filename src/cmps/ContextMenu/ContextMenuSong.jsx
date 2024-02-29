@@ -1,10 +1,9 @@
-import { useState } from "react"
 import { Delete, Move } from "../../services/icons.service"
 
 
 export function ContextMenuSong({ station, item, onChangePlaylist, isSearch, userStations, onRemoveSong, isEdit }) {
+console.log("item:", item)
 
-    const [isSelectOpen, setSelectOpen] = useState(false)
     return (
         <>
             <li>

@@ -59,8 +59,7 @@
         width: 100%;
 
         span {
-            // padding-left: .3em;
-            // justify-self: baseline;
+
             padding-right: 15%;
         }
     }
@@ -108,6 +107,7 @@
 
             .context-list {
                 height: 48px;
+
                 &:hover {
                     background-color: #3e3e3e;
                 }
@@ -137,4 +137,17 @@
     }
 
 
+}
+
+@media (max-width:650px) {
+    .context-menu {
+        li {
+
+            select {
+                line-height: 7;
+                font-size: .8rem;
+                width: 100px;
+            }
+        }
+    }
 }
