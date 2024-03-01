@@ -28,7 +28,7 @@ export const SongPreview = memo(({ station, song, idx, isEdit, onChangePlaylist,
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
             onContextMenu={(ev)=>handleContextMenu(ev,song)}
         >
-            <p >{isHover ? <PlayCard item={song}></PlayCard> : idx + 1}</p>
+            <p className="hover-index" >{isHover ? <PlayCard item={song}></PlayCard> : idx + 1}</p>
             <div className="artist-and-image grid">
                 <div className="img-list-con">
                     <img src={song.imgUrl} />

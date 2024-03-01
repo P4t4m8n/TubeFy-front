@@ -200,13 +200,19 @@
         overflow: hidden;
         text-overflow: ellipsis;
 
+
+
+    }
+
+    .hover-index {
+        width: 1rem;
+
         svg {
-            width: 1rem;
+            width: .8rem;
             height: 1rem;
             filter: brightness(300%) contrast(10%);
             opacity: 1;
         }
-
     }
 
 
@@ -408,6 +414,7 @@
 
                     p {
                         width: auto;
+
                     }
 
                     svg {
