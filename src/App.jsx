@@ -32,10 +32,10 @@ export function App() {
             </Routes>
           </div>
           <Player />
-          <UserMsg />
         </Router>
 
       </div>
+        <UserMsg />
     </>
   )
 }
