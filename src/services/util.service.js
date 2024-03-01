@@ -4,10 +4,9 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    animateCSS,
     debounce,
     getRandomColor,
-    formatTime
+    formatTime,
 }
 
 function makeId(length = 16) {
@@ -77,21 +76,10 @@ function formatTime(timeInSeconds) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds} `
 }
 
-
-function animateCSS(el, animation) {
-    const prefix = 'animate__'
-    return new Promise((resolve, reject) => {
-        const animationName = `${prefix}${animation}`
-
-        el.classList.add(`${prefix}animated`, animationName)
-
-        // When the animation ends, we clean the classes and resolve the Promise
-        function handleAnimationEnd(event) {
-            event.stopPropagation()
-            el.classList.remove(`${prefix}animated`, animationName)
-            resolve('Animation ended')
-        }
-        el.addEventListener('animationend', handleAnimationEnd, { once: true })
-    })
+export const handleKeyboardInteraction = (ev, cb) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { 
+        ev.preventDefault();
+        cb()
+    }
 }
 

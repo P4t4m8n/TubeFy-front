@@ -2,22 +2,23 @@ import { Link } from "react-router-dom";
 import { Note } from "../../services/icons.service";
 import { ContextMenu } from "../ContextMenu/ContextMenu";
 import { useContextMenu } from "../CustomHooks/useContextMenu";
+import { useRef } from "react";
 
 export function SidebarContentPreview(props) {
 
     const { setStationInFoucs, handleDrop, handleDragOver, onRemoveStation, station, stationInFoucs, userStations, onSendPlaylist } = props
-
-    const [activeContextMenuId, contextMenuPosition, handleContextMenu]
-        = useContextMenu({ item: station })
+    const parentRef = useRef(null)
+    const {activeContextMenuId, contextMenuPosition, handleContextMenu}
+        = useContextMenu(parentRef)
 
     return (
-        <Link
+        <Link ref={parentRef}
             onClick={() => setStationInFoucs(station)}
             key={station._id}
             to={'/station/edit/' + station._id}
             onDragOver={handleDragOver}
             onDrop={(ev) => handleDrop(ev, station)}
-            onContextMenu={handleContextMenu}
+            onContextMenu={(ev) => handleContextMenu(ev, station)}
         >
             <li key={station._id} className={`grid station-preview ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 

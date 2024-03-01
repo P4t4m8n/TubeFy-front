@@ -2,11 +2,10 @@ import { ContextMenuPlaylist } from "./ContextMenuPlaylist"
 import { ContextMenuSong } from "./ContextMenuSong"
 
 export function ContextMenu(props) {
-    
-    const { contextMenuPosition } = props
 
+    const { contextMenuPosition } = props
     return (
-        <ul className="context-menu"
+        <ul className="context-menu flex column align-center"
             style={{
                 position: 'absolute',
                 top: `${contextMenuPosition.y}px`,
@@ -19,7 +18,7 @@ export function ContextMenu(props) {
     )
 }
 
-function DynmicContextMenu({props}) {
+function DynmicContextMenu({ props }) {
     switch (props.item.type) {
         case 'playlist':
             return <ContextMenuPlaylist {...props} />

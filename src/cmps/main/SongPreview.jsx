@@ -11,8 +11,8 @@ export const SongPreview = memo(({ station, song, idx, isEdit, onChangePlaylist,
     const [isHover, setIsHover] = useState(false)
     const draggableRef = useRef(null)
 
-    const [activeContextMenuId, contextMenuPosition, handleContextMenu]
-        = useContextMenu({ item: song })
+    const {activeContextMenuId, contextMenuPosition, handleContextMenu}
+        = useContextMenu()
 
     const { handleDragStart } = useDragAndDrop()
 
@@ -20,7 +20,6 @@ export const SongPreview = memo(({ station, song, idx, isEdit, onChangePlaylist,
         ev.preventDefault()
         setIsHover(hover)
     }
-
 
     return (
 

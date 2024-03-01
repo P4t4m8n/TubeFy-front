@@ -1,56 +1,69 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
 
-export function useContextMenu({ item }) {
+export function useContextMenu() {
 
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const isFirstTouch = useRef(true)
 
-    const itemId = item._id
+
 
     useEffect(() => {
+
         window.addEventListener('click', handleClickOutside)
         return () => {
             window.removeEventListener('click', handleClickOutside)
         }
     }, [])
 
-    function handleContextMenu(ev, item) {
+    function handleContextMenu(ev, item = null, ref, parentRef) {
         ev.preventDefault()
-    
-        const menuWidth = 250
-        const menuHeight = 50
+        const menuWidth = 230
+        const menuHeight = 200
+        let xPosition
+        let yPosition
+        if (parentRef) {
+            xPosition = (parentRef.getBoundingClientRect().x) + 160
+            console.log("xPosition:", xPosition)
+            yPosition = (parentRef.getBoundingClientRect().y) + 10
+            console.log("yPosition:", yPosition)
+        } else {
 
-        let xPosition = ev.clientX
-        let yPosition = ev.clientY
+            xPosition = ev.clientX
+            yPosition = ev.clientY
+        }
 
         if (xPosition + menuWidth > window.innerWidth) {
-            xPosition = ev.clientX - menuWidth
+            xPosition = xPosition - menuWidth
+            console.log("xPosition:", xPosition)
         }
 
         if (yPosition + menuHeight > window.innerHeight) {
-            yPosition = ev.clientY - menuHeight
+            console.log("window.innerHeight:", window.innerHeight)
+            yPosition = yPosition - (menuHeight / 2)
         }
 
-        setContextMenu(item._id)
+        if (item) setContextMenu(item._id)
         setContextMenuPosition({ x: xPosition, y: yPosition })
     }
 
-    function handleClickOutside(ev) {
-        if (!activeContextMenuId) return
+    const handleClickOutside = useCallback((ev) => {
         ev.preventDefault()
         if (ev.pointerType == 'touch' && isFirstTouch.current) {
             isFirstTouch.current = false
             return
         }
-        if (ev.srcElement.classList[0] === 'playlist-select') return
+        if (ev.srcElement.classList.contains("context")) return
 
         setContextMenu(null)
         isFirstTouch.current = true
-    }
+    }, [])
 
-    return [activeContextMenuId, contextMenuPosition, handleContextMenu]
+
+
+
+    return { activeContextMenuId, contextMenuPosition, handleContextMenu }
 
 }

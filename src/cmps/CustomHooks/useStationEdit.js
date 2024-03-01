@@ -70,8 +70,9 @@ export function useStationEdit() {
         }
     }
 
-    const onRemoveSong = (ev, songId) => {
-        ev.preventDefault()
+    const onRemoveSong = (songId) => {
+    console.log("songId:", songId)
+
 
         stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
 
@@ -82,17 +83,19 @@ export function useStationEdit() {
         showSuccessMsg({ txt: 'song was removed' })
     }
 
-    const onChangePlaylist = (ev, song, isSearch) => {
-        ev.preventDefault()
+    const onChangePlaylist = (value, song, isSearch) => {
+        // ev.preventDefault()
 
-        if (ev.target.value === 'same') return
+        if (value < 0) return
 
-        if (!isSearch) onRemoveSong(ev, song._id)
+        if (!isSearch) onRemoveSong(song._id)
 
-        const newPlay = user.stations[ev.target.value]
+        const newPlay = user.stations[value]
         newPlay.songs.push(song)
 
         saveStation(newPlay)
+        showSuccessMsg({ txt: `song: ${song.name} now in Playlist${newPlay.name}` })
+
     }
     const onUploadImg = async (ev) => {
 

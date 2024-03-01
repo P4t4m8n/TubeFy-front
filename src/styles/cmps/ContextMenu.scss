@@ -1,141 +1,131 @@
 .context-menu {
+    box-sizing: border-box;
     position: absolute;
-    background-color: #282828;
-    color: #fff;
+    color: $clr4;
+    background-color: $clr10;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    width: 220px;
+    width: 180px;
     font-family: Monstserrat;
     z-index: 1000;
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    align-items: center;
     justify-items: center;
 
     li {
         list-style: none;
-        display: grid;
         grid-template-columns: 3rem auto;
-        align-items: center;
         justify-items: center;
         border-radius: 8px;
-        padding: 1em;
+        padding: .5em;
         width: 100%;
         font-size: .8rem;
-
-
+        position: relative;
+        align-items: center;
 
         &:hover {
-
-            background-color: #3e3e3e;
-
-            select {
-                background-color: #3e3e3e;
-            }
-
+            background-color: $clr11;
             cursor: pointer;
-        }
-
-        select {
-            cursor: pointer;
-            background-color: #282828;
-            color: #fff;
-            border: none;
-            font-weight: 400;
-            font-size: .8rem;
-            font-family: Monstserrat;
         }
 
         svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: #fff;
+            width: 1.5em;
+            height: 1.5em;
+            fill: $clr4;
+        }
+    }
+
+    .pick-playlist {
+        position: relative;
+
+        .text-cont {
+            justify-self: baseline;
+            gap: 1em;
+
+            svg {
+
+                width: .7rem;
+                transform: rotate(90deg);
+            }
         }
 
+        .playlist-select {
+            position: fixed;
+            color: $clr4;
+            background-color: $clr10;
+            gap: .1em;
+
+            li {
+                background-color: $clr10;
+                width: 100%;
+                border: .1em solid $clr4;
+
+                &:hover {
+                    background-color: $clr11;
+                    cursor: pointer;
+                }
+
+                button {
+
+                    width: fit-content;
+                }
+
+            }
+
+        }
     }
 
     .context-remove {
         width: 100%;
 
-        span {
+    }
 
-            padding-right: 15%;
-        }
+    span,
+    .share-context {
+        justify-self: baseline;
     }
 
     .context-line {
-        cursor: pointer;
-        height: 64px;
-        width: 100%;
-        border-bottom: 1px solid #404040;
-        position: relative;
 
-        &:hover {
-            background-color: #3e3e3e;
-        }
+        .share-context {
+            align-items: center;
+            gap: .5em;
 
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            filter: none;
-
-        }
-
-        span {
-            font-family: Monstserrat;
-            font-weight: 400;
-
-            justify-self: baseline;
-        }
-
-        .station-select {
-            position: absolute;
-            bottom: -100%;
+            svg {
+                width: .7rem;
+                transform: rotate(90deg);
+            }
         }
 
         .share-select {
-            position: absolute;
-            right: -95%;
-            top: 40%;
-            width: 200px;
+            position: fixed;
+            color: $clr4;
             background-color: $clr10;
-            z-index: 1001;
-            font-size: 1rem;
-            border-radius: 8px;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            gap: .1em;
+            
+            li {
+                gap: .4em;
+                background-color: $clr10;
+                border: .1em solid $clr4;
+                height: 2.5em;
 
-            .context-list {
-                height: 48px;
+                svg {
+                    height: 1rem;
+                }
 
                 &:hover {
-                    background-color: #3e3e3e;
+                    background-color: $clr11;
+                    cursor: pointer;
                 }
+
+                button {
+
+                    width: fit-content;
+                }
+
             }
-
-            h6 {
-                font-weight: 200;
-                margin: 0;
-                font-size: .9rem;
-                justify-self: baseline;
-            }
-
-        }
-
-        &:last-child {
-            border-bottom: none;
         }
 
     }
-
-    .share {
-        span {
-            &::after {
-                content: " >";
-            }
-        }
-    }
-
 
 }
 

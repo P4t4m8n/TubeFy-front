@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
 import { loadStation, saveStation } from "../store/actions/station.actions"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
@@ -7,7 +6,9 @@ import { PlayCard } from "../cmps/main/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { Loading } from "../cmps/support/Loading"
 import { useSelector } from "react-redux"
-import { showSuccessMsg } from "../services/event-bus.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { useStationEdit } from "../cmps/CustomHooks/useStationEdit"
+import { useParams } from "react-router-dom"
 
 export function StationDetails() {
 
@@ -15,28 +16,22 @@ export function StationDetails() {
     const [currStation, setCurrStation] = useState(null)
     const params = useParams()
 
+    const { onChangePlaylist } = useStationEdit()
+
     useEffect(() => {
+        console.log(params)      
         if (params.stationId) onLoadstation()
     }, [params.stationsId, user])
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null)
 
     async function onLoadstation() {
-        const station = await loadStation(params.stationId)
-        setCurrStation(station)
+  try {
+            const station = await loadStation(params.stationId)
+            setCurrStation(station)
+        } catch (err) { showErrorMsg({ txt: `Unbale to load` }) }
     }
 
-    function onChangePlaylist(ev, song, stationId, isSearch) {
-        ev.preventDefault()
-        if (ev.target.value === 'same') return
-        if (isSearch) onAddSong(ev, song)
-
-        const newPlay = user.stations[ev.target.value]
-        newPlay.songs.push(song)
-        saveStation(newPlay)
-        showSuccessMsg({ txt: `song: ${song.name} now in Playlist${newPlay.name}` })
-
-    }
 
     if (!currStation) return <Loading />
     const { imgUrl, type, createdBy, name, duration, songs, description } = currStation

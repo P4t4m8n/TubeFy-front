@@ -1,7 +1,7 @@
 
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { AppHeader } from './cmps/Header/AppHeader.jsx'
-import { Player } from './cmps/Footer/Player.jsx'
+import { Player } from './cmps/Player/Player.jsx'
 import { StationIndex } from './pages/StationIndex.jsx'
 import { StationDetails } from './pages/StationDetails.jsx'
 import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
