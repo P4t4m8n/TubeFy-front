@@ -21,11 +21,7 @@
         font-size: .8rem;
         position: relative;
         align-items: center;
-
-        &:hover {
-            background-color: $clr11;
-            cursor: pointer;
-        }
+        @include hover-style;
 
         svg {
             width: 1.5em;
@@ -42,7 +38,6 @@
             gap: 1em;
 
             svg {
-
                 width: .7rem;
                 transform: rotate(90deg);
             }
@@ -58,14 +53,9 @@
                 background-color: $clr10;
                 width: 100%;
                 border: .1em solid $clr4;
-
-                &:hover {
-                    background-color: $clr11;
-                    cursor: pointer;
-                }
+                @include hover-style;
 
                 button {
-
                     width: fit-content;
                 }
 
@@ -132,14 +122,14 @@
 @media (max-width:650px) {
     .context-menu {
         li {
-            
+
             select {
                 line-height: 7;
                 font-size: .8rem;
                 width: 100px;
             }
         }
-        
+
         .pick-playlist {
             .playlist-select {
                 background: none;
