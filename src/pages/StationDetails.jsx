@@ -19,7 +19,6 @@ export function StationDetails() {
     const { onChangePlaylist } = useStationEdit()
 
     useEffect(() => {
-        console.log(params)      
         if (params.stationId) onLoadstation()
     }, [params.stationsId, user])
 

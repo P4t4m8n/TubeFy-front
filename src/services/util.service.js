@@ -1,15 +1,15 @@
 export const utilService = {
-    makeId,
-    makeLorem,
-    getRandomIntInclusive,
-    loadFromStorage,
-    saveToStorage,
+    // makeId,
+    // makeLorem,
+    // getRandomIntInclusive,
+    // loadFromStorage,
+    // saveToStorage,
     debounce,
-    getRandomColor,
+    // getRandomColor,
     formatTime,
 }
 
-function makeId(length = 16) {
+const makeId = (length = 16) => {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -20,7 +20,7 @@ function makeId(length = 16) {
     return txt
 }
 
-function getRandomColor() {
+const getRandomColor = () => {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
@@ -30,7 +30,7 @@ function getRandomColor() {
 }
 
 
-function makeLorem(size = 100) {
+const makeLorem = (size = 100) => {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television',
         'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less',
         '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and',
@@ -44,31 +44,31 @@ function makeLorem(size = 100) {
     return txt
 }
 
-function getRandomIntInclusive(min, max) {
+const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function saveToStorage(key, value) {
+const saveToStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
-function loadFromStorage(key) {
+const loadFromStorage = (key) => {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
 
 function debounce(func, delay = 2000) {
     let timeoutId
-    return function(...args) {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => {
-        func.apply(this, args)
-      }, delay)
+    return function (...args) {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            func.apply(this, args)
+        }, delay)
     }
-  }
-  
+}
+
 
 function formatTime(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60)
@@ -77,7 +77,7 @@ function formatTime(timeInSeconds) {
 }
 
 export const handleKeyboardInteraction = (ev, cb) => {
-    if (ev.key === 'Enter' || ev.key === ' ') { 
+    if (ev.key === 'Enter' || ev.key === ' ') {
         ev.preventDefault();
         cb()
     }

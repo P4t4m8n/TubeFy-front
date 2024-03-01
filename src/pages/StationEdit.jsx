@@ -1,9 +1,9 @@
 import { useRef } from "react"
 import { Playlist } from "../cmps/Playlist"
-import { PlaylistHero } from "../cmps/PlaylistHero"
+import {  PlaylistEditHero } from "../cmps/StationEdit/PlaylistEditHero"
 import { PlayCard } from "../cmps/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
-import { EditSearch } from "../cmps/search/EditSearch"
+import { EditSearch } from "../cmps/StationEdit/EditSearch"
 import { Loading } from "../cmps/Loading"
 import { useStationEdit } from "../cmps/CustomHooks/useStationEdit"
 
@@ -42,12 +42,12 @@ export function StationEdit() {
     return (
 
         <section className="station-page" >
-            <PlaylistHero
+            <PlaylistEditHero
                 stationToEdit={stationToEdit}
                 handleChange={handleChange}
                 onSaveStation={onSaveStation}
                 onUploadImg={onUploadImg}
-            ></PlaylistHero>
+            ></PlaylistEditHero>
             {(songs && (songs.length > 0)) &&
                 <div>
                     <div className="play-and-context flex">

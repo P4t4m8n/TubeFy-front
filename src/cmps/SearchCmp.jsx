@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
-import { utilService } from "../../services/util.service"
+import { utilService } from "../services/util.service"
 import { useNavigate } from "react-router-dom"
-import { SearchBox } from "../SearchBox"
+import { SearchBox } from "./SearchBox"
 
 export function SearchCmp() {
 

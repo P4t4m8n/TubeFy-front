@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { UserIcon } from "../services/icons.service";
-import { logout } from "../store/actions/user.actions";
-import { showSuccessMsg } from "../services/event-bus.service";
+import { UserIcon } from "../../services/icons.service";
+import { logout } from "../../store/actions/user.actions";
+import { showSuccessMsg } from "../../services/event-bus.service";
 
 export function UserCmp({ user }) {
 

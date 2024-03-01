@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from 'react'
-import { login, signup } from '../store/actions/user.actions'
-import { userService } from '../services/user.service'
+import { login, signup } from '../../store/actions/user.actions'
+import { userService } from '../../services/user.service'
 import { Link } from 'react-router-dom'
-import { showSuccessMsg } from '../services/event-bus.service'
+import { showSuccessMsg } from '../../services/event-bus.service'
 
 export function SignIn({ open, setOpen }) {
 

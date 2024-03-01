@@ -11,16 +11,23 @@ export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, user, onChan
                     <p> #</p>
                     <p>Title</p>
                     <p>Artist</p>
-                 
                     <p><Clock></Clock></p>
                 </li>
 
             </ul>
             <ul className="song-list grid clean-list">
                 {songs.map((song, idx) => (
-                    <SongPreview station={station} key={idx} idx={idx} song={song} isEdit={isEdit}
-                        onRemoveSong={onRemoveSong} isSearch={isSearch} onChangePlaylist={onChangePlaylist}
-                        user={user} onSaveSong={onSaveSong}>
+                    <SongPreview
+                        station={station}
+                        key={idx}
+                        idx={idx}
+                        song={song}
+                        isEdit={isEdit}
+                        onRemoveSong={onRemoveSong}
+                        isSearch={isSearch}
+                        onChangePlaylist={onChangePlaylist}
+                        user={user}
+                        onSaveSong={onSaveSong}>
                     </SongPreview>
                 ))}
 

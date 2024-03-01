@@ -1,10 +1,10 @@
-import { SHOW_MSG, eventBus, showSuccessMsg } from "../services/event-bus.service.js"
+import { SHOW_MSG, eventBus, showSuccessMsg } from "../../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
-import { SOCKET_EVENT_PLAYLIST_UPDATED, socketService } from "../services/socket.service.js"
-import { SOCKET_EVENT_SEND_PLAYLIST_TO_YOU } from "../services/socket.service.js"
+import { SOCKET_EVENT_PLAYLIST_UPDATED, socketService } from "../../services/socket.service.js"
+import { SOCKET_EVENT_SEND_PLAYLIST_TO_YOU } from "../../services/socket.service.js"
 import { Link } from "react-router-dom"
-import { userService } from "../services/user.service.js"
-import { updateUser } from "../store/actions/user.actions.js"
+import { userService } from "../../services/user.service.js"
+import { updateUser } from "../../store/actions/user.actions.js"
 
 export function UserMsg() {
 

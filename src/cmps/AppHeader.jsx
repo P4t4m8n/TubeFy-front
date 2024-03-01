@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { SearchCmp } from './search/SearchCmp.jsx'
-import { NoUserCmp } from './NoUserCmp.jsx'
-import { UserCmp } from './UserCmp.jsx'
+import { SearchCmp } from './SearchCmp.jsx'
+import { NoUserCmp } from './User/NoUserCmp.jsx'
+import { UserCmp } from './User/UserCmp.jsx'
 
 export function AppHeader() {
 
