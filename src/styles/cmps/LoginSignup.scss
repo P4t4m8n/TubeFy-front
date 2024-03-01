@@ -16,6 +16,7 @@
     }
 
     .modal-content {
+        align-items: center;
         background-color: $color-background;
         padding: 20px;
         border-radius: $border-radius;
@@ -25,10 +26,23 @@
         flex-direction: column;
         gap: 1em;
 
+        .back-btn {
+            color: wheat;
+            width: fit-content;
+            height: fit-content;
+            padding: 6px;
+            align-self: flex-end;
+
+            &:hover {
+                animation: none;
+                background-color: #1DB954;
+            }
+        }
+
         select {
             background-color: inherit;
             border-radius: 16px;
-            width: 16em;
+            width: 10em;
             align-self: center;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -38,6 +52,57 @@
             font-family: $font-family-main;
             font-size: 1rem;
             text-align: center;
+
+            >* {
+                align-self: center;
+                text-align: center;
+                font-size: 1rem;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                color: white;
+                margin-bottom: 20px;
+            }
+
+            input {
+                margin-bottom: 10px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            button {
+                background-color: #1DB954;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                align-self: center;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: #1ED760;
+                }
+            }
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background-color: #282828;
+            color: white;
+
+            input[type="text"]::placeholder,
+            input[type="email"]::placeholder,
+            input[type="password"]::placeholder {
+                color: #b3b3b3;
+            }
         }
     }
 }

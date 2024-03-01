@@ -2,11 +2,10 @@ import { utilService } from '../services/util.service'
 import { apiService } from '../services/api.service'
 import { useEffect, useRef, useState } from 'react'
 import { PlayCard } from '../cmps/main/PlayCard'
-import { useParams } from "react-router"
 import { LikeCard } from '../cmps/main/LikeCard'
 import { useDragAndDrop } from '../cmps/CustomHooks/useDND'
 import { DEF_IMG } from '../store/actions/app.actions'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Loading } from "../cmps/support/Loading"
 
 export function SearchPage() {
@@ -37,8 +36,10 @@ export function SearchPage() {
     }
 
     if ((!searchList && params.searchTerm)) return (<Loading></Loading>)
-    const heroList = searchList.slice(0, 2)
-    const list = searchList.slice(1)
+    if (searchList) {
+        const heroList = searchList.slice(0, 2)
+        const list = searchList.slice(1)
+    }
 
     return (
         <>

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
-import { useNavigate } from "react-router"
 import { utilService } from "../../services/util.service"
 import { Search } from "@mui/icons-material"
+import { useNavigate } from "react-router-dom"
 
 export function SearchCmp() {
 
