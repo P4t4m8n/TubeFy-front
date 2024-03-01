@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
 import { useEffect, useRef } from "react"
-import { StationList } from "../cmps/main/StationList"
+import { StationList } from "../cmps/StationList"
 import { stationService } from "../services/station.service"
 import { loadStations } from "../store/actions/station.actions"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
-import { PlayCard } from "../cmps/main/PlayCard"
-import { Loading } from "../cmps/support/Loading"
+import { PlayCard } from "../cmps/PlayCard"
+import { Loading } from "../cmps/Loading"
 
 export function StationIndex() {
 

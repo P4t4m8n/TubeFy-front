@@ -1,4 +1,4 @@
-import { SignIn } from "./User/SignIn";
+import { SignIn } from "./SignIn";
 
 export function NoUserCmp({ setOpen, open }) {
     return (

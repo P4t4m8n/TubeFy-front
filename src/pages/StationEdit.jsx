@@ -1,10 +1,10 @@
 import { useRef } from "react"
-import { Playlist } from "../cmps/main/Playlist"
-import { PlaylistHero } from "../cmps/support/PlaylistHero"
-import { PlayCard } from "../cmps/main/PlayCard"
+import { Playlist } from "../cmps/Playlist"
+import { PlaylistHero } from "../cmps/PlaylistHero"
+import { PlayCard } from "../cmps/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { EditSearch } from "../cmps/search/EditSearch"
-import { Loading } from "../cmps/support/Loading"
+import { Loading } from "../cmps/Loading"
 import { useStationEdit } from "../cmps/CustomHooks/useStationEdit"
 
 export function StationEdit() {

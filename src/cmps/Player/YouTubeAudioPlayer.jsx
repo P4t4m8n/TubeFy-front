@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { loadSong } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
 import { setPlayer } from '../../store/actions/player.action'
-import { PlayCard } from '../main/PlayCard'
+import { PlayCard } from '../PlayCard'
 import { Next, Prev, Shuffle, Repeat } from '../../services/icons.service'
 import { ProgressBar } from './ProgressBar'
 

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { LikeCard } from "../main/LikeCard"
+import { LikeCard } from "../LikeCard"
 
 export function PlayerPlayingCard() {
 
