@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react"
 import { apiService } from "../../services/api.service"
 import { utilService } from "../../services/util.service"
-import { Search } from "@mui/icons-material"
-import { Playlist } from "../main/Playlist"
+import { Playlist } from "../Playlist"
+import { SearchBox } from "../SearchBox"
 
 export function EditSearch({ user, onChangePlaylist }) {
 
@@ -31,19 +31,7 @@ export function EditSearch({ user, onChangePlaylist }) {
 
     return (
         <>
-            <section className="search-box">
-                <form  >
-                    <Search></Search>
-                    <input
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                        type="text"
-                        id="searchTerm"
-                        name="searchTerm"
-                        placeholder="Looking for songs?" />
-
-                </form>
-            </section>
+            <SearchBox searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
             {
                 (searchResults && searchResults.length > 0) &&
                 < div >

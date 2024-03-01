@@ -6,7 +6,7 @@ import { loadSong } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
 import { setPlayer } from '../../store/actions/player.action'
 import { PlayCard } from '../main/PlayCard'
-import { Next, Prev, Shuffle, Repeat, Play, Pause } from '../../services/icons.service'
+import { Next, Prev, Shuffle, Repeat } from '../../services/icons.service'
 import { ProgressBar } from './ProgressBar'
 
 
@@ -70,31 +70,29 @@ export function YouTubeAudioPlayer({ volume }) {
       if (stationIdx.current < 0) stationIdx.current = station.songs.length - 1
     }
 
-
     loadSong(station.songs[stationIdx.current])
   }
 
   function onReady(ev) {
     setPlayer(ev.target)
     ev.target.setVolume(volume)
-
   }
 
-  if (!song) return 
+  if (!song) return
 
-  const { trackId } = song
-  
+  const {  _id } = song
+
   return (
     <section className='audio'>
-          <div className='audio-control'>
-            <button className='shuffle' onClick={onShuffle}><Shuffle></Shuffle></button>
-            <button className='dir'  onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
-            <PlayCard item={song}></PlayCard>
-            <button className='dir' onClick={(() => onChangeSong(1))}><Next></Next></button>
-            <button className='repeat' onClick={onRepeat}><Repeat></Repeat></button>
-          </div>
-      <ProgressBar song={song} player={player}  />
-      <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
+      <div className='audio-control'>
+        <button className='shuffle' onClick={onShuffle}><Shuffle></Shuffle></button>
+        <button className='dir' onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
+        <PlayCard item={song}></PlayCard>
+        <button className='dir' onClick={(() => onChangeSong(1))}><Next></Next></button>
+        <button className='repeat' onClick={onRepeat}><Repeat></Repeat></button>
+      </div>
+      <ProgressBar song={song} player={player} />
+      <YouTube className='video' videoId={_id} opts={opts} onEnd={onEnd} onReady={onReady} />
     </section >
 
   )

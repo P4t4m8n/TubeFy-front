@@ -1,10 +1,10 @@
 import { memo, useRef, useState } from "react"
 import { PlayCard } from "./PlayCard"
 import { LikeCard } from "./LikeCard"
-import { useDragAndDrop } from "../CustomHooks/useDND"
-import { useContextMenu } from "../CustomHooks/useContextMenu"
-import { ContextMenu } from "../ContextMenu/ContextMenu"
-import { VertDots } from "../../services/icons.service"
+import { useDragAndDrop } from "./CustomHooks/useDND"
+import { useContextMenu } from "./CustomHooks/useContextMenu"
+import { ContextMenu } from "./ContextMenu/ContextMenu"
+import { VertDots } from "../services/icons.service"
 
 export const SongPreview = memo(({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) => {
 

@@ -1,12 +1,12 @@
 import { utilService } from '../services/util.service'
 import { apiService } from '../services/api.service'
 import { useEffect, useRef, useState } from 'react'
-import { PlayCard } from '../cmps/main/PlayCard'
-import { LikeCard } from '../cmps/main/LikeCard'
+import { PlayCard } from '../cmps/PlayCard'
+import { LikeCard } from '../cmps/LikeCard'
 import { useDragAndDrop } from '../cmps/CustomHooks/useDND'
 import { DEF_IMG } from '../store/actions/app.actions'
 import { Link, useParams } from 'react-router-dom'
-import { Loading } from "../cmps/support/Loading"
+import { Loading } from "../cmps/Loading"
 
 export function SearchPage() {
 

@@ -18,6 +18,7 @@ export function ProgressBar({ song, player }) {
                 const progressPercentage = (currentTime / duration) * 100
                 const timeElapsed = utilService.formatTime(currentTime)
                 const time = utilService.formatTime(duration)
+                
                 setProgress({ progressPercentage, timeElapsed, time })
             }
         }
@@ -38,9 +39,6 @@ export function ProgressBar({ song, player }) {
         setProgress(clickPosition)
       }
     
-     
-
-
     return (
         <div className='progress-bar'>
             <p style={{ color: 'white' }}>{progress ? progress.timeElapsed : '0:00'} </p>

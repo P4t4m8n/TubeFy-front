@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { updateUser } from "../../store/actions/user.actions"
-import { Heart } from '../../services/icons.service'
-import { FullHeart } from '../../services/icons.service'
-import { saveStation } from "../../store/actions/station.actions"
-import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { SOCKET_EMIT_USER_DISLIKE_PLAYLIST, SOCKET_EMIT_USER_LIKE_PLAYLIST, socketService } from "../../services/socket.service"
+import { updateUser } from "../store/actions/user.actions"
+import { Heart } from '../services/icons.service'
+import { FullHeart } from '../services/icons.service'
+import { saveStation } from "../store/actions/station.actions"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { SOCKET_EMIT_USER_DISLIKE_PLAYLIST, SOCKET_EMIT_USER_LIKE_PLAYLIST, socketService } from "../services/socket.service"
 
 export function LikeCard({ item }) {
 

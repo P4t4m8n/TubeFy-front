@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { FullScreen, Volume } from "../../services/icons.service"
 
-export function PlayerRightside({ volume, setVolume }) {
+export function PlayerVolumeControl({ volume, setVolume }) {
 
     const player = useSelector(storeState => storeState.playerMoudle.player)
 

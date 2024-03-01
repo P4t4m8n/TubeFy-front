@@ -7,9 +7,9 @@ import { StationDetails } from './pages/StationDetails.jsx'
 import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
-import { UserMsg } from './cmps/support/UserMsg.jsx'
-import '../src/styles/main.scss'
+import { UserMsg } from './cmps/UserMsg.jsx'
 import { UserLibaryIndex } from './cmps/LeftSidebar/UserLibaryIndex.jsx'
+import '../src/styles/main.scss'
 
 export function App() {
 

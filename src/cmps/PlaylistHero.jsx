@@ -9,8 +9,8 @@ import ModalDialog from '@mui/joy/ModalDialog'
 import DialogTitle from '@mui/joy/DialogTitle'
 import DialogContent from '@mui/joy/DialogContent'
 import Stack from '@mui/joy/Stack'
-import { Note, Pencil } from '../../services/icons.service'
-import { stationService } from '../../services/station.service'
+import { Note, Pencil } from '../services/icons.service'
+import { stationService } from '../services/station.service'
 
 export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUploadImg }) {
     const [open, setOpen] = useState(false)

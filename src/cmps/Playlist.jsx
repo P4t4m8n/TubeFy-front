@@ -1,4 +1,4 @@
-import { Clock } from "../../services/icons.service";
+import { Clock } from "../services/icons.service";
 import { SongPreview } from "./SongPreview";
 
 export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, user, onChangePlaylist, isSearch, station }) {

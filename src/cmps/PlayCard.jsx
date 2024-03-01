@@ -1,6 +1,6 @@
 
-import { Pause, Play } from "../../services/icons.service"
-import { usePlay } from "../CustomHooks/usePlay"
+import { Pause, Play } from "../services/icons.service"
+import { usePlay } from "./CustomHooks/usePlay"
 
 export function PlayCard({ item }) {
     const [onPlayStation, showPlay, isPlaying, cardType] = usePlay(item)
