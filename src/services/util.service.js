@@ -5,7 +5,7 @@ export const utilService = {
     // loadFromStorage,
     // saveToStorage,
     debounce,
-    // getRandomColor,
+    getRandomColor,
     formatTime,
 }
 
@@ -20,7 +20,7 @@ const makeId = (length = 16) => {
     return txt
 }
 
-const getRandomColor = () => {
+function getRandomColor  ()  {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {

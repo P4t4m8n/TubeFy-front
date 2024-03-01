@@ -4,7 +4,6 @@ import { stationService } from "../../services/station.service"
 import { ADD_STATION, EDIT_STATION, SET_CURR_STATION, SET_STATIONS, SET_USER_STATIONS } from "../redcuers/station.reducer"
 import { store } from "../store"
 
-
 export async function loadStations(filterSortBy = {}) {
     try {
         const stations = await stationService.query(filterSortBy)

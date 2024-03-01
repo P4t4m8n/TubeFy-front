@@ -36,9 +36,13 @@ export function SearchPage() {
     }
 
     if ((!searchList && params.searchTerm)) return (<Loading></Loading>)
+
+    let heroList
+    let list
+    
     if (searchList) {
-        const heroList = searchList.slice(0, 2)
-        const list = searchList.slice(1)
+        heroList = searchList.slice(0, 2)
+        list = searchList.slice(1)
     }
 
     return (
