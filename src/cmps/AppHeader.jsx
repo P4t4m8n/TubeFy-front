@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { logout } from '../../store/actions/user.actions.js'
-import { UserIcon } from '../../services/icons.service.jsx'
-import { SignIn } from '../User/SignIn.jsx'
-import { showSuccessMsg } from '../../services/event-bus.service.js'
-import { SearchCmp } from '../search/SearchCmp.jsx'
+import { logout } from '../store/actions/user.actions.js'
+import { UserIcon } from '../services/icons.service.jsx'
+import { showSuccessMsg } from '../services/event-bus.service.js'
+import { SearchCmp } from './search/SearchCmp.jsx'
+import { NoUserCmp } from './NoUserCmp.jsx'
 
 export function AppHeader() {
 
@@ -24,7 +24,7 @@ export function AppHeader() {
             await logout()
             setOpen(false)
             navigate('/')
-            showSuccessMsg({txt:'Goodbye'})
+            showSuccessMsg({ txt: 'Goodbye' })
         }
         catch (err) {
             console.log(err)
@@ -33,7 +33,7 @@ export function AppHeader() {
 
     return (
         <div className="app-header">
-            {isSearchShown && <SearchCmp/>}
+            {isSearchShown && <SearchCmp />}
             <section className='user-acess'>
                 {user ? (
                     < section className='user-nav' >
@@ -46,10 +46,7 @@ export function AppHeader() {
                         </div>
                     </ section >
                 ) : (
-                    <section className='no-user'>
-                        <button onClick={(() => setOpen(true))}>Start listening</button>
-                        <SignIn open={open} setOpen={setOpen}></SignIn>
-                    </section>
+                    <NoUserCmp open={open} setOpen={setOpen} />
                 )}
             </section>
         </div >

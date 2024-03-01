@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { HomeSvg, HomeSvgClicked, SearchSvg, SearchSvgClicked } from "../../services/icons.service"
 
-export function SideBarHeader() {
+export function Navigation() {
 
     const location = useLocation()
     const isSearchOpen = location.pathname.includes('search')

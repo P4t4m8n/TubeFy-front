@@ -13,13 +13,9 @@
 
 // Views
 @import "views/StationIndex.scss";
-@import "views/LoginSighnup.scss";
 @import "views/SearchPage.scss";
 @import "views/StationDeatils.scss";
-@import "views/user-page.scss";
-@import "views/MobilePlayerPage.scss";
-
-
+@import "views/LeftSideBar.scss";
 
 // Components
 @import "cmps/LibaryMobile.scss";
@@ -35,3 +31,4 @@
 @import "cmps/JoinNow.scss";
 @import "cmps/ContextMenu.scss";
 @import "cmps/DnD.scss";
+@import "cmps/LoginSignup.scss";

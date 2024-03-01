@@ -3,13 +3,15 @@ import { Note } from "../../services/icons.service";
 import { ContextMenu } from "../ContextMenu/ContextMenu";
 import { useContextMenu } from "../CustomHooks/useContextMenu";
 import { useRef } from "react";
+import { useDragAndDrop } from "../CustomHooks/useDND"
 
-export function SidebarContentPreview(props) {
 
-    const { setStationInFoucs, handleDrop, handleDragOver, onRemoveStation, station, stationInFoucs, userStations, onSendPlaylist } = props
+export function UserLibaryPreivew(props) {
+
+    const { handleDragOver, handleDrop } = useDragAndDrop()
+    const { setStationInFoucs, onRemoveStation, station, stationInFoucs, userStations, onSendPlaylist } = props
     const parentRef = useRef(null)
-    const {activeContextMenuId, contextMenuPosition, handleContextMenu}
-        = useContextMenu(parentRef)
+    const { activeContextMenuId, contextMenuPosition, handleContextMenu } = useContextMenu(parentRef)
 
     return (
         <Link ref={parentRef}

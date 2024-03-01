@@ -1,12 +1,12 @@
-import { SideBarHeader } from "./LeftSidebarHeader.jsx"
-import { SideBarContent } from "./LeftSidebarContent.jsx"
+import { Navigation } from "./Navigation.jsx"
+import { UserLibaryIndex } from "./UserLibaryIndex.jsx"
 
 export function LeftSidebar() {
 
     return (
         <div className='left-sidebar'>
-            <SideBarHeader />
-            <SideBarContent />
+            <Navigation />
+            <UserLibaryIndex />
         </div>
     )
 }
