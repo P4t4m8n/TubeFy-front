@@ -15,7 +15,7 @@ export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
     const [openFriendsList, setOpenFriendsList] = useState(false)
     const { contextMenuPosition, handleContextMenu } = useContextMenu()
 
-    const openPlaylistSelect = (ev, isOpen) => {
+    const openFriendSelect = (ev, isOpen) => {
         if (isOpen) handleContextMenu(ev, null, childRef.current, parentRef.current)
         setOpenFriendsList(isOpen)
     }
@@ -25,42 +25,43 @@ export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
 
 
             <li ref={parentRef}
-                onMouseEnter={(ev) => openPlaylistSelect(ev, true)}
-                onMouseLeave={(ev) => openPlaylistSelect(ev, false)}
-                onFocus={(ev) => openPlaylistSelect(ev, true)}
-                onBlur={(ev) => openPlaylistSelect(ev, false)}
-                className="context-line share grid align-center"
+                onMouseEnter={(ev) => openFriendSelect(ev, true)}
+                onMouseLeave={(ev) => openFriendSelect(ev, false)}
+                onClick={(ev) => openFriendSelect(ev, true)}
+                onFocus={(ev) => openFriendSelect(ev, true)}
+                onBlur={(ev) => openFriendSelect(ev, false)}
+                className="context-line share grid align-center context-click"
                 tabIndex={0}
                 aria-haspopup="true"
                 aria-expanded={openFriendsList}
             >
                 <Share />
-                <section className="share-context flex">
-                    <span>Share Playlist</span>
+                <section className="share-context flex context-click">
+                    <span className="context-click">Share Playlist</span>
                     <Triangle />
                 </section>
-                {/* {openFriendsList && friendsList && friendsList.length > 0 && ( */}
-                <ul ref={childRef} className="share-select flex column"
-                    style={{
-                        top: `${contextMenuPosition.y}px`,
-                        left: `${contextMenuPosition.x}px`
+                {openFriendsList && friendsList && friendsList.length > 0 && (
+                    <ul ref={childRef} className="share-select flex column context-click"
+                        style={{
+                            top: `${contextMenuPosition.y}px`,
+                            left: `${contextMenuPosition.x}px`
 
-                    }}>
-                    {friendsList.map((friend, idx) => (
-                        <li
-                            key={idx}
-                            tabIndex={0}
-                            onKeyDown={(ev) => handleKeyboardInteraction(ev, () => onSendPlaylist(ev, item._id, friend._id))}
-                            onClick={(ev) => onSendPlaylist(ev, item._id, friend._id)}
-                            className='friend context-list flex'
-                            aria-label={`Share with ${friend.username}`}
-                        >
-                            {friend.imgUrl ? <img src={friend.imgUrl} alt={`${friend.username}'s profile`}></img> : <UserIcon />}
-                            <span>{friend.username}</span>
-                        </li>
-                    ))}
-                </ul>
-                {/* )} */}
+                        }}>
+                        {friendsList.map((friend, idx) => (
+                            <li
+                                key={idx}
+                                tabIndex={0}
+                                onKeyDown={(ev) => handleKeyboardInteraction(ev, () => onSendPlaylist(ev, item._id, friend._id))}
+                                onClick={(ev) => onSendPlaylist(ev, item._id, friend._id)}
+                                className='friend context-list flex context-click'
+                                aria-label={`Share with ${friend.username}`}
+                            >
+                                {friend.imgUrl ? <img src={friend.imgUrl} alt={`${friend.username}'s profile`}></img> : <UserIcon />}
+                                <span className="context-click">{friend.username}</span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </li>
 
             {(item.name !== 'Liked Songs') && <li

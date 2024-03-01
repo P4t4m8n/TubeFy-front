@@ -101,7 +101,7 @@
             color: $clr4;
             background-color: $clr10;
             gap: .1em;
-            
+
             li {
                 gap: .4em;
                 background-color: $clr10;
@@ -132,11 +132,19 @@
 @media (max-width:650px) {
     .context-menu {
         li {
-
+            
             select {
                 line-height: 7;
                 font-size: .8rem;
                 width: 100px;
+            }
+        }
+        
+        .pick-playlist {
+            .playlist-select {
+                background: none;
+                border-radius: 8px;
+                margin-left: -12px;
             }
         }
     }

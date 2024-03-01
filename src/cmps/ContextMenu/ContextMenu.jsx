@@ -5,7 +5,7 @@ export function ContextMenu(props) {
 
     const { contextMenuPosition } = props
     return (
-        <ul className="context-menu flex column align-center"
+        <ul className="context-menu flex column align-center context-click"
             style={{
                 position: 'absolute',
                 top: `${contextMenuPosition.y}px`,

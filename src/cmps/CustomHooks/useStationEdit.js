@@ -98,6 +98,7 @@ export function useStationEdit() {
 
     }
     const onUploadImg = async (ev) => {
+    console.log("ev:", ev)
 
         const file = ev.target.files[0]
 

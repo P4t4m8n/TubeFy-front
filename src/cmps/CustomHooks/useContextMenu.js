@@ -26,9 +26,7 @@ export function useContextMenu() {
         let yPosition
         if (parentRef) {
             xPosition = (parentRef.getBoundingClientRect().x) + 160
-            console.log("xPosition:", xPosition)
             yPosition = (parentRef.getBoundingClientRect().y) + 10
-            console.log("yPosition:", yPosition)
         } else {
 
             xPosition = ev.clientX
@@ -37,11 +35,9 @@ export function useContextMenu() {
 
         if (xPosition + menuWidth > window.innerWidth) {
             xPosition = xPosition - menuWidth
-            console.log("xPosition:", xPosition)
         }
 
         if (yPosition + menuHeight > window.innerHeight) {
-            console.log("window.innerHeight:", window.innerHeight)
             yPosition = yPosition - (menuHeight / 2)
         }
 
@@ -50,13 +46,12 @@ export function useContextMenu() {
     }
 
     const handleClickOutside = useCallback((ev) => {
-        ev.preventDefault()
         if (ev.pointerType == 'touch' && isFirstTouch.current) {
             isFirstTouch.current = false
             return
         }
-        if (ev.srcElement.classList.contains("context")) return
-
+        if (ev.srcElement.classList.contains("context-click")) return
+        
         setContextMenu(null)
         isFirstTouch.current = true
     }, [])
