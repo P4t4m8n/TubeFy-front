@@ -12,7 +12,6 @@ const rootReducer = combineReducers({
     songMoudle: songReducer,
     appMoudle: appRedcuer,
     playerMoudle: playerReducer,
-
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
