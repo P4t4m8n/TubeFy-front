@@ -5,8 +5,8 @@ import { useContextMenu } from "../CustomHooks/useContextMenu"
 
 export function ContextMenuPlaylist({ item, onRemoveStation, onSendPlaylist }) {
     const friendsList = [
-        { username: 'DemoUserTwo', _id: '65c61d710580cb91dd88eadb' },
-        { username: 'DemoUserThree', _id: '65c61da00580cb91dd88eadd' }
+        { username: 'DemoUserTwo', _id: '65e365c9df10adb6d691208b' },
+        { username: 'DemoUserThree', _id: '65e365dcdf10adb6d691208d' }
     ]
 
     const parentRef = useRef(null)
