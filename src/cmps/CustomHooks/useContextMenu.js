@@ -8,8 +8,6 @@ export function useContextMenu() {
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const isFirstTouch = useRef(true)
 
-
-
     useEffect(() => {
 
         window.addEventListener('click', handleClickOutside)
